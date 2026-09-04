@@ -1,0 +1,8 @@
+<aside class="sidebar" aria-label="Navegación principal">
+  <a class="sidebar__logo" href="/" aria-label="Adaptivo Code Learn"><span>⬡</span><b>ACL</b></a>
+  <nav class="sidebar__nav">
+    <a class="sidebar__enlace {{ 'activo' if request.url.path == '/' else '' }}" href="/"><span aria-hidden="true">⌂</span><em>Inicio</em></a>
+    <a class="sidebar__enlace {{ 'activo' if request.url.path.startswith('/practica') else '' }}" href="/practica"><span aria-hidden="true">›_</span><em>Practicar</em></a>
+    <a class="sidebar__enlace {{ 'activo' if request.url.path == '/progreso' else '' }}" href="/progreso"><span aria-hidden="true">◫</span><em>Progreso</em></a>
+  </nav>
+</aside>

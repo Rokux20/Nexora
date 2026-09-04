@@ -1,0 +1,36 @@
+{# Requiere en el bucle: grafica = {titulo, subtitulo, svg, mensaje_vacio,
+   leyenda, columnas, filas} — devuelto por funciones de app/graficas.py #}
+<div class="grafica">
+  <div class="grafica__titulo">{{ grafica.titulo }}</div>
+  {% if grafica.subtitulo %}<div class="grafica__subtitulo">{{ grafica.subtitulo }}</div>{% endif %}
+
+  {% if grafica.svg %}
+    <div class="grafica__lienzo">{{ grafica.svg | safe }}</div>
+
+    {% if grafica.leyenda %}
+    <div class="leyenda">
+      {% for item in grafica.leyenda %}
+      <span class="leyenda__item">
+        <span class="leyenda__marca" style="background: {{ item.color }};"></span>{{ item.etiqueta }}
+      </span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <details>
+      <summary>Ver tabla equivalente</summary>
+      <table class="tabla-datos">
+        <thead>
+          <tr>{% for col in grafica.columnas %}<th>{{ col }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for fila in grafica.filas %}
+          <tr>{% for valor in fila %}<td class="numerico">{{ valor }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </details>
+  {% else %}
+    <div class="grafica__vacio">{{ grafica.mensaje_vacio }}</div>
+  {% endif %}
+</div>

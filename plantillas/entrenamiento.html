@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}Entrenamiento{% endblock %}
+{% block contexto_header %}Administración del modelo{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+  <span class="eyebrow">Administración del modelo</span>
+  <h1>Entrenamiento del modelo</h1>
+  <p class="subtitulo prosa">
+    Reentrena el estimador de dominio (regresión logística) con los datos sintéticos de aprendices
+    virtuales. Este botón ejecuta exactamente el mismo proceso que <code class="numerico">python -m ml.entrenar</code>;
+    la pantalla solo lo dispara y muestra el resultado real.
+  </p>
+
+  <div class="panel panel--padded">
+    <div class="seccion-cabecera">
+      <div>
+        <span class="eyebrow">Estado del proceso</span>
+        <h2 id="entrenamiento-estado-titulo">{% if modelo_entrenado %}Modelo entrenado{% else %}Sin modelo entrenado{% endif %}</h2>
+      </div>
+      <span class="status status--pendiente" id="entrenamiento-estado-badge">Listo para entrenar</span>
+    </div>
+    <p class="panel__pie" id="entrenamiento-estado-detalle">
+      {% if modelo_entrenado %}
+        Ya existe un modelo guardado en <code class="numerico">ml/artefactos/</code>. Puedes reentrenarlo
+        cuando quieras: el proceso es determinista (misma semilla, mismos datos).
+      {% else %}
+        Todavía no se ha entrenado ningún modelo en este proyecto.
+      {% endif %}
+    </p>
+    <div class="button-row">
+      <button class="button" type="button" id="boton-entrenar">Entrenar modelo</button>
+    </div>
+  </div>
+
+  <section class="panel panel--padded" id="entrenamiento-metricas-panel" {% if not metricas_previas %}hidden{% endif %}>
+    <div class="seccion-cabecera">
+      <div><span class="eyebrow">Última medición</span><h2>Métricas de validación</h2></div>
+    </div>
+    <div class="metrics-grid" id="entrenamiento-metricas-grid">
+      {% if metricas_previas %}
+      <div class="metric"><span class="metric__valor numerico">{{ "%.2f"|format(metricas_previas.accuracy) }}</span><span class="metric__etiqueta">Accuracy</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ "%.2f"|format(metricas_previas.precision) }}</span><span class="metric__etiqueta">Precision</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ "%.2f"|format(metricas_previas.recall) }}</span><span class="metric__etiqueta">Recall</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ "%.2f"|format(metricas_previas.f1) }}</span><span class="metric__etiqueta">F1</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ "%.3f"|format(metricas_previas.roc_auc) }}</span><span class="metric__etiqueta">ROC-AUC</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ metricas_previas.tamano_train }}</span><span class="metric__etiqueta">Registros de entrenamiento</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ metricas_previas.tamano_validacion }}</span><span class="metric__etiqueta">Registros de validación</span></div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}
+{% block js %}
+<script src="/estatico/js/entrenamiento.js"></script>
+{% endblock %}

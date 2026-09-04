@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<div class="inicio">
+  <section class="inicio__hero">
+    <div><span class="eyebrow">Plataforma de aprendizaje adaptativo</span><h1>Aprende programación<br>a tu ritmo.</h1><p>Adaptivo Code Learn ajusta cada actividad a tu desempeño para acompañarte concepto a concepto.</p><div class="barra-acciones"><a class="boton" href="/practica">Comenzar aprendizaje <span aria-hidden="true">→</span></a><a class="boton boton--secundario" href="/progreso">Ver progreso</a></div></div>
+    <div class="inicio__panel-tecnico" aria-label="Cómo funciona Adaptivo Code Learn"><div class="inicio__panel-titulo">APRENDIZAJE ADAPTATIVO <span>motor híbrido</span></div><div class="inicio__simbolo">&lt;/&gt;</div><p>La plataforma combina reglas pedagógicas y estimación de dominio para ajustar tu siguiente actividad.</p><div class="inicio__rasgos"><div><span class="hex-nodo">◌</span><b>Ruta personalizada</b><small>Se adapta a tu desempeño.</small></div><div><span class="hex-nodo">⌁</span><b>Retroalimentación</b><small>Pistas y explicaciones oportunas.</small></div></div></div>
+  </section>
+  <section class="inicio__trayectoria tarjeta"><div class="seccion-cabecera"><div><span class="eyebrow">Recorrido</span><h2>Construye tu trayectoria</h2></div><span class="texto-tecnico">01 — 12</span></div><div class="inicio__conceptos">{% for nombre in ['Variables', 'Entrada / salida', 'Operadores', 'Condicionales', 'While', 'For', 'Listas', 'Cadenas', 'Diccionarios', 'Funciones', 'Excepciones', 'Integración'] %}<div><span class="hex-nodo">{{ "%02d"|format(loop.index) }}</span><small>{{ nombre }}</small></div>{% endfor %}</div></section>
+  <section class="inicio__beneficios"><article><span class="hex-nodo">01</span><h3>Aprendizaje adaptativo</h3><p>Las actividades se ajustan según tu desempeño.</p></article><article><span class="hex-nodo">02</span><h3>Progreso por conceptos</h3><p>Observa tu avance durante toda la trayectoria.</p></article><article><span class="hex-nodo">03</span><h3>Retroalimentación</h3><p>Recibe pistas y explicaciones para continuar.</p></article></section>
+</div>
+{% endblock %}

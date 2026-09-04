@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}¿Por qué esta decisión?{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+{% if no_encontrado %}
+  <h1>No se encontró ese intento</h1><p><a href="/practica">Volver a practicar</a></p>
+{% else %}
+  <span class="eyebrow">Adaptación explicable</span>
+  <h1>¿Por qué esta decisión?</h1>
+  <p class="subtitulo">Así combinaron el modelo de dominio y las reglas pedagógicas para este intento.</p>
+  <div class="explicacion-hero">
+    <section class="tarjeta decision-resumen"><span class="eyebrow">Decisión</span><div class="decision-resumen__regla">{{ traza.regla_id }}</div><h2>{{ regla.nombre }}</h2><p>{{ traza.explicacion_aprendiz }}</p></section>
+    <section class="tarjeta estado-resumen"><span class="eyebrow">Estado del aprendiz</span><dl class="datos-resumen"><div><dt>Dominio</dt><dd class="numerico">{{ "%.0f%%"|format(estimacion.p_dominio * 100) }}</dd></div><div><dt>Intento</dt><dd class="numerico">{{ intento.numero_intento }}/3</dd></div><div><dt>Resultado</dt><dd>{{ "Correcto" if intento.es_correcto else "Por reforzar" }}</dd></div></dl></section>
+  </div>
+  <section class="tarjeta regla-aplicada"><span class="eyebrow">Regla aplicada</span><h2>{{ traza.regla_id }} · {{ regla.nombre }}</h2><p>Condición: <span class="numerico">{{ regla.condicion_textual }}</span></p></section>
+  <div class="explicacion-grid">
+    <section class="tarjeta"><h2>Factores evaluados</h2><div class="factores-lista">{% for fila in filas_factores %}<div class="factor-fila"><span>{{ fila.etiqueta }}</span><strong class="numerico">{{ fila.valor }}</strong><span class="insignia {{ 'insignia--regla' if fila.contribuyo else 'insignia--pendiente' }}">{{ "Influyó" if fila.contribuyo else "Informativo" }}</span></div>{% endfor %}</div></section>
+    <section class="tarjeta">{% if modo_degradado %}<div class="aviso aviso--advertencia" role="status">Esta estimación se calculó en modo degradado; se usó el último dominio conocido.</div>{% endif %}{% if coeficientes_top3 %}<h2>Lo que más pesa en el estimador</h2><p class="subtitulo">Variables de mayor influencia en el modelo, no solo en este intento.</p><div class="coeficientes-grid">{% for c in coeficientes_top3 %}<div class="coeficiente"><span>{{ c.variable }}</span><strong class="numerico">{{ "%+.3f"|format(c.coeficiente) }}</strong><small>{% if c.coeficiente > 0 %}Aumenta el dominio{% else %}Reduce el dominio{% endif %}</small></div>{% endfor %}</div>{% endif %}</section>
+  </div>
+  <div class="barra-acciones"><a class="boton boton--secundario" href="/practica">Volver a practicar</a><a class="boton boton--secundario" href="/progreso">Ver progreso</a></div>
+{% endif %}
+</div>
+{% endblock %}

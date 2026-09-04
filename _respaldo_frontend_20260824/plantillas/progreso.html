@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Progreso{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+  <span class="eyebrow">Panel de aprendizaje</span>
+  <h1>Tu progreso</h1>
+  <p class="subtitulo prosa">Una vista de tu trayectoria completa, incluyendo sesiones anteriores.</p>
+  <div class="metricas-grid">
+    <div class="cifra tarjeta"><span class="cifra__valor numerico">{{ dominados }}/{{ total_conceptos }}</span><span class="cifra__etiqueta">Conceptos dominados</span></div>
+    <div class="cifra tarjeta"><span class="cifra__valor numerico">{{ total_intentos }}</span><span class="cifra__etiqueta">Intentos totales</span></div>
+    <div class="cifra tarjeta"><span class="cifra__valor numerico">{{ "%.0f%%"|format(tasa_global * 100) if tasa_global is not none else "—" }}</span><span class="cifra__etiqueta">Tasa de acierto</span></div>
+    <div class="cifra tarjeta"><span class="cifra__valor numerico">{{ pistas_totales }}</span><span class="cifra__etiqueta">Pistas solicitadas</span></div>
+  </div>
+  <section class="trayectoria-dashboard tarjeta">
+    <div class="trayectoria-dashboard__cabecera"><div><span class="eyebrow">Ruta de aprendizaje</span><h2>12 conceptos para dominar</h2></div><span class="subtitulo">Estado actual por concepto</span></div>
+    <div class="conceptos-grid">
+      {% for concepto in conceptos %}{% set estado = estados.get(concepto.id) %}
+      <div class="concepto-tarjeta concepto-tarjeta--{{ estado.estado if estado else 'pendiente' }}"><span class="numerico">{{ "%02d"|format(concepto.orden) }}</span><strong>{{ concepto.nombre }}</strong><small>{% if estado %}{{ "%.0f%%"|format(estado.p_dominio_previo * 100) }} · {{ estado.estado.replace('_', ' ') }}{% else %}Pendiente{% endif %}</small></div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="dashboard-graficas"><div class="dashboard-graficas__cabecera"><div><span class="eyebrow">Datos de aprendizaje</span><h2>Evolución y resumen</h2></div></div><div class="progress-grid">{% for grafica in graficas_progreso %}{% include "parciales/grafica.html" %}{% endfor %}</div></section>
+</div>
+{% endblock %}

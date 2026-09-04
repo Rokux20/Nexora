@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block titulo %}Resumen de sesión{% endblock %}
+{% block contexto_header %}Cierre de sesión{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+
+{% if no_encontrada %}
+  <div class="panel panel--padded">
+    <h1>No se encontró esa sesión</h1>
+    <p><a href="/practica">Volver a practicar</a></p>
+  </div>
+{% else %}
+
+  <span class="eyebrow">Cierre de sesión</span>
+  <h1>Resumen de la sesión #{{ sesion.id }}</h1>
+  <p class="subtitulo">{% if sesion.estado == "finalizada" %}Sesión finalizada.{% else %}Sesión aún activa.{% endif %}</p>
+
+  <div class="metrics-grid">
+    <div class="metric">
+      <span class="metric__valor numerico">{{ "%.0f min"|format(duracion_seg / 60) if duracion_seg is not none else "—" }}</span>
+      <span class="metric__etiqueta">Duración</span>
+    </div>
+    <div class="metric">
+      <span class="metric__valor numerico">{{ items_resueltos }}</span>
+      <span class="metric__etiqueta">Ítems resueltos</span>
+    </div>
+    <div class="metric">
+      <span class="metric__valor numerico">{{ "%.0f%%"|format(tasa_acierto * 100) if tasa_acierto is not none else "—" }}</span>
+      <span class="metric__etiqueta">Tasa de acierto</span>
+    </div>
+    <div class="metric">
+      <span class="metric__valor numerico">{{ pistas_usadas }}</span>
+      <span class="metric__etiqueta">Pistas usadas</span>
+    </div>
+    <div class="metric">
+      <span class="metric__valor numerico">{{ conceptos_avanzados }}</span>
+      <span class="metric__etiqueta">Conceptos avanzados</span>
+    </div>
+    <div class="metric">
+      <span class="metric__valor numerico">{{ regla_mas_activada or "—" }}</span>
+      <span class="metric__etiqueta">Regla más activada</span>
+    </div>
+  </div>
+
+  {% if items_resueltos == 0 %}
+  <div class="panel panel--padded">
+    <p style="margin:0;">Aún no has respondido nada en esta sesión. Empieza cuando quieras.</p>
+  </div>
+  {% endif %}
+
+  <section class="panel panel--padded">
+    <div class="seccion-cabecera"><div><span class="eyebrow">Datos de la sesión</span><h2>Detalle de esta práctica</h2></div></div>
+    <div class="charts-grid">
+      {% for grafica in graficas_resumen %}{% include "parciales/grafica.html" %}{% endfor %}
+    </div>
+  </section>
+
+  <div class="button-row">
+    <a class="button" href="/practica">Seguir practicando</a>
+    <a class="button button--secondary" href="/progreso">Ver progreso</a>
+  </div>
+
+{% endif %}
+
+</div>
+{% endblock %}

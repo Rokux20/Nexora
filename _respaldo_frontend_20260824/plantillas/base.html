@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Adaptivo Code Learn{% endblock %} · Adaptivo Code Learn</title>
+  <script>(function(){try{var t=localStorage.getItem("tema-prototipo")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/estatico/css/estilo.css?v=20260824-1">
+</head>
+<body>
+  <div class="app-shell">
+    {% include "parciales/sidebar.html" %}
+    <div class="app-main">
+      <header class="cabecera"><div class="cabecera__marca"><span class="cabecera__marca-kicker">ADAPTIVO</span><strong>CODE LEARN</strong></div><div class="cabecera__contexto"><span class="texto-tecnico">PLATAFORMA DE APRENDIZAJE</span><button type="button" class="boton-tema" id="boton-tema" aria-pressed="false"><span class="boton-tema__icono" aria-hidden="true"></span><span class="boton-tema__texto">Tema</span></button></div></header>
+      <main class="principal">{% block contenido %}{% endblock %}</main>
+      <footer class="pie">Adaptivo Code Learn · Prototipo académico de aprendizaje adaptativo</footer>
+    </div>
+  </div>
+  <script src="/estatico/js/tema.js"></script><script src="/estatico/js/estado_vivo.js"></script>{% block js %}{% endblock %}
+</body>
+</html>

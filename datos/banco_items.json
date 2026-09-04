@@ -1,0 +1,6489 @@
+{
+  "items": [
+    {
+      "id": "C01-OM-001",
+      "concepto_id": 1,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el tipo de dato de la variable `x` tras esta asignación?",
+      "codigo": "x = 3.0",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "int",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "b",
+          "texto": "float",
+          "categoria_error": null
+        },
+        {
+          "clave": "c",
+          "texto": "str",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "bool",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "b",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Fíjate en si el número tiene punto decimal."
+        },
+        {
+          "nivel": 2,
+          "texto": "En Python, escribir `.0` al final no lo convierte en texto ni en entero."
+        },
+        {
+          "nivel": 3,
+          "texto": "Un número con punto decimal, como `3.0`, es de tipo `float`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PS-001",
+      "concepto_id": 1,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "nombre = \"Ana\"\nedad = 30\nprint(f\"{nombre} tiene {edad} años\")",
+      "solucion": "Ana tiene 30 años",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Es un f-string: cada `{ }` se reemplaza por el valor de la variable."
+        },
+        {
+          "nivel": 2,
+          "texto": "Sustituye `{nombre}` por su valor y `{edad}` por el suyo, tal cual están escritos."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado combina el texto fijo con los valores de `nombre` y `edad`."
+        }
+      ]
+    },
+    {
+      "id": "C01-CC-001",
+      "concepto_id": 1,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "Completa el código para declarar una variable entera llamada `contador` con valor 0.",
+      "codigo": "contador = ___\nprint(type(contador))",
+      "solucion": [
+        "0"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un entero no lleva punto decimal ni comillas."
+        },
+        {
+          "nivel": 2,
+          "texto": "Piensa en el número más simple que representa 'nada todavía'."
+        },
+        {
+          "nivel": 3,
+          "texto": "El valor es `0`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PA-001",
+      "concepto_id": 1,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para declarar dos variables e imprimirlas juntas.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(nombre, edad)",
+          "indentacion": 0
+        },
+        {
+          "texto": "nombre = \"Luis\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "edad = 20",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Las variables deben existir antes de usarlas."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se asignan `nombre` y `edad`, en cualquier orden entre ellas."
+        },
+        {
+          "nivel": 3,
+          "texto": "`print` va al final, porque necesita que ambas variables ya tengan valor."
+        }
+      ]
+    },
+    {
+      "id": "C01-OM-002",
+      "concepto_id": 1,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el resultado de `type(True)`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "<class 'int'>",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "b",
+          "texto": "<class 'bool'>",
+          "categoria_error": null
+        },
+        {
+          "clave": "c",
+          "texto": "<class 'str'>",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "<class 'float'>",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "b",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`True` y `False` son valores de verdad, no números ni texto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Python tiene un tipo dedicado a los valores de verdad."
+        },
+        {
+          "nivel": 3,
+          "texto": "Ese tipo se llama `bool`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PS-002",
+      "concepto_id": 1,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = 5\nb = \"5\"\nprint(a == int(b))\nprint(a == b)",
+      "solucion": "True\nFalse",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`a` es un número; `b` es una cadena de texto, aunque se vea igual."
+        },
+        {
+          "nivel": 2,
+          "texto": "`int(b)` convierte la cadena en número antes de comparar."
+        },
+        {
+          "nivel": 3,
+          "texto": "Un número nunca es igual a una cadena de texto en Python, aunque representen 'lo mismo'."
+        }
+      ]
+    },
+    {
+      "id": "C01-PS-003",
+      "concepto_id": 1,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "valor = \"42\"\nconvertido = int(valor) + 8\nprint(convertido)\nprint(type(convertido))",
+      "solucion": "50\n<class 'int'>",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`valor` es texto; hay que convertirlo antes de sumarle un número."
+        },
+        {
+          "nivel": 2,
+          "texto": "`int(valor)` da como resultado el entero 42."
+        },
+        {
+          "nivel": 3,
+          "texto": "42 + 8 es 50, y el resultado de una suma de enteros es `int`."
+        }
+      ]
+    },
+    {
+      "id": "C01-CC-002",
+      "concepto_id": 1,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Completa para convertir la cadena `'3.5'` en un número de punto flotante y sumarle 1.",
+      "codigo": "texto = \"3.5\"\nresultado = ___ + 1\nprint(resultado)",
+      "solucion": [
+        "float(texto)"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "No puedes sumar directamente un número a una cadena de texto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Existe una función que convierte texto con decimales en `float`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `float(texto)`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PA-002",
+      "concepto_id": 1,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para convertir un número en texto y mostrarlo.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(numero_str)",
+          "indentacion": 0
+        },
+        {
+          "texto": "numero = 7",
+          "indentacion": 0
+        },
+        {
+          "texto": "numero_str = str(numero)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Primero necesitas el número original."
+        },
+        {
+          "nivel": 2,
+          "texto": "Luego se convierte con `str()` antes de imprimirlo."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: crear `numero`, convertirlo, imprimir `numero_str`."
+        }
+      ]
+    },
+    {
+      "id": "C01-OM-003",
+      "concepto_id": 1,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué tipo de dato resulta de evaluar `10 / 2` en Python 3?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "int",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "b",
+          "texto": "float",
+          "categoria_error": null
+        },
+        {
+          "clave": "c",
+          "texto": "str",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "bool",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "b",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En Python 3, el operador `/` no es la división entera."
+        },
+        {
+          "nivel": 2,
+          "texto": "`/` siempre devuelve un resultado con decimales, aunque sea exacto."
+        },
+        {
+          "nivel": 3,
+          "texto": "`10 / 2` da `5.0`, que es de tipo `float`."
+        }
+      ]
+    },
+    {
+      "id": "C01-CC-003",
+      "concepto_id": 1,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para verificar, sin usar `type()`, si la variable `dato` es una cadena de texto.",
+      "codigo": "dato = \"hola\"\nes_texto = ___\nprint(es_texto)",
+      "solucion": [
+        "isinstance(dato, str)"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una función distinta de `type()` pensada justo para esta pregunta."
+        },
+        {
+          "nivel": 2,
+          "texto": "Esa función recibe el valor y el tipo a comprobar, y devuelve `True` o `False`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `isinstance(dato, str)`."
+        }
+      ]
+    },
+    {
+      "id": "C01-CC-004",
+      "concepto_id": 1,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para obtener la parte entera del número 7.9 sin usar `round()`.",
+      "codigo": "numero = 7.9\nparte_entera = ___\nprint(parte_entera)",
+      "solucion": [
+        "int(numero)"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`round()` está prohibido para este ejercicio; busca otra función de conversión."
+        },
+        {
+          "nivel": 2,
+          "texto": "Convertir un `float` a `int` descarta la parte decimal, sin redondear."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `int(numero)`, que da `7`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PA-003",
+      "concepto_id": 1,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para construir tres variables de distinto tipo y mostrarlas en un solo mensaje.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(f\"{nombre}: {edad} años, activo={activo}\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "activo = bool(1)",
+          "indentacion": 0
+        },
+        {
+          "texto": "edad = int(\"25\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "nombre = str(123)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Cada variable debe crearse antes de aparecer en el `print` final."
+        },
+        {
+          "nivel": 2,
+          "texto": "El orden entre `nombre`, `edad` y `activo` no importa entre sí, pero todas van antes del `print`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` con el f-string siempre va al final."
+        }
+      ]
+    },
+    {
+      "id": "C01-OM-004",
+      "concepto_id": 1,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Cuál es el valor de `bool(\"False\")`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "True",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "False",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "None",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "\"False\" es una cadena de texto, no el valor booleano `False`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cualquier cadena de texto no vacía se considera verdadera al convertirla a `bool`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como `\"False\"` tiene caracteres, `bool(\"False\")` es `True`."
+        }
+      ]
+    },
+    {
+      "id": "C01-PS-004",
+      "concepto_id": 1,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = 1\nb = 1.0\nc = \"1\"\nprint(a == b)\nprint(a == c)\nprint(str(a) == c)",
+      "solucion": "True\nFalse\nTrue",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Python compara `int` y `float` por su valor numérico, no por su tipo exacto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Un número nunca es igual a una cadena de texto, aunque 'se vean' iguales."
+        },
+        {
+          "nivel": 3,
+          "texto": "`str(a)` convierte `1` en `\"1\"`, y ahí sí coincide con `c`."
+        }
+      ]
+    },
+    {
+      "id": "C02-OM-001",
+      "concepto_id": 2,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué imprime `print(\"Hola\", \"Mundo\", sep=\"-\")`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Hola-Mundo",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Hola Mundo",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Hola-Mundo-",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "HolaMundo",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`sep` controla qué se coloca ENTRE los argumentos de `print`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Por defecto `sep` es un espacio; aquí se reemplaza por un guion."
+        },
+        {
+          "nivel": 3,
+          "texto": "Solo hay un separador, entre \"Hola\" y \"Mundo\": `Hola-Mundo`."
+        }
+      ]
+    },
+    {
+      "id": "C02-PS-001",
+      "concepto_id": 2,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "print(\"Python\", \"es\", \"genial\", sep=\"_\")",
+      "solucion": "Python_es_genial",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Cada espacio entre argumentos se reemplaza por el valor de `sep`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Hay tres palabras, así que hay dos separadores en total."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es \"Python_es_genial\"."
+        }
+      ]
+    },
+    {
+      "id": "C02-CC-001",
+      "concepto_id": 2,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para que `print` no agregue un salto de línea al final.",
+      "codigo": "print(\"Cargando\", end=___)",
+      "solucion": [
+        "\"\"",
+        "''"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El parámetro `end` reemplaza el salto de línea por defecto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si quieres que no se agregue nada, ¿qué cadena representa 'nada'?"
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa una cadena vacía: `\"\"`."
+        }
+      ]
+    },
+    {
+      "id": "C02-PA-001",
+      "concepto_id": 2,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Ordena las líneas para calcular un resultado y mostrarlo con una etiqueta.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(\"Cálculo:\", resultado)",
+          "indentacion": 0
+        },
+        {
+          "texto": "resultado = 5 + 3",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "No puedes imprimir una variable antes de calcularla."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se calcula `resultado`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: calcular, luego imprimir."
+        }
+      ]
+    },
+    {
+      "id": "C02-OM-002",
+      "concepto_id": 2,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 20,
+      "enunciado": "¿Cuál es la salida de `print(1, 2, 3)`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "1 2 3",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "1,2,3",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "123",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "(1, 2, 3)",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`print` separa varios argumentos con algo por defecto."
+        },
+        {
+          "nivel": 2,
+          "texto": "El separador por defecto (`sep`) es un espacio simple."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es \"1 2 3\"."
+        }
+      ]
+    },
+    {
+      "id": "C02-PS-002",
+      "concepto_id": 2,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "nombre = \"Sol\"\nprint(f\"{nombre:>10}|\")",
+      "solucion": "       Sol|",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `>10` dentro del f-string indica alineación a la derecha en un ancho de 10 caracteres."
+        },
+        {
+          "nivel": 2,
+          "texto": "\"Sol\" tiene 3 letras, así que se completan 7 espacios a la izquierda."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado tiene 7 espacios, luego \"Sol\", y luego \"|\"."
+        }
+      ]
+    },
+    {
+      "id": "C02-PS-003",
+      "concepto_id": 2,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "precio = 19.5\nprint(f\"Total: {precio:.2f}\")",
+      "solucion": "Total: 19.50",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`.2f` da formato con exactamente dos decimales."
+        },
+        {
+          "nivel": 2,
+          "texto": "19.5 con dos decimales se escribe agregando un cero al final."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es \"Total: 19.50\"."
+        }
+      ]
+    },
+    {
+      "id": "C02-CC-002",
+      "concepto_id": 2,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para imprimir tres valores en líneas separadas usando un solo `print`.",
+      "codigo": "print(\"uno\", \"dos\", \"tres\", sep=___)",
+      "solucion": [
+        "\"\\n\"",
+        "'\\n'"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`sep` puede ser cualquier cadena, incluida una que represente un salto de línea."
+        },
+        {
+          "nivel": 2,
+          "texto": "El carácter especial para salto de línea es `\\n`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `sep=\"\\n\"`."
+        }
+      ]
+    },
+    {
+      "id": "C02-PA-002",
+      "concepto_id": 2,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para mostrar un mensaje con dos datos formateados.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(f\"{producto}: ${precio:.2f}\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "producto = \"Cuaderno\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "precio = 4.5",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Ambas variables deben existir antes del `print`."
+        },
+        {
+          "nivel": 2,
+          "texto": "El orden entre `producto` y `precio` no importa entre sí."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` con el f-string va al final."
+        }
+      ]
+    },
+    {
+      "id": "C02-OM-003",
+      "concepto_id": 2,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué tipo de dato devuelve siempre la función `input()`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "str",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "int",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "El tipo que el usuario haya escrito",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "float",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`input()` siempre entrega el mismo tipo de dato, sin importar qué se escriba."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si necesitas un número, hay que convertir explícitamente el resultado."
+        },
+        {
+          "nivel": 3,
+          "texto": "`input()` siempre devuelve una cadena de texto (`str`)."
+        }
+      ]
+    },
+    {
+      "id": "C02-CC-003",
+      "concepto_id": 2,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para leer un número entero desde `entrada` (una cadena) y duplicarlo.",
+      "codigo": "entrada = \"21\"\ndoble = ___ * 2\nprint(doble)",
+      "solucion": [
+        "int(entrada)"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`entrada` es una cadena de texto, aunque contenga solo dígitos."
+        },
+        {
+          "nivel": 2,
+          "texto": "Hay que convertirla a entero antes de multiplicar."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `int(entrada)`."
+        }
+      ]
+    },
+    {
+      "id": "C02-CC-004",
+      "concepto_id": 2,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa el f-string para mostrar `valor` con 3 decimales.",
+      "codigo": "valor = 3.14159\nprint(f\"{valor___}\")",
+      "solucion": [
+        ":.3f"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El formato de decimales se escribe después de dos puntos, dentro de las llaves."
+        },
+        {
+          "nivel": 2,
+          "texto": "La letra `f` en el especificador indica número de punto flotante con N decimales."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `:.3f`."
+        }
+      ]
+    },
+    {
+      "id": "C02-PA-003",
+      "concepto_id": 2,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para construir y mostrar un reporte con dos líneas formateadas.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(f\"{nombre:<10}{nota:>5.1f}\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "nota = 8.5",
+          "indentacion": 0
+        },
+        {
+          "texto": "nombre = \"Ana\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"Reporte de notas\")",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El título del reporte no depende de ninguna variable, así que puede ir primero."
+        },
+        {
+          "nivel": 2,
+          "texto": "`nombre` y `nota` deben existir antes del último `print`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: título, luego las variables, luego el detalle formateado."
+        }
+      ]
+    },
+    {
+      "id": "C02-OM-004",
+      "concepto_id": 2,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime `print(\"A\", \"B\", \"C\", sep=\"\", end=\"!\")`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "ABC!",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "A B C!",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "ABC",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "d",
+          "texto": "A-B-C!",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`sep=\"\"` significa que no hay nada entre los argumentos."
+        },
+        {
+          "nivel": 2,
+          "texto": "`end=\"!\"` reemplaza el salto de línea final por un signo de exclamación."
+        },
+        {
+          "nivel": 3,
+          "texto": "Sin separador entre letras y con \"!\" al final: \"ABC!\"."
+        }
+      ]
+    },
+    {
+      "id": "C02-PS-004",
+      "concepto_id": 2,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "edad = 7\nprint(\"Edad:\", edad, end=\" \")\nprint(\"años\")",
+      "solucion": "Edad: 7 años",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El primer `print` no termina con salto de línea, sino con un espacio."
+        },
+        {
+          "nivel": 2,
+          "texto": "Por eso el segundo `print` continúa en la misma línea que el primero."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es una sola línea: \"Edad: 7 años\"."
+        }
+      ]
+    },
+    {
+      "id": "C03-OM-001",
+      "concepto_id": 3,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el resultado de `17 % 5`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "2",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "3",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "3.4",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "0",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`%` no es la división: es el resto de la división entera."
+        },
+        {
+          "nivel": 2,
+          "texto": "17 dividido entre 5 da 3, y sobran algunas unidades."
+        },
+        {
+          "nivel": 3,
+          "texto": "3 × 5 = 15, y 17 − 15 = 2. El resto es 2."
+        }
+      ]
+    },
+    {
+      "id": "C03-PS-001",
+      "concepto_id": 3,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = 7\nb = 2\nprint(a / b)\nprint(a // b)\nprint(a % b)",
+      "solucion": "3.5\n3\n1",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`/` da un resultado decimal; `//` da solo la parte entera; `%` da el resto."
+        },
+        {
+          "nivel": 2,
+          "texto": "7 entre 2 es 3.5; la parte entera de eso es 3."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resto de 7 entre 2 es 1, porque 3 × 2 = 6 y sobra 1."
+        }
+      ]
+    },
+    {
+      "id": "C03-CC-001",
+      "concepto_id": 3,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para saber si `n` es un número par.",
+      "codigo": "n = 8\nes_par = n % 2 ___ 0\nprint(es_par)",
+      "solucion": [
+        "=="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un número es par si el resto de dividirlo entre 2 es cero."
+        },
+        {
+          "nivel": 2,
+          "texto": "Necesitas comparar, no asignar."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `==`."
+        }
+      ]
+    },
+    {
+      "id": "C03-PA-001",
+      "concepto_id": 3,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para calcular el área de un rectángulo.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(area)",
+          "indentacion": 0
+        },
+        {
+          "texto": "base = 4",
+          "indentacion": 0
+        },
+        {
+          "texto": "altura = 5",
+          "indentacion": 0
+        },
+        {
+          "texto": "area = base * altura",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`area` depende de `base` y `altura`: esas dos van primero."
+        },
+        {
+          "nivel": 2,
+          "texto": "El cálculo del área va después de tener ambos valores."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` siempre va al final, cuando `area` ya existe."
+        }
+      ]
+    },
+    {
+      "id": "C03-OM-002",
+      "concepto_id": 3,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el valor de `3 + 4 * 2`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "11",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "14",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "10",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "d",
+          "texto": "9",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La multiplicación tiene mayor precedencia que la suma."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se calcula `4 * 2 = 8`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Luego `3 + 8 = 11`."
+        }
+      ]
+    },
+    {
+      "id": "C03-PS-002",
+      "concepto_id": 3,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "x = 5\ny = 3\nprint(x > y and y > 0)\nprint(x > y or y > 10)\nprint(not (x > y))",
+      "solucion": "True\nTrue\nFalse",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`and` exige que ambas condiciones sean verdaderas."
+        },
+        {
+          "nivel": 2,
+          "texto": "`or` exige que al menos una condición sea verdadera."
+        },
+        {
+          "nivel": 3,
+          "texto": "`not` invierte el resultado de la condición que sigue."
+        }
+      ]
+    },
+    {
+      "id": "C03-PS-003",
+      "concepto_id": 3,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "print(2 ** 3)\nprint(2 ** 0.5)",
+      "solucion": "8\n1.4142135623730951",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`**` es el operador de potencia."
+        },
+        {
+          "nivel": 2,
+          "texto": "2 elevado a 3 es un entero; 2 elevado a 0.5 es la raíz cuadrada de 2."
+        },
+        {
+          "nivel": 3,
+          "texto": "El segundo resultado es un número decimal, no exacto."
+        }
+      ]
+    },
+    {
+      "id": "C03-CC-002",
+      "concepto_id": 3,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Completa para calcular el promedio de tres números.",
+      "codigo": "a, b, c = 4, 8, 10\npromedio = (a + b + c) / ___\nprint(promedio)",
+      "solucion": [
+        "3"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El promedio es la suma dividida entre la cantidad de números."
+        },
+        {
+          "nivel": 2,
+          "texto": "Aquí hay exactamente tres números."
+        },
+        {
+          "nivel": 3,
+          "texto": "Divide entre `3`."
+        }
+      ]
+    },
+    {
+      "id": "C03-PA-002",
+      "concepto_id": 3,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para evaluar si un número está dentro de un rango.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(en_rango)",
+          "indentacion": 0
+        },
+        {
+          "texto": "numero = 15",
+          "indentacion": 0
+        },
+        {
+          "texto": "en_rango = numero >= 10 and numero <= 20",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`numero` debe existir antes de evaluarlo."
+        },
+        {
+          "nivel": 2,
+          "texto": "La expresión lógica se calcula antes de imprimir su resultado."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: crear `numero`, calcular `en_rango`, imprimir."
+        }
+      ]
+    },
+    {
+      "id": "C03-OM-003",
+      "concepto_id": 3,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el resultado de `10 != 10`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "False",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "True",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "None",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`!=` significa 'distinto de'."
+        },
+        {
+          "nivel": 2,
+          "texto": "10 y 10 son el mismo valor, así que no son distintos."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como sí son iguales, la comparación 'distinto' da `False`."
+        }
+      ]
+    },
+    {
+      "id": "C03-CC-003",
+      "concepto_id": 3,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para comprobar que `edad` está fuera del rango [18, 65].",
+      "codigo": "edad = 70\nfuera_de_rango = edad < 18 ___ edad > 65\nprint(fuera_de_rango)",
+      "solucion": [
+        "or"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Basta con que se cumpla UNA de las dos condiciones para estar fuera del rango."
+        },
+        {
+          "nivel": 2,
+          "texto": "Necesitas el operador lógico que exige 'al menos una verdadera'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `or`."
+        }
+      ]
+    },
+    {
+      "id": "C03-CC-004",
+      "concepto_id": 3,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para verificar si `total` es múltiplo de 3 y de 5 a la vez.",
+      "codigo": "total = 30\nmultiplo_3_5 = total % 3 == 0 and total % 5 ___ 0",
+      "solucion": [
+        "=="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Ambas comparaciones deben tener la misma estructura."
+        },
+        {
+          "nivel": 2,
+          "texto": "La primera comparación usa `==`; la segunda debería usar lo mismo."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `==`."
+        }
+      ]
+    },
+    {
+      "id": "C03-PA-003",
+      "concepto_id": 3,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para evaluar una expresión aritmética con varias operaciones.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(resultado)",
+          "indentacion": 0
+        },
+        {
+          "texto": "resultado = (a + b) * c - d / e",
+          "indentacion": 0
+        },
+        {
+          "texto": "a, b, c, d, e = 2, 3, 4, 10, 2",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        2,
+        1,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Todas las variables usadas en `resultado` deben existir antes."
+        },
+        {
+          "nivel": 2,
+          "texto": "La asignación de `a, b, c, d, e` va primero."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: variables, cálculo, impresión."
+        }
+      ]
+    },
+    {
+      "id": "C03-OM-004",
+      "concepto_id": 3,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Cuál es el resultado de `True + True`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "2",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "True",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "1",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En Python, `bool` es un subtipo de `int`."
+        },
+        {
+          "nivel": 2,
+          "texto": "`True` se comporta como `1` y `False` como `0` en operaciones aritméticas."
+        },
+        {
+          "nivel": 3,
+          "texto": "`True + True` equivale a `1 + 1 = 2`."
+        }
+      ]
+    },
+    {
+      "id": "C03-PS-004",
+      "concepto_id": 3,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = 5\nb = \"5\"\nprint(a * 2)\nprint(b * 2)",
+      "solucion": "10\n55",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`a` es un número; `b` es una cadena de texto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Multiplicar un número por 2 lo duplica; multiplicar texto por 2 lo repite."
+        },
+        {
+          "nivel": 3,
+          "texto": "`\"5\" * 2` da `\"55\"`, no `10`."
+        }
+      ]
+    },
+    {
+      "id": "C04-OM-001",
+      "concepto_id": 4,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "x = 4\nif x > 0:\n    print(\"positivo\")\nelse:\n    print(\"no positivo\")",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "positivo",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "no positivo",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "No imprime nada",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Evalúa la condición del `if` con el valor real de `x`."
+        },
+        {
+          "nivel": 2,
+          "texto": "4 es mayor que 0."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como la condición es verdadera, se ejecuta la rama del `if`."
+        }
+      ]
+    },
+    {
+      "id": "C04-PS-001",
+      "concepto_id": 4,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "n = 0\nif n:\n    print(\"verdadero\")\nelse:\n    print(\"falso\")",
+      "solucion": "falso",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un `if` puede evaluar directamente un número, sin compararlo explícitamente."
+        },
+        {
+          "nivel": 2,
+          "texto": "En Python, el número `0` se considera un valor falso."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como `n` es `0`, la condición es falsa y se ejecuta el `else`."
+        }
+      ]
+    },
+    {
+      "id": "C04-CC-001",
+      "concepto_id": 4,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa la condición para imprimir 'aprobado' si `nota` es mayor o igual a 3.0.",
+      "codigo": "nota = 3.5\nif nota ___ 3.0:\n    print(\"aprobado\")\nelse:\n    print(\"reprobado\")",
+      "solucion": [
+        ">="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "'Mayor o igual' se escribe con dos símbolos juntos."
+        },
+        {
+          "nivel": 2,
+          "texto": "No es lo mismo 'mayor que' que 'mayor o igual que'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `>=`."
+        }
+      ]
+    },
+    {
+      "id": "C04-PA-001",
+      "concepto_id": 4,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para imprimir si un número es par o impar.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(\"par\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "if numero % 2 == 0:",
+          "indentacion": 0
+        },
+        {
+          "texto": "else:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"impar\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "numero = 9",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        1,
+        0,
+        2,
+        3
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`numero` debe existir antes de evaluar la condición."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `if` y su condición van antes que cualquiera de los `print`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `else:` va después del bloque del `if`, y antes de su propio `print`."
+        }
+      ]
+    },
+    {
+      "id": "C04-OM-002",
+      "concepto_id": 4,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuántas ramas como máximo se ejecutan en una cadena `if/elif/elif/else`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "1",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Todas las que sean verdaderas",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "2",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "0",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En cuanto una condición resulta verdadera, Python deja de evaluar las siguientes."
+        },
+        {
+          "nivel": 2,
+          "texto": "Esto es distinto de tener varios `if` independientes."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se ejecuta como máximo una sola rama de toda la cadena."
+        }
+      ]
+    },
+    {
+      "id": "C04-PS-002",
+      "concepto_id": 4,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "edad = 16\nif edad >= 18:\n    categoria = \"adulto\"\nelif edad >= 13:\n    categoria = \"adolescente\"\nelse:\n    categoria = \"niño\"\nprint(categoria)",
+      "solucion": "adolescente",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Evalúa las condiciones en orden: primero la del `if`."
+        },
+        {
+          "nivel": 2,
+          "texto": "16 no es mayor o igual a 18, así que se pasa al `elif`."
+        },
+        {
+          "nivel": 3,
+          "texto": "16 sí es mayor o igual a 13, así que esa es la rama que se ejecuta."
+        }
+      ]
+    },
+    {
+      "id": "C04-PS-003",
+      "concepto_id": 4,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = 5\nb = 5\nif a == b:\n    print(\"iguales\")\nelif a > b:\n    print(\"mayor\")\nelse:\n    print(\"menor\")",
+      "solucion": "iguales",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Compara los valores exactos de `a` y `b`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Ambos valen 5."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como son iguales, se ejecuta la primera rama."
+        }
+      ]
+    },
+    {
+      "id": "C04-CC-002",
+      "concepto_id": 4,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Completa para clasificar `puntaje` como 'alto' si es mayor a 80, o 'bajo' en caso contrario, en una sola línea.",
+      "codigo": "puntaje = 90\ncategoria = \"alto\" if puntaje > 80 ___ \"bajo\"\nprint(categoria)",
+      "solucion": [
+        "else"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Es un condicional expresado en una sola línea (expresión condicional)."
+        },
+        {
+          "nivel": 2,
+          "texto": "La forma es: `valor_si_verdadero if condicion ___ valor_si_falso`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `else`."
+        }
+      ]
+    },
+    {
+      "id": "C04-PA-002",
+      "concepto_id": 4,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para clasificar una temperatura en tres categorías.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "elif temperatura > 15:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"templado\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "if temperatura > 25:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"caluroso\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "else:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"frío\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "temperatura = 10",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        6,
+        2,
+        3,
+        0,
+        1,
+        4,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`temperatura` debe existir antes de cualquier comparación."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `if` va primero, seguido de su bloque; luego el `elif`, luego el `else`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Cada `print` va inmediatamente después de la condición a la que pertenece."
+        }
+      ]
+    },
+    {
+      "id": "C04-OM-003",
+      "concepto_id": 4,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "x = 7\nif x % 2 == 0:\n    print('par')\nelif x > 5:\n    print('mayor')\nelse:\n    print('otro')",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "par",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "b",
+          "texto": "mayor",
+          "categoria_error": null
+        },
+        {
+          "clave": "c",
+          "texto": "otro",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "par\nmayor",
+          "categoria_error": "flujo_ejecucion"
+        }
+      ],
+      "solucion": "b",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Fíjate en qué rama se evalúa primero."
+        },
+        {
+          "nivel": 2,
+          "texto": "7 % 2 no es 0, así que la primera condición falla. ¿Qué se evalúa después?"
+        },
+        {
+          "nivel": 3,
+          "texto": "Cuando el `if` es falso se prueba el `elif`; si ese es verdadero, el `else` nunca se ejecuta."
+        }
+      ]
+    },
+    {
+      "id": "C04-CC-003",
+      "concepto_id": 4,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Completa para verificar que `x` esté entre 1 y 10 (incluidos) usando una comparación encadenada.",
+      "codigo": "x = 5\nen_rango = 1 ___ x <= 10\nprint(en_rango)",
+      "solucion": [
+        "<="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Python permite encadenar comparaciones: `a <= b <= c`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Ambos lados de `x` deben usar el mismo tipo de comparación para que tenga sentido el rango."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `<=`."
+        }
+      ]
+    },
+    {
+      "id": "C04-CC-004",
+      "concepto_id": 4,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa la condición para entrar al bloque solo si `usuario` NO está vacío.",
+      "codigo": "usuario = \"ana\"\nedad = 20\nif usuario ___ \"\":\n    if edad >= 18:\n        print(\"válido\")\n    else:\n        print(\"menor de edad\")\nelse:\n    print(\"usuario vacío\")",
+      "solucion": [
+        "!="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Necesitas la condición contraria a 'es igual a una cadena vacía'."
+        },
+        {
+          "nivel": 2,
+          "texto": "El operador de 'distinto de' es el que buscas."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `!=`."
+        }
+      ]
+    },
+    {
+      "id": "C04-PA-003",
+      "concepto_id": 4,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 70,
+      "enunciado": "Ordena las líneas para construir un control de acceso con condicionales anidados.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "sesion_activa = False",
+          "indentacion": 0
+        },
+        {
+          "texto": "es_admin = True",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"sin acceso\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "if sesion_activa:",
+          "indentacion": 1
+        },
+        {
+          "texto": "else:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"acceso restringido\")",
+          "indentacion": 2
+        },
+        {
+          "texto": "if es_admin:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"acceso total\")",
+          "indentacion": 2
+        },
+        {
+          "texto": "else:",
+          "indentacion": 1
+        }
+      ],
+      "solucion": [
+        1,
+        0,
+        6,
+        3,
+        7,
+        8,
+        5,
+        4,
+        2
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Ambas variables booleanas deben existir antes de cualquier `if`."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `if es_admin` externo contiene un `if sesion_activa` anidado con su propio `else`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `else` del `if es_admin` externo va al mismo nivel que ese `if`, no dentro de él."
+        }
+      ]
+    },
+    {
+      "id": "C04-OM-004",
+      "concepto_id": 4,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Si ninguna condición de un `if/elif` es verdadera y no hay `else`, ¿qué ocurre?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "No se ejecuta ninguna rama",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Se lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Se ejecuta la última rama definida",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "El programa se detiene por completo",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`elif` sin `else` no obliga a que se ejecute algo."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si ninguna condición se cumple, el bloque entero simplemente se salta."
+        },
+        {
+          "nivel": 3,
+          "texto": "El programa sigue con la línea siguiente, sin ejecutar ninguna rama."
+        }
+      ]
+    },
+    {
+      "id": "C04-PS-004",
+      "concepto_id": 4,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "x = -3\nif x > 0:\n    signo = \"positivo\"\nelif x < 0:\n    signo = \"negativo\"\nelse:\n    signo = \"cero\"\nprint(signo)",
+      "solucion": "negativo",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "-3 no es mayor que 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "-3 sí es menor que 0."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se ejecuta la rama del `elif`: 'negativo'."
+        }
+      ]
+    },
+    {
+      "id": "C05-OM-001",
+      "concepto_id": 5,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Cuántas veces se imprime 'hola' en el siguiente código?",
+      "codigo": "i = 0\nwhile i < 3:\n    print(\"hola\")\n    i += 1",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "3",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "2",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "c",
+          "texto": "4",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "d",
+          "texto": "Infinitas veces",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El bucle se repite mientras `i` sea menor que 3."
+        },
+        {
+          "nivel": 2,
+          "texto": "`i` empieza en 0 y aumenta de 1 en 1: 0, 1, 2."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se ejecuta para i=0, i=1 e i=2: tres veces en total."
+        }
+      ]
+    },
+    {
+      "id": "C05-PS-001",
+      "concepto_id": 5,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "contador = 5\nwhile contador > 0:\n    print(contador)\n    contador -= 1",
+      "solucion": "5\n4\n3\n2\n1",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El bucle imprime `contador` y luego lo reduce en 1, mientras sea mayor que 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "Empieza en 5 y va bajando de uno en uno."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se imprimen 5, 4, 3, 2 y 1, cada uno en su propia línea."
+        }
+      ]
+    },
+    {
+      "id": "C05-CC-001",
+      "concepto_id": 5,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Completa para que el bucle se repita mientras `n` sea distinto de 0.",
+      "codigo": "n = 3\nwhile n ___ 0:\n    print(n)\n    n -= 1",
+      "solucion": [
+        "!="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La condición del bucle debe ser verdadera para que siga repitiéndose."
+        },
+        {
+          "nivel": 2,
+          "texto": "Queremos seguir mientras `n` NO sea 0."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `!=`."
+        }
+      ]
+    },
+    {
+      "id": "C05-PA-001",
+      "concepto_id": 5,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para imprimir los números del 1 al 3 con `while`.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "numero += 1",
+          "indentacion": 1
+        },
+        {
+          "texto": "print(numero)",
+          "indentacion": 1
+        },
+        {
+          "texto": "while numero <= 3:",
+          "indentacion": 0
+        },
+        {
+          "texto": "numero = 1",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`numero` debe existir antes de evaluarlo en la condición del `while`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del bucle, primero se imprime el valor actual."
+        },
+        {
+          "nivel": 3,
+          "texto": "El incremento va al final del cuerpo del bucle, para no repetirse infinitamente."
+        }
+      ]
+    },
+    {
+      "id": "C05-OM-002",
+      "concepto_id": 5,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué problema tiene este código?",
+      "codigo": "i = 0\nwhile i < 5:\n    print(i)",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Es un bucle infinito: `i` nunca cambia",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "No tiene ningún problema",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Falta el `:` al final del `while`",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "`i` debería empezar en 1",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Revisa si algo dentro del bucle modifica la variable de la condición."
+        },
+        {
+          "nivel": 2,
+          "texto": "`i` se queda en 0 para siempre, porque nada la incrementa."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como `i < 5` siempre es verdadera, el bucle nunca termina."
+        }
+      ]
+    },
+    {
+      "id": "C05-PS-002",
+      "concepto_id": 5,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "total = 0\ni = 1\nwhile i <= 4:\n    total += i\n    i += 1\nprint(total)",
+      "solucion": "10",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`total` va acumulando la suma de `i` en cada vuelta."
+        },
+        {
+          "nivel": 2,
+          "texto": "`i` toma los valores 1, 2, 3 y 4."
+        },
+        {
+          "nivel": 3,
+          "texto": "1 + 2 + 3 + 4 = 10."
+        }
+      ]
+    },
+    {
+      "id": "C05-PS-003",
+      "concepto_id": 5,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "n = 1\nwhile n < 20:\n    n *= 2\nprint(n)",
+      "solucion": "32",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`n` se va duplicando en cada vuelta, mientras sea menor que 20."
+        },
+        {
+          "nivel": 2,
+          "texto": "Sigue la secuencia: 1, 2, 4, 8, 16, 32..."
+        },
+        {
+          "nivel": 3,
+          "texto": "En cuanto `n` llega a 32, deja de ser menor que 20 y el bucle termina."
+        }
+      ]
+    },
+    {
+      "id": "C05-CC-002",
+      "concepto_id": 5,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para que el bucle se detenga apenas `encontrado` sea verdadero.",
+      "codigo": "numeros = [3, 7, 2, 9]\nindice = 0\nencontrado = False\nwhile indice < len(numeros) and ___ encontrado:\n    if numeros[indice] == 9:\n        encontrado = True\n    indice += 1\nprint(indice)",
+      "solucion": [
+        "not"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Quieres seguir buscando mientras NO se haya encontrado el valor."
+        },
+        {
+          "nivel": 2,
+          "texto": "Necesitas negar la variable booleana `encontrado`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `not`."
+        }
+      ]
+    },
+    {
+      "id": "C05-PA-002",
+      "concepto_id": 5,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para sumar números hasta que el acumulado supere 10.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "suma += valor",
+          "indentacion": 1
+        },
+        {
+          "texto": "valor += 1",
+          "indentacion": 1
+        },
+        {
+          "texto": "while suma <= 10:",
+          "indentacion": 0
+        },
+        {
+          "texto": "suma = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "valor = 1",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        3,
+        4,
+        2,
+        0,
+        1
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`suma` y `valor` deben inicializarse antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del bucle, primero se acumula `valor` en `suma`."
+        },
+        {
+          "nivel": 3,
+          "texto": "`valor` se incrementa al final del cuerpo del bucle."
+        }
+      ]
+    },
+    {
+      "id": "C05-OM-003",
+      "concepto_id": 5,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué hace la instrucción `break` dentro de un `while`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Termina el bucle inmediatamente",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Salta a la siguiente vuelta del bucle",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Reinicia el bucle desde el principio",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Pausa el programa",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`break` no reinicia ni pausa nada."
+        },
+        {
+          "nivel": 2,
+          "texto": "Corta la ejecución del bucle en el punto donde aparece."
+        },
+        {
+          "nivel": 3,
+          "texto": "El programa continúa después del bucle, sin evaluar la condición de nuevo."
+        }
+      ]
+    },
+    {
+      "id": "C05-CC-003",
+      "concepto_id": 5,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para salir del bucle apenas se encuentre el número 7, usando `break`.",
+      "codigo": "numeros = [3, 7, 2, 9]\nindice = 0\nwhile indice < len(numeros):\n    if numeros[indice] == 7:\n        ___\n    indice += 1\nprint(indice)",
+      "solucion": [
+        "break"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Quieres detener el bucle inmediatamente al cumplirse la condición interna."
+        },
+        {
+          "nivel": 2,
+          "texto": "La instrucción que corta un bucle antes de que termine su condición natural."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `break`."
+        }
+      ]
+    },
+    {
+      "id": "C05-CC-004",
+      "concepto_id": 5,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para que el bucle se salte los números negativos y siga con el siguiente, usando `continue`.",
+      "codigo": "numeros = [3, -1, 5, -2]\nindice = 0\npositivos = []\nwhile indice < len(numeros):\n    if numeros[indice] < 0:\n        indice += 1\n        ___\n    positivos.append(numeros[indice])\n    indice += 1\nprint(positivos)",
+      "solucion": [
+        "continue"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Necesitas volver al inicio del bucle sin ejecutar el resto del cuerpo."
+        },
+        {
+          "nivel": 2,
+          "texto": "Existe una instrucción que salta directo a evaluar la condición otra vez."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `continue`."
+        }
+      ]
+    },
+    {
+      "id": "C05-PA-003",
+      "concepto_id": 5,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 70,
+      "enunciado": "Ordena las líneas para contar cuántos números pares hay antes de encontrar el primer múltiplo de 7.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "break",
+          "indentacion": 2
+        },
+        {
+          "texto": "if numero % 7 == 0:",
+          "indentacion": 1
+        },
+        {
+          "texto": "pares += 1",
+          "indentacion": 2
+        },
+        {
+          "texto": "elif numero % 2 == 0:",
+          "indentacion": 1
+        },
+        {
+          "texto": "numero += 1",
+          "indentacion": 1
+        },
+        {
+          "texto": "numero = 1",
+          "indentacion": 0
+        },
+        {
+          "texto": "pares = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "while True:",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        5,
+        6,
+        7,
+        1,
+        0,
+        3,
+        2,
+        4
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`numero` y `pares` se inicializan antes del bucle infinito."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se comprueba si es múltiplo de 7 (para salir); si no, si es par."
+        },
+        {
+          "nivel": 3,
+          "texto": "El incremento de `numero` va al final, después de las comprobaciones."
+        }
+      ]
+    },
+    {
+      "id": "C05-OM-004",
+      "concepto_id": 5,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "i = 0\nwhile i < 5:\n    i += 1\n    if i == 3:\n        continue\n    print(i)",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "1 2 4 5",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "1 2 3 4 5",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "1 2 4",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "d",
+          "texto": "0 1 2 3 4",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`continue` salta el `print` de esa vuelta, pero el bucle sigue."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cuando `i` vale 3, no se imprime, pero el bucle continúa hasta `i == 5`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se imprimen todos los valores de `i` de 1 a 5, excepto el 3."
+        }
+      ]
+    },
+    {
+      "id": "C05-PS-004",
+      "concepto_id": 5,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "n = 10\npasos = 0\nwhile n != 1:\n    if n % 2 == 0:\n        n = n // 2\n    else:\n        n = 3 * n + 1\n    pasos += 1\nprint(pasos)",
+      "solucion": "6",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Sigue la secuencia paso a paso: 10, luego aplica la regla según sea par o impar."
+        },
+        {
+          "nivel": 2,
+          "texto": "10 → 5 → 16 → 8 → 4 → 2 → 1."
+        },
+        {
+          "nivel": 3,
+          "texto": "Cuenta cuántos pasos toma llegar de 10 a 1 con esa secuencia."
+        }
+      ]
+    },
+    {
+      "id": "C06-OM-001",
+      "concepto_id": 6,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuántas veces se ejecuta el cuerpo de `for i in range(4):`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "4",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "3",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "c",
+          "texto": "5",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "d",
+          "texto": "Depende del sistema",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`range(4)` genera una secuencia de números."
+        },
+        {
+          "nivel": 2,
+          "texto": "Esa secuencia empieza en 0 y no incluye el 4."
+        },
+        {
+          "nivel": 3,
+          "texto": "Genera 0, 1, 2, 3: cuatro valores en total."
+        }
+      ]
+    },
+    {
+      "id": "C06-PS-001",
+      "concepto_id": 6,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "for i in range(3):\n    print(i)",
+      "solucion": "0\n1\n2",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`range(3)` genera números empezando en 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "No incluye el número 3."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se imprimen 0, 1 y 2, cada uno en su línea."
+        }
+      ]
+    },
+    {
+      "id": "C06-CC-001",
+      "concepto_id": 6,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para recorrer los números del 1 al 5 (incluido el 5).",
+      "codigo": "for numero in range(1, ___):\n    print(numero)",
+      "solucion": [
+        "6"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El segundo argumento de `range` es un límite que NO se incluye."
+        },
+        {
+          "nivel": 2,
+          "texto": "Para incluir el 5, el límite debe ser uno más."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `6`."
+        }
+      ]
+    },
+    {
+      "id": "C06-PA-001",
+      "concepto_id": 6,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para sumar los números del 1 al 5 con `for`.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "suma += numero",
+          "indentacion": 1
+        },
+        {
+          "texto": "for numero in range(1, 6):",
+          "indentacion": 0
+        },
+        {
+          "texto": "suma = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(suma)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        2,
+        1,
+        0,
+        3
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`suma` debe inicializarse antes de entrar al bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `print` final va fuera del bucle, alineado con `suma = 0`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: inicializar, bucle con acumulación, imprimir."
+        }
+      ]
+    },
+    {
+      "id": "C06-OM-002",
+      "concepto_id": 6,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué imprime `for letra in \"sol\": print(letra)`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "s, o, l cada una en su línea",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "\"sol\" una sola vez",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "3 (la longitud del texto)",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un `for` sobre una cadena de texto recorre carácter por carácter."
+        },
+        {
+          "nivel": 2,
+          "texto": "\"sol\" tiene tres caracteres: s, o, l."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se imprime cada letra en una línea distinta."
+        }
+      ]
+    },
+    {
+      "id": "C06-PS-002",
+      "concepto_id": 6,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "frutas = [\"manzana\", \"pera\", \"uva\"]\nfor indice, fruta in enumerate(frutas):\n    print(indice, fruta)",
+      "solucion": "0 manzana\n1 pera\n2 uva",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`enumerate` entrega pares de (índice, elemento) empezando desde 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "El índice va antes que el valor en cada línea impresa."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se imprimen tres líneas: '0 manzana', '1 pera' y '2 uva'."
+        }
+      ]
+    },
+    {
+      "id": "C06-PS-003",
+      "concepto_id": 6,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "total = 0\nfor i in range(1, 10, 2):\n    total += i\nprint(total)",
+      "solucion": "25",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El tercer argumento de `range` es el paso entre números."
+        },
+        {
+          "nivel": 2,
+          "texto": "Genera 1, 3, 5, 7, 9 (números impares hasta antes de 10)."
+        },
+        {
+          "nivel": 3,
+          "texto": "1 + 3 + 5 + 7 + 9 = 25."
+        }
+      ]
+    },
+    {
+      "id": "C06-CC-002",
+      "concepto_id": 6,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para recorrer la lista en orden inverso, sin modificar la lista original.",
+      "codigo": "numeros = [1, 2, 3, 4]\nfor n in ___(numeros):\n    print(n)",
+      "solucion": [
+        "reversed"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una función que entrega los elementos de una secuencia en orden inverso."
+        },
+        {
+          "nivel": 2,
+          "texto": "No es lo mismo que ordenar; solo invierte el recorrido."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `reversed(numeros)`."
+        }
+      ]
+    },
+    {
+      "id": "C06-PA-002",
+      "concepto_id": 6,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para contar cuántos números de una lista son mayores que 5.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "contador += 1",
+          "indentacion": 2
+        },
+        {
+          "texto": "if n > 5:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for n in numeros:",
+          "indentacion": 0
+        },
+        {
+          "texto": "contador = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "numeros = [2, 8, 4, 9, 1]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(contador)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista y el contador deben existir antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del `for`, se compara cada elemento antes de sumar al contador."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` final va fuera y después del bucle."
+        }
+      ]
+    },
+    {
+      "id": "C06-OM-003",
+      "concepto_id": 6,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué hace `break` dentro de un `for` cuando se cumple una condición?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Termina el bucle inmediatamente, sin recorrer los elementos restantes",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Salta ese elemento y sigue con el siguiente",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Reinicia el recorrido desde el primer elemento",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "No tiene efecto dentro de un `for`",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`break` funciona igual en `for` que en `while`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Detiene el bucle por completo, sin llegar a los elementos que faltan."
+        },
+        {
+          "nivel": 3,
+          "texto": "El programa continúa justo después del `for`."
+        }
+      ]
+    },
+    {
+      "id": "C06-CC-003",
+      "concepto_id": 6,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para detener el recorrido apenas se encuentre el primer número negativo.",
+      "codigo": "numeros = [4, 2, -1, 7, -3]\nfor n in numeros:\n    if n < 0:\n        ___\n    print(n)",
+      "solucion": [
+        "break"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Quieres cortar el bucle por completo al encontrar la condición."
+        },
+        {
+          "nivel": 2,
+          "texto": "No es `continue`, porque no quieres seguir con el siguiente elemento."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `break`."
+        }
+      ]
+    },
+    {
+      "id": "C06-CC-004",
+      "concepto_id": 6,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para recorrer dos listas a la vez, elemento por elemento.",
+      "codigo": "nombres = [\"Ana\", \"Luis\"]\nnotas = [9, 7]\nfor nombre, nota in ___(nombres, notas):\n    print(nombre, nota)",
+      "solucion": [
+        "zip"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una función que combina varias secuencias en pares, posición por posición."
+        },
+        {
+          "nivel": 2,
+          "texto": "No es `enumerate`, porque no necesitas el índice sino los valores de ambas listas."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `zip(nombres, notas)`."
+        }
+      ]
+    },
+    {
+      "id": "C06-PA-003",
+      "concepto_id": 6,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 70,
+      "enunciado": "Ordena las líneas para construir una lista con los cuadrados de los números pares de otra lista.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "cuadrados.append(n ** 2)",
+          "indentacion": 2
+        },
+        {
+          "texto": "if n % 2 == 0:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for n in numeros:",
+          "indentacion": 0
+        },
+        {
+          "texto": "cuadrados = []",
+          "indentacion": 0
+        },
+        {
+          "texto": "numeros = [1, 2, 3, 4, 5, 6]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(cuadrados)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista de resultados y la lista original deben existir antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del `for`, primero se filtra por paridad, luego se agrega el cuadrado."
+        },
+        {
+          "nivel": 3,
+          "texto": "`cuadrados.append(...)` va dentro del `if`, no al mismo nivel que él."
+        }
+      ]
+    },
+    {
+      "id": "C06-OM-004",
+      "concepto_id": 6,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "total = 0\nfor i in range(5):\n    if i == 2:\n        continue\n    total += i\nprint(total)",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "8",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "10",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "6",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "d",
+          "texto": "2",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`continue` salta el resto del cuerpo solo para esa vuelta."
+        },
+        {
+          "nivel": 2,
+          "texto": "`i` recorre 0, 1, 2, 3, 4, pero cuando `i == 2` no se suma."
+        },
+        {
+          "nivel": 3,
+          "texto": "0 + 1 + 3 + 4 = 8."
+        }
+      ]
+    },
+    {
+      "id": "C06-PS-004",
+      "concepto_id": 6,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "resultado = []\nfor i in range(3):\n    for j in range(2):\n        resultado.append((i, j))\nprint(resultado)",
+      "solucion": "[(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Hay un bucle `for` anidado dentro de otro: por cada `i`, se recorren todos los `j`."
+        },
+        {
+          "nivel": 2,
+          "texto": "`i` toma 0, 1, 2; para cada uno, `j` toma 0 y 1."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se generan 6 pares en total, en el orden en que se van creando."
+        }
+      ]
+    },
+    {
+      "id": "C07-OM-001",
+      "concepto_id": 7,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el valor de `frutas[0]` si `frutas = [\"pera\", \"uva\", \"kiwi\"]`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "pera",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "uva",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "kiwi",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Las listas en Python empiezan a contar desde el índice 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "El índice 0 corresponde al primer elemento."
+        },
+        {
+          "nivel": 3,
+          "texto": "`frutas[0]` es \"pera\"."
+        }
+      ]
+    },
+    {
+      "id": "C07-PS-001",
+      "concepto_id": 7,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "numeros = [10, 20, 30]\nnumeros.append(40)\nprint(numeros)",
+      "solucion": "[10, 20, 30, 40]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`append` agrega un elemento al final de la lista."
+        },
+        {
+          "nivel": 2,
+          "texto": "La lista original tenía tres elementos; ahora tendrá cuatro."
+        },
+        {
+          "nivel": 3,
+          "texto": "El 40 queda al final: [10, 20, 30, 40]."
+        }
+      ]
+    },
+    {
+      "id": "C07-CC-001",
+      "concepto_id": 7,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para obtener cuántos elementos tiene la lista `colores`.",
+      "codigo": "colores = [\"rojo\", \"azul\", \"verde\"]\ncantidad = ___(colores)\nprint(cantidad)",
+      "solucion": [
+        "len"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una función incorporada que devuelve el tamaño de una secuencia."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es la misma función que se usa para saber cuántos caracteres tiene un texto."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `len(colores)`."
+        }
+      ]
+    },
+    {
+      "id": "C07-PA-001",
+      "concepto_id": 7,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para crear una lista vacía y agregarle dos elementos.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "lista.append(\"b\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "lista = []",
+          "indentacion": 0
+        },
+        {
+          "texto": "lista.append(\"a\")",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(lista)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista debe crearse (vacía) antes de poder agregarle algo."
+        },
+        {
+          "nivel": 2,
+          "texto": "Los `append` se ejecutan en el orden en que aparecen."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` va al final, cuando ya se agregaron ambos elementos."
+        }
+      ]
+    },
+    {
+      "id": "C07-OM-002",
+      "concepto_id": 7,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el índice del último elemento de `[5, 8, 1, 9]`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "3",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "4",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "c",
+          "texto": "9",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "-1",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Los índices empiezan en 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "La lista tiene 4 elementos, en las posiciones 0, 1, 2 y 3."
+        },
+        {
+          "nivel": 3,
+          "texto": "El último índice es 3 (aunque `-1` también accede a él, no es 'el índice')."
+        }
+      ]
+    },
+    {
+      "id": "C07-PS-002",
+      "concepto_id": 7,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "numeros = [1, 2, 3, 4, 5]\nprint(numeros[1:4])\nprint(numeros[-1])",
+      "solucion": "[2, 3, 4]\n5",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`[1:4]` toma los elementos desde el índice 1 hasta antes del índice 4."
+        },
+        {
+          "nivel": 2,
+          "texto": "Eso incluye los índices 1, 2 y 3, pero no el 4."
+        },
+        {
+          "nivel": 3,
+          "texto": "`numeros[-1]` es el último elemento de la lista."
+        }
+      ]
+    },
+    {
+      "id": "C07-PS-003",
+      "concepto_id": 7,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = [1, 2, 3]\nb = a\nb.append(4)\nprint(a)",
+      "solucion": "[1, 2, 3, 4]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`b = a` no crea una copia: ambos nombres apuntan a la misma lista."
+        },
+        {
+          "nivel": 2,
+          "texto": "Modificar `b` con `append` también modifica lo que ve `a`."
+        },
+        {
+          "nivel": 3,
+          "texto": "`a` también termina con el 4 agregado: [1, 2, 3, 4]."
+        }
+      ]
+    },
+    {
+      "id": "C07-CC-002",
+      "concepto_id": 7,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para ordenar la lista `numeros` de mayor a menor.",
+      "codigo": "numeros = [3, 1, 4, 1, 5]\nnumeros.sort(___=True)\nprint(numeros)",
+      "solucion": [
+        "reverse"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`sort()` acepta un parámetro para invertir el orden habitual."
+        },
+        {
+          "nivel": 2,
+          "texto": "Ese parámetro es un booleano: si es verdadero, ordena de mayor a menor."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `reverse=True`."
+        }
+      ]
+    },
+    {
+      "id": "C07-PA-002",
+      "concepto_id": 7,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para eliminar los números negativos de una lista, construyendo una nueva.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "positivos.append(n)",
+          "indentacion": 2
+        },
+        {
+          "texto": "if n >= 0:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for n in numeros:",
+          "indentacion": 0
+        },
+        {
+          "texto": "positivos = []",
+          "indentacion": 0
+        },
+        {
+          "texto": "numeros = [3, -2, 5, -8, 1]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(positivos)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista de resultados debe estar vacía antes de empezar a llenarla."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del `for`, se filtra antes de agregar a la nueva lista."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` final queda fuera del bucle."
+        }
+      ]
+    },
+    {
+      "id": "C07-OM-003",
+      "concepto_id": 7,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué diferencia hay entre `lista.append(x)` y `lista.extend(x)` si `x` es una lista?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "`append` agrega `x` como un solo elemento; `extend` agrega cada elemento de `x` por separado",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Son exactamente lo mismo",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "`extend` agrega `x` como un solo elemento; `append` agrega cada elemento por separado",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "`append` solo funciona con números",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Piensa qué pasa si `x` es la lista `[4, 5]` y la agregas a `[1, 2, 3]`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Con `append`, el resultado tendría una lista anidada: `[1, 2, 3, [4, 5]]`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Con `extend`, el resultado 'aplana' los elementos: `[1, 2, 3, 4, 5]`."
+        }
+      ]
+    },
+    {
+      "id": "C07-CC-003",
+      "concepto_id": 7,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para construir una nueva lista con el doble de cada número, usando comprensión de listas.",
+      "codigo": "numeros = [1, 2, 3, 4]\ndobles = [___ for n in numeros]\nprint(dobles)",
+      "solucion": [
+        "n * 2"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En una comprensión de listas, la expresión antes de `for` define qué se guarda."
+        },
+        {
+          "nivel": 2,
+          "texto": "Quieres el doble de cada `n`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `n * 2`."
+        }
+      ]
+    },
+    {
+      "id": "C07-CC-004",
+      "concepto_id": 7,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para construir, con comprensión de listas, solo los números pares de `numeros`.",
+      "codigo": "numeros = [1, 2, 3, 4, 5, 6]\npares = [n for n in numeros if ___]\nprint(pares)",
+      "solucion": [
+        "n % 2 == 0"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `if` al final de una comprensión filtra qué elementos se incluyen."
+        },
+        {
+          "nivel": 2,
+          "texto": "Un número es par si el resto de dividirlo entre 2 es cero."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `n % 2 == 0`."
+        }
+      ]
+    },
+    {
+      "id": "C07-PA-003",
+      "concepto_id": 7,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 65,
+      "enunciado": "Ordena las líneas para encontrar el número mayor de una lista sin usar `max()`.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "mayor = n",
+          "indentacion": 2
+        },
+        {
+          "texto": "if n > mayor:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for n in numeros:",
+          "indentacion": 0
+        },
+        {
+          "texto": "mayor = numeros[0]",
+          "indentacion": 0
+        },
+        {
+          "texto": "numeros = [4, 9, 2, 7]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(mayor)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`mayor` se inicializa con el primer elemento, antes de recorrer la lista."
+        },
+        {
+          "nivel": 2,
+          "texto": "En cada vuelta se compara el elemento actual contra el mayor encontrado hasta ahora."
+        },
+        {
+          "nivel": 3,
+          "texto": "Si el elemento actual es mayor, se actualiza `mayor`."
+        }
+      ]
+    },
+    {
+      "id": "C07-OM-004",
+      "concepto_id": 7,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = [1, 2, 3]\nb = a.copy()\nb.append(4)\nprint(a, b)",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "[1, 2, 3] [1, 2, 3, 4]",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "[1, 2, 3, 4] [1, 2, 3, 4]",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "[1, 2, 3] [1, 2, 3]",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`copy()` crea una lista nueva e independiente, a diferencia de `b = a`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Modificar `b` ya no afecta a `a`, porque son listas distintas."
+        },
+        {
+          "nivel": 3,
+          "texto": "`a` se queda igual; solo `b` recibe el nuevo elemento."
+        }
+      ]
+    },
+    {
+      "id": "C07-PS-004",
+      "concepto_id": 7,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "matriz = [[1, 2], [3, 4], [5, 6]]\ntotal = 0\nfor fila in matriz:\n    for valor in fila:\n        total += valor\nprint(total)",
+      "solucion": "21",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`matriz` es una lista de listas: cada `fila` es a su vez una lista."
+        },
+        {
+          "nivel": 2,
+          "texto": "El bucle interno suma todos los valores de cada fila."
+        },
+        {
+          "nivel": 3,
+          "texto": "1+2+3+4+5+6 = 21."
+        }
+      ]
+    },
+    {
+      "id": "C08-OM-001",
+      "concepto_id": 8,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el resultado de `\"hola\".upper()`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "HOLA",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "hola",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "c",
+          "texto": "Hola",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`upper()` transforma todas las letras."
+        },
+        {
+          "nivel": 2,
+          "texto": "Las convierte a mayúsculas, todas por igual."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es \"HOLA\"."
+        }
+      ]
+    },
+    {
+      "id": "C08-PS-001",
+      "concepto_id": 8,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "texto = \"Python\"\nprint(len(texto))",
+      "solucion": "6",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`len()` cuenta los caracteres de la cadena."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cuenta cada letra de \"Python\", una por una."
+        },
+        {
+          "nivel": 3,
+          "texto": "\"Python\" tiene 6 letras."
+        }
+      ]
+    },
+    {
+      "id": "C08-CC-001",
+      "concepto_id": 8,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para unir dos cadenas con un espacio entre ellas.",
+      "codigo": "nombre = \"Ana\"\napellido = \"Ruiz\"\ncompleto = nombre ___ \" \" ___ apellido\nprint(completo)",
+      "solucion": [
+        "+",
+        "+"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Las cadenas de texto se combinan con el mismo operador que se usa para sumar números."
+        },
+        {
+          "nivel": 2,
+          "texto": "Necesitas unir tres partes: `nombre`, un espacio y `apellido`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `+` en ambos espacios."
+        }
+      ]
+    },
+    {
+      "id": "C08-PA-001",
+      "concepto_id": 8,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para construir un saludo combinando texto y una variable.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(saludo)",
+          "indentacion": 0
+        },
+        {
+          "texto": "nombre = \"Marta\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "saludo = \"Hola, \" + nombre",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`nombre` debe existir antes de usarse en la concatenación."
+        },
+        {
+          "nivel": 2,
+          "texto": "`saludo` se construye antes de imprimirlo."
+        },
+        {
+          "nivel": 3,
+          "texto": "Orden: variable, construcción del saludo, impresión."
+        }
+      ]
+    },
+    {
+      "id": "C08-OM-002",
+      "concepto_id": 8,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el resultado de `\"5\" + \"3\"`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "\"53\"",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "8",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "\"8\"",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Ambos valores son cadenas de texto, no números."
+        },
+        {
+          "nivel": 2,
+          "texto": "`+` entre cadenas las concatena, no las suma numéricamente."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es la cadena \"53\"."
+        }
+      ]
+    },
+    {
+      "id": "C08-PS-002",
+      "concepto_id": 8,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "texto = \"  Hola Mundo  \"\nprint(texto.strip())\nprint(texto.strip().lower())",
+      "solucion": "Hola Mundo\nhola mundo",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`strip()` elimina los espacios sobrantes al inicio y al final."
+        },
+        {
+          "nivel": 2,
+          "texto": "No elimina los espacios que están en medio del texto."
+        },
+        {
+          "nivel": 3,
+          "texto": "`lower()` convierte todas las letras a minúsculas."
+        }
+      ]
+    },
+    {
+      "id": "C08-PS-003",
+      "concepto_id": 8,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "texto = \"python-es-genial\"\npartes = texto.split(\"-\")\nprint(partes)",
+      "solucion": "['python', 'es', 'genial']",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`split()` divide la cadena en una lista, usando el separador indicado."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cada `-` marca dónde termina una parte y empieza la siguiente."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es una lista con tres cadenas de texto."
+        }
+      ]
+    },
+    {
+      "id": "C08-CC-002",
+      "concepto_id": 8,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para comprobar si la palabra 'python' aparece dentro de `frase`.",
+      "codigo": "frase = \"me gusta programar en python\"\ncontiene = \"python\" ___ frase\nprint(contiene)",
+      "solucion": [
+        "in"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe un operador que verifica si un texto está contenido dentro de otro."
+        },
+        {
+          "nivel": 2,
+          "texto": "El mismo operador que usarías para preguntar si un elemento está en una lista."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `in`."
+        }
+      ]
+    },
+    {
+      "id": "C08-PA-002",
+      "concepto_id": 8,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para contar cuántas veces aparece la letra 'a' en una palabra.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "contador += 1",
+          "indentacion": 2
+        },
+        {
+          "texto": "if letra == 'a':",
+          "indentacion": 1
+        },
+        {
+          "texto": "for letra in palabra:",
+          "indentacion": 0
+        },
+        {
+          "texto": "contador = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "palabra = \"banana\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(contador)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`palabra` y `contador` deben existir antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cada letra de la palabra se compara dentro del `for`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` final va después del bucle, no dentro de él."
+        }
+      ]
+    },
+    {
+      "id": "C08-OM-003",
+      "concepto_id": 8,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime `\"Hola Mundo\"[0:4]`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Hola",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Hola ",
+          "categoria_error": "descuido"
+        },
+        {
+          "clave": "c",
+          "texto": "olaM",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "d",
+          "texto": "H",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El slicing `[0:4]` toma caracteres desde el índice 0 hasta antes del 4."
+        },
+        {
+          "nivel": 2,
+          "texto": "Eso incluye las posiciones 0, 1, 2 y 3."
+        },
+        {
+          "nivel": 3,
+          "texto": "Esos cuatro caracteres son 'H', 'o', 'l', 'a'."
+        }
+      ]
+    },
+    {
+      "id": "C08-CC-003",
+      "concepto_id": 8,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para reemplazar todas las apariciones de 'gato' por 'perro' en `texto`.",
+      "codigo": "texto = \"el gato juega con otro gato\"\nnuevo = texto.___(\"gato\", \"perro\")\nprint(nuevo)",
+      "solucion": [
+        "replace"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe un método de cadenas que sustituye una subcadena por otra en todas sus apariciones."
+        },
+        {
+          "nivel": 2,
+          "texto": "Recibe dos argumentos: qué buscar y por qué reemplazarlo."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `replace`."
+        }
+      ]
+    },
+    {
+      "id": "C08-CC-004",
+      "concepto_id": 8,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para unir los elementos de la lista en una sola cadena separada por comas.",
+      "codigo": "palabras = [\"pan\", \"leche\", \"huevos\"]\nresultado = \",\".___(palabras)\nprint(resultado)",
+      "solucion": [
+        "join"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Es un método de cadenas, no de listas, y se llama sobre el separador."
+        },
+        {
+          "nivel": 2,
+          "texto": "Recibe una lista de cadenas y las une usando el texto sobre el que se llama."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `join`."
+        }
+      ]
+    },
+    {
+      "id": "C08-PA-003",
+      "concepto_id": 8,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 65,
+      "enunciado": "Ordena las líneas para saber si una palabra es un palíndromo (se lee igual al revés).",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(\"es palíndromo\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "if palabra == invertida:",
+          "indentacion": 0
+        },
+        {
+          "texto": "invertida = palabra[::-1]",
+          "indentacion": 0
+        },
+        {
+          "texto": "palabra = \"reconocer\"",
+          "indentacion": 0
+        },
+        {
+          "texto": "else:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"no es palíndromo\")",
+          "indentacion": 1
+        }
+      ],
+      "solucion": [
+        3,
+        2,
+        1,
+        0,
+        4,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Primero se define `palabra` y luego se calcula su versión invertida."
+        },
+        {
+          "nivel": 2,
+          "texto": "`palabra[::-1]` invierte la cadena completa."
+        },
+        {
+          "nivel": 3,
+          "texto": "La comparación entre `palabra` e `invertida` decide qué mensaje se imprime."
+        }
+      ]
+    },
+    {
+      "id": "C08-OM-004",
+      "concepto_id": 8,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime `\"-\".join([\"2024\", \"01\", \"15\"])`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "2024-01-15",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "2024, 01, 15",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "['2024', '01', '15']",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "-2024-01-15-",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`join` coloca el separador ENTRE los elementos de la lista, no alrededor."
+        },
+        {
+          "nivel": 2,
+          "texto": "No hay separador antes del primer elemento ni después del último."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es \"2024-01-15\"."
+        }
+      ]
+    },
+    {
+      "id": "C08-PS-004",
+      "concepto_id": 8,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "texto = \"Hola Mundo\"\nprint(texto.lower().replace(\"o\", \"0\"))",
+      "solucion": "h0la mund0",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Primero se aplica `lower()`, y sobre ese resultado se aplica `replace()`."
+        },
+        {
+          "nivel": 2,
+          "texto": "`lower()` convierte todo a minúsculas antes de buscar la 'o'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Todas las 'o' minúsculas del texto en minúsculas se reemplazan por '0'."
+        }
+      ]
+    },
+    {
+      "id": "C09-OM-001",
+      "concepto_id": 9,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Cuál es el valor de `persona[\"nombre\"]` si `persona = {\"nombre\": \"Iván\", \"edad\": 25}`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Iván",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "25",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "\"nombre\"",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un diccionario asocia claves con valores."
+        },
+        {
+          "nivel": 2,
+          "texto": "`persona[\"nombre\"]` busca la clave 'nombre' y devuelve su valor asociado."
+        },
+        {
+          "nivel": 3,
+          "texto": "El valor asociado a 'nombre' es \"Iván\"."
+        }
+      ]
+    },
+    {
+      "id": "C09-PS-001",
+      "concepto_id": 9,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "edades = {\"ana\": 20, \"luis\": 25}\nedades[\"marta\"] = 30\nprint(edades)",
+      "solucion": "{'ana': 20, 'luis': 25, 'marta': 30}",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Asignar a una clave nueva la agrega al diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "El diccionario original tenía dos claves; ahora tendrá tres."
+        },
+        {
+          "nivel": 3,
+          "texto": "'marta' se agrega al final, con el valor 30."
+        }
+      ]
+    },
+    {
+      "id": "C09-CC-001",
+      "concepto_id": 9,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa para obtener todas las claves del diccionario `datos`.",
+      "codigo": "datos = {\"a\": 1, \"b\": 2}\nclaves = datos.___()\nprint(list(claves))",
+      "solucion": [
+        "keys"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe un método que devuelve solo las claves de un diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "Su nombre en inglés significa justamente 'claves'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `keys()`."
+        }
+      ]
+    },
+    {
+      "id": "C09-PA-001",
+      "concepto_id": 9,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Ordena las líneas para crear un diccionario vacío y agregarle un dato.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "inventario[\"manzanas\"] = 10",
+          "indentacion": 0
+        },
+        {
+          "texto": "inventario = {}",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(inventario)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        0,
+        2
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El diccionario debe existir (aunque esté vacío) antes de agregarle una clave."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se crea vacío, luego se asigna la clave 'manzanas'."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` va al final, para mostrar el resultado ya completo."
+        }
+      ]
+    },
+    {
+      "id": "C09-OM-002",
+      "concepto_id": 9,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué caracteriza a las claves de un diccionario en Python?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Deben ser únicas dentro del diccionario",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Deben ser siempre números",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Pueden repetirse sin problema",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Deben estar ordenadas alfabéticamente",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Piensa qué pasaría si dos entradas tuvieran la misma clave."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si repites una clave al asignar, la segunda simplemente reemplaza a la primera."
+        },
+        {
+          "nivel": 3,
+          "texto": "Por eso las claves de un diccionario son siempre únicas."
+        }
+      ]
+    },
+    {
+      "id": "C09-PS-002",
+      "concepto_id": 9,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "stock = {\"lapiz\": 5, \"goma\": 3}\nprint(stock.get(\"borrador\", 0))\nprint(stock.get(\"lapiz\", 0))",
+      "solucion": "0\n5",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`get(clave, valor_por_defecto)` no lanza error si la clave no existe."
+        },
+        {
+          "nivel": 2,
+          "texto": "'borrador' no está en el diccionario, así que se usa el valor por defecto: 0."
+        },
+        {
+          "nivel": 3,
+          "texto": "'lapiz' sí existe, así que se devuelve su valor real: 5."
+        }
+      ]
+    },
+    {
+      "id": "C09-PS-003",
+      "concepto_id": 9,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "precios = {\"pan\": 2.5, \"leche\": 1.8}\ntotal = 0\nfor producto, precio in precios.items():\n    total += precio\nprint(round(total, 1))",
+      "solucion": "4.3",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`.items()` entrega pares (clave, valor) para recorrer el diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "Se van sumando todos los valores (precios), sin usar las claves."
+        },
+        {
+          "nivel": 3,
+          "texto": "2.5 + 1.8 = 4.3."
+        }
+      ]
+    },
+    {
+      "id": "C09-CC-002",
+      "concepto_id": 9,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para comprobar si la clave 'stock' existe en el diccionario `producto`, sin lanzar error.",
+      "codigo": "producto = {\"nombre\": \"Taza\", \"precio\": 5}\ntiene_stock = \"stock\" ___ producto\nprint(tiene_stock)",
+      "solucion": [
+        "in"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe un operador que verifica si una clave está presente en un diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es el mismo operador que se usa para verificar pertenencia en listas."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `in`."
+        }
+      ]
+    },
+    {
+      "id": "C09-PA-002",
+      "concepto_id": 9,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para contar cuántas veces aparece cada palabra en una lista.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "conteo[palabra] = conteo.get(palabra, 0) + 1",
+          "indentacion": 1
+        },
+        {
+          "texto": "for palabra in palabras:",
+          "indentacion": 0
+        },
+        {
+          "texto": "conteo = {}",
+          "indentacion": 0
+        },
+        {
+          "texto": "palabras = [\"sol\", \"luna\", \"sol\"]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(conteo)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        3,
+        2,
+        1,
+        0,
+        4
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista de palabras y el diccionario vacío se crean antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del `for`, se actualiza el conteo de cada palabra usando `get`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` final va después de terminar el recorrido completo."
+        }
+      ]
+    },
+    {
+      "id": "C09-OM-003",
+      "concepto_id": 9,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué ocurre al ejecutar `datos[\"x\"]` si la clave \"x\" no existe en `datos`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Se lanza un `KeyError`",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Se devuelve `None`",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Se crea automáticamente con valor 0",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Se devuelve una lista vacía",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Acceder con corchetes a una clave inexistente no es lo mismo que usar `.get()`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Con corchetes, Python espera que la clave exista."
+        },
+        {
+          "nivel": 3,
+          "texto": "Si no existe, se lanza la excepción `KeyError`."
+        }
+      ]
+    },
+    {
+      "id": "C09-CC-003",
+      "concepto_id": 9,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para construir un diccionario que mapee cada número a su cuadrado, usando comprensión.",
+      "codigo": "numeros = [1, 2, 3]\ncuadrados = {n: ___ for n in numeros}\nprint(cuadrados)",
+      "solucion": [
+        "n ** 2",
+        "n**2"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En una comprensión de diccionarios, `clave: valor` define cada par."
+        },
+        {
+          "nivel": 2,
+          "texto": "La clave ya está definida como `n`; falta el valor, que es su cuadrado."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `n ** 2`."
+        }
+      ]
+    },
+    {
+      "id": "C09-CC-004",
+      "concepto_id": 9,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para eliminar la clave 'temporal' del diccionario `config`, sin lanzar error si no existe.",
+      "codigo": "config = {\"modo\": \"oscuro\", \"temporal\": True}\nconfig.___(\"temporal\", None)\nprint(config)",
+      "solucion": [
+        "pop"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe un método que elimina una clave y devuelve su valor, aceptando un valor por defecto."
+        },
+        {
+          "nivel": 2,
+          "texto": "No es `del`, porque `del` lanza error si la clave no existe."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `pop`."
+        }
+      ]
+    },
+    {
+      "id": "C09-PA-003",
+      "concepto_id": 9,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 65,
+      "enunciado": "Ordena las líneas para encontrar la clave con el valor más alto de un diccionario.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "mejor_clave = clave",
+          "indentacion": 2
+        },
+        {
+          "texto": "if valor > mejor_valor:",
+          "indentacion": 1
+        },
+        {
+          "texto": "mejor_valor = valor",
+          "indentacion": 2
+        },
+        {
+          "texto": "for clave, valor in notas.items():",
+          "indentacion": 0
+        },
+        {
+          "texto": "mejor_clave, mejor_valor = None, -1",
+          "indentacion": 0
+        },
+        {
+          "texto": "notas = {\"ana\": 8, \"luis\": 9, \"eva\": 7}",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(mejor_clave)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        5,
+        4,
+        3,
+        1,
+        0,
+        2,
+        6
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Necesitas valores iniciales para 'el mejor hasta ahora' antes de recorrer el diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "`.items()` entrega clave y valor juntos en cada vuelta del `for`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Cuando el valor actual supera al mejor guardado, se actualizan ambas variables."
+        }
+      ]
+    },
+    {
+      "id": "C09-OM-004",
+      "concepto_id": 9,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "a = {\"x\": 1, \"y\": 2}\nb = a\nb[\"x\"] = 99\nprint(a[\"x\"])",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "99",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "1",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "None",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`b = a` no copia el diccionario: ambos nombres apuntan al mismo objeto."
+        },
+        {
+          "nivel": 2,
+          "texto": "Modificar `b` afecta también a lo que ve `a`, igual que con las listas."
+        },
+        {
+          "nivel": 3,
+          "texto": "`a[\"x\"]` también queda en 99."
+        }
+      ]
+    },
+    {
+      "id": "C09-PS-004",
+      "concepto_id": 9,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "inventario = {\"a\": 3, \"b\": 1, \"c\": 5}\nfor clave in sorted(inventario, key=inventario.get, reverse=True):\n    print(clave)",
+      "solucion": "c\na\nb",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`sorted(..., key=inventario.get)` ordena las claves según su valor asociado."
+        },
+        {
+          "nivel": 2,
+          "texto": "`reverse=True` hace que el orden sea de mayor a menor valor."
+        },
+        {
+          "nivel": 3,
+          "texto": "Los valores son a=3, b=1, c=5: de mayor a menor es c, a, b."
+        }
+      ]
+    },
+    {
+      "id": "C10-OM-001",
+      "concepto_id": 10,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué palabra clave se usa para definir una función en Python?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "def",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "function",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "func",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "define",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Es una palabra corta, de tres letras."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es una abreviatura de 'definir' en inglés."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se usa `def`."
+        }
+      ]
+    },
+    {
+      "id": "C10-PS-001",
+      "concepto_id": 10,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def saludar(nombre):\n    return f\"Hola, {nombre}\"\n\nprint(saludar(\"Eva\"))",
+      "solucion": "Hola, Eva",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función recibe `nombre` y construye un saludo con él."
+        },
+        {
+          "nivel": 2,
+          "texto": "`return` entrega el resultado a quien llamó a la función."
+        },
+        {
+          "nivel": 3,
+          "texto": "Al llamarla con \"Eva\", el resultado es \"Hola, Eva\"."
+        }
+      ]
+    },
+    {
+      "id": "C10-CC-001",
+      "concepto_id": 10,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "Completa la definición de una función que sume dos números.",
+      "codigo": "___ sumar(a, b):\n    return a + b\n\nprint(sumar(3, 4))",
+      "solucion": [
+        "def"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Toda definición de función empieza con la misma palabra clave."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es la abreviatura de 'definir'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `def`."
+        }
+      ]
+    },
+    {
+      "id": "C10-PA-001",
+      "concepto_id": 10,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para definir una función que calcule el cuadrado de un número y usarla.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "return n ** 2",
+          "indentacion": 1
+        },
+        {
+          "texto": "def cuadrado(n):",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(cuadrado(5))",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        0,
+        2
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función debe definirse por completo antes de poder llamarla."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `return` es el cuerpo de la función, va indentado dentro de ella."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` que la llama va después de toda la definición."
+        }
+      ]
+    },
+    {
+      "id": "C10-OM-002",
+      "concepto_id": 10,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué devuelve una función que no tiene una instrucción `return`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "None",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "0",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Una cadena vacía",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Toda función en Python devuelve algo, incluso si no lo pides explícitamente."
+        },
+        {
+          "nivel": 2,
+          "texto": "Sin `return`, el valor por defecto es un valor especial que representa 'nada'."
+        },
+        {
+          "nivel": 3,
+          "texto": "Ese valor es `None`."
+        }
+      ]
+    },
+    {
+      "id": "C10-PS-002",
+      "concepto_id": 10,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def describir(nombre, edad=18):\n    return f\"{nombre} tiene {edad} años\"\n\nprint(describir(\"Tomás\"))\nprint(describir(\"Sara\", 30))",
+      "solucion": "Tomás tiene 18 años\nSara tiene 30 años",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`edad=18` es un valor por defecto: se usa si no se entrega otro."
+        },
+        {
+          "nivel": 2,
+          "texto": "En la primera llamada no se da `edad`, así que se usa 18."
+        },
+        {
+          "nivel": 3,
+          "texto": "En la segunda llamada sí se da `edad`, así que se usa 30 en vez del valor por defecto."
+        }
+      ]
+    },
+    {
+      "id": "C10-PS-003",
+      "concepto_id": 10,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def doblar(numeros):\n    return [n * 2 for n in numeros]\n\nresultado = doblar([1, 2, 3])\nprint(resultado)",
+      "solucion": "[2, 4, 6]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función recibe una lista y devuelve una nueva lista transformada."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cada elemento de la lista original se multiplica por 2."
+        },
+        {
+          "nivel": 3,
+          "texto": "El resultado es una lista con el doble de cada número: [2, 4, 6]."
+        }
+      ]
+    },
+    {
+      "id": "C10-CC-002",
+      "concepto_id": 10,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para que la función reciba un valor por defecto de 10 en el parámetro `limite`.",
+      "codigo": "def verificar(numero, limite___10):\n    return numero <= limite\n\nprint(verificar(5))",
+      "solucion": [
+        "="
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un parámetro con valor por defecto se define con un signo entre el nombre y el valor."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es el mismo símbolo que se usa para asignar variables."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `=`."
+        }
+      ]
+    },
+    {
+      "id": "C10-PA-002",
+      "concepto_id": 10,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para definir una función que cuenta las vocales de una palabra.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "return contador",
+          "indentacion": 1
+        },
+        {
+          "texto": "if letra in 'aeiou':",
+          "indentacion": 2
+        },
+        {
+          "texto": "contador += 1",
+          "indentacion": 3
+        },
+        {
+          "texto": "contador = 0",
+          "indentacion": 1
+        },
+        {
+          "texto": "for letra in palabra:",
+          "indentacion": 1
+        },
+        {
+          "texto": "def contar_vocales(palabra):",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        5,
+        3,
+        4,
+        1,
+        2,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Dentro de la función, el contador se inicializa antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `if` que revisa la vocal está dentro del `for`, y el incremento dentro del `if`."
+        },
+        {
+          "nivel": 3,
+          "texto": "`return` va al final, al mismo nivel que las demás líneas del cuerpo de la función."
+        }
+      ]
+    },
+    {
+      "id": "C10-OM-003",
+      "concepto_id": 10,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué ocurre con una variable definida dentro de una función, respecto al código fuera de ella?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "No es accesible desde fuera de la función (es local)",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Es accesible desde cualquier parte del programa",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Se convierte automáticamente en un parámetro",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Provoca un error al definir la función",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Piensa en el 'alcance' o 'ámbito' de una variable."
+        },
+        {
+          "nivel": 2,
+          "texto": "Las variables creadas dentro de una función solo existen mientras esa función se ejecuta."
+        },
+        {
+          "nivel": 3,
+          "texto": "Por eso se llaman variables locales: no son visibles fuera de la función."
+        }
+      ]
+    },
+    {
+      "id": "C10-CC-003",
+      "concepto_id": 10,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para que la función acepte una cantidad variable de números y los sume todos.",
+      "codigo": "def sumar_todo(___numeros):\n    return sum(numeros)\n\nprint(sumar_todo(1, 2, 3, 4))",
+      "solucion": [
+        "*"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una sintaxis especial para recibir un número variable de argumentos posicionales."
+        },
+        {
+          "nivel": 2,
+          "texto": "Se antepone un símbolo al nombre del parámetro para que capture todos los extra en una tupla."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `*numeros`."
+        }
+      ]
+    },
+    {
+      "id": "C10-CC-004",
+      "concepto_id": 10,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para definir una función que reciba una lista y devuelva una nueva lista sin modificar la original.",
+      "codigo": "def agregar_cero(numeros):\n    copia = numeros.copy()\n    copia.___(0)\n    return copia\n\nprint(agregar_cero([1, 2, 3]))",
+      "solucion": [
+        "append"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Se trabaja sobre `copia`, no sobre `numeros`, para no alterar la lista original."
+        },
+        {
+          "nivel": 2,
+          "texto": "Necesitas agregar un elemento al final de `copia`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `append(0)`."
+        }
+      ]
+    },
+    {
+      "id": "C10-PA-003",
+      "concepto_id": 10,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 70,
+      "enunciado": "Ordena las líneas para definir una función recursiva que calcule el factorial de un número.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "return n * factorial(n - 1)",
+          "indentacion": 2
+        },
+        {
+          "texto": "if n <= 1:",
+          "indentacion": 1
+        },
+        {
+          "texto": "return 1",
+          "indentacion": 2
+        },
+        {
+          "texto": "else:",
+          "indentacion": 1
+        },
+        {
+          "texto": "def factorial(n):",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(factorial(5))",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        1,
+        2,
+        3,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función necesita un caso base que detenga la recursión."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si `n` es 1 o menos, el resultado es 1, sin seguir llamando a la función."
+        },
+        {
+          "nivel": 3,
+          "texto": "En cualquier otro caso, la función se llama a sí misma con `n - 1`."
+        }
+      ]
+    },
+    {
+      "id": "C10-OM-004",
+      "concepto_id": 10,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def modificar(lista):\n    lista.append(4)\n\nnumeros = [1, 2, 3]\nmodificar(numeros)\nprint(numeros)",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "[1, 2, 3, 4]",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "[1, 2, 3]",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "None",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Las listas se pasan por referencia: la función recibe la misma lista, no una copia."
+        },
+        {
+          "nivel": 2,
+          "texto": "`lista.append(4)` modifica el objeto original al que apunta `numeros`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Por eso el cambio es visible fuera de la función, aunque la función no devuelva nada."
+        }
+      ]
+    },
+    {
+      "id": "C10-PS-004",
+      "concepto_id": 10,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def es_primo(n):\n    if n < 2:\n        return False\n    for i in range(2, n):\n        if n % i == 0:\n            return False\n    return True\n\nprint(es_primo(7))\nprint(es_primo(8))",
+      "solucion": "True\nFalse",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función revisa si algún número entre 2 y n-1 divide exactamente a `n`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Si encuentra un divisor, devuelve `False` de inmediato."
+        },
+        {
+          "nivel": 3,
+          "texto": "7 no tiene divisores en ese rango; 8 sí (por ejemplo, 2)."
+        }
+      ]
+    },
+    {
+      "id": "C11-OM-001",
+      "concepto_id": 11,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué palabra clave se usa para capturar una excepción en Python?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "except",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "catch",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "rescue",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "No es la misma palabra que se usa en otros lenguajes como Java o JavaScript."
+        },
+        {
+          "nivel": 2,
+          "texto": "En Python, va junto a `try` para formar el bloque de manejo de errores."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se usa `except`."
+        }
+      ]
+    },
+    {
+      "id": "C11-PS-001",
+      "concepto_id": 11,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "try:\n    resultado = 10 / 0\nexcept ZeroDivisionError:\n    print(\"no se puede dividir entre cero\")",
+      "solucion": "no se puede dividir entre cero",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Dividir entre cero lanza una excepción específica en Python."
+        },
+        {
+          "nivel": 2,
+          "texto": "El bloque `except` captura exactamente ese tipo de error."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se ejecuta el mensaje del `except`, en vez de detener el programa."
+        }
+      ]
+    },
+    {
+      "id": "C11-CC-001",
+      "concepto_id": 11,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "Completa el bloque para intentar una operación que puede fallar.",
+      "codigo": "___:\n    numero = int(\"abc\")\nexcept ValueError:\n    print(\"no es un número válido\")",
+      "solucion": [
+        "try"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Todo bloque `except` necesita un bloque anterior que 'intente' el código riesgoso."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es la primera palabra clave del manejo de excepciones."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `try`."
+        }
+      ]
+    },
+    {
+      "id": "C11-PA-001",
+      "concepto_id": 11,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "Ordena las líneas para manejar un error al convertir texto a número.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(\"entrada inválida\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "try:",
+          "indentacion": 0
+        },
+        {
+          "texto": "numero = int(\"hola\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "except ValueError:",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El bloque `try` va primero, con el código riesgoso dentro."
+        },
+        {
+          "nivel": 2,
+          "texto": "`except` va después del bloque `try` completo, no dentro de él."
+        },
+        {
+          "nivel": 3,
+          "texto": "El mensaje de error va dentro del bloque `except`."
+        }
+      ]
+    },
+    {
+      "id": "C11-OM-002",
+      "concepto_id": 11,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 25,
+      "enunciado": "¿Qué excepción lanza Python al intentar `int(\"hola\")`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "ValueError",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "TypeError",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "KeyError",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "NameError",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El texto \"hola\" tiene el tipo correcto (`str`), pero no representa un número."
+        },
+        {
+          "nivel": 2,
+          "texto": "El problema es el VALOR de la cadena, no su tipo."
+        },
+        {
+          "nivel": 3,
+          "texto": "Ese tipo de error se llama `ValueError`."
+        }
+      ]
+    },
+    {
+      "id": "C11-PS-002",
+      "concepto_id": 11,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "numeros = [1, 2, 3]\ntry:\n    print(numeros[5])\nexcept IndexError:\n    print(\"índice fuera de rango\")\nfinally:\n    print(\"fin del intento\")",
+      "solucion": "índice fuera de rango\nfin del intento",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista solo tiene índices del 0 al 2; el índice 5 no existe."
+        },
+        {
+          "nivel": 2,
+          "texto": "Ese error se captura con `except IndexError`."
+        },
+        {
+          "nivel": 3,
+          "texto": "`finally` se ejecuta siempre, haya o no haya ocurrido una excepción."
+        }
+      ]
+    },
+    {
+      "id": "C11-PS-003",
+      "concepto_id": 11,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "datos = {\"a\": 1}\ntry:\n    print(datos[\"b\"])\nexcept KeyError:\n    print(\"clave no encontrada\")",
+      "solucion": "clave no encontrada",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La clave 'b' no existe en el diccionario `datos`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Acceder con corchetes a una clave inexistente lanza `KeyError`."
+        },
+        {
+          "nivel": 3,
+          "texto": "El bloque `except KeyError` captura ese error y muestra su mensaje."
+        }
+      ]
+    },
+    {
+      "id": "C11-CC-002",
+      "concepto_id": 11,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para capturar cualquier tipo de excepción, guardándola en la variable `error`.",
+      "codigo": "try:\n    resultado = 1 / 0\nexcept Exception ___ error:\n    print(error)",
+      "solucion": [
+        "as"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una palabra clave para asignar la excepción capturada a una variable."
+        },
+        {
+          "nivel": 2,
+          "texto": "Es la misma que se usa en `import modulo ___ alias`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `as`."
+        }
+      ]
+    },
+    {
+      "id": "C11-PA-002",
+      "concepto_id": 11,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Ordena las líneas para manejar dos tipos distintos de error en la misma operación.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "print(\"no es un número\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "try:",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(\"no se puede dividir entre cero\")",
+          "indentacion": 1
+        },
+        {
+          "texto": "except ValueError:",
+          "indentacion": 0
+        },
+        {
+          "texto": "resultado = 10 / int(entrada)",
+          "indentacion": 1
+        },
+        {
+          "texto": "except ZeroDivisionError:",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        1,
+        4,
+        3,
+        0,
+        5,
+        2
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El bloque `try` va primero, con la operación riesgosa completa dentro."
+        },
+        {
+          "nivel": 2,
+          "texto": "Después del `try` pueden seguir varios `except`, uno por cada tipo de error."
+        },
+        {
+          "nivel": 3,
+          "texto": "Cada `except` va seguido de su propio mensaje, indentado dentro de él."
+        }
+      ]
+    },
+    {
+      "id": "C11-OM-003",
+      "concepto_id": 11,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 35,
+      "enunciado": "¿Cuándo se ejecuta el bloque `finally` de un `try/except/finally`?",
+      "codigo": null,
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "Siempre, ocurra o no una excepción",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "Solo si ocurre una excepción",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Solo si NO ocurre ninguna excepción",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Nunca, si hay un `except` que capturó el error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`finally` está pensado para código de limpieza que siempre debe correr."
+        },
+        {
+          "nivel": 2,
+          "texto": "No depende de si hubo error ni de si ese error fue capturado."
+        },
+        {
+          "nivel": 3,
+          "texto": "Se ejecuta siempre, sin excepción (nunca mejor dicho)."
+        }
+      ]
+    },
+    {
+      "id": "C11-CC-003",
+      "concepto_id": 11,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para lanzar manualmente un error si `edad` es negativa.",
+      "codigo": "edad = -5\nif edad < 0:\n    ___ ValueError(\"la edad no puede ser negativa\")",
+      "solucion": [
+        "raise"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Existe una palabra clave para generar una excepción manualmente, no solo capturarla."
+        },
+        {
+          "nivel": 2,
+          "texto": "Se usa junto con el tipo de excepción y un mensaje."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `raise`."
+        }
+      ]
+    },
+    {
+      "id": "C11-CC-004",
+      "concepto_id": 11,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 55,
+      "enunciado": "Completa para que el bloque `except` capture tanto `ValueError` como `TypeError` en una sola línea.",
+      "codigo": "try:\n    resultado = int(None)\nexcept (ValueError, ___):\n    print(\"entrada inválida\")",
+      "solucion": [
+        "TypeError"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Un `except` puede recibir varios tipos de excepción juntos, entre paréntesis."
+        },
+        {
+          "nivel": 2,
+          "texto": "`int(None)` no falla por el VALOR, sino porque `None` no es del TIPO esperado."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `TypeError`."
+        }
+      ]
+    },
+    {
+      "id": "C11-PA-003",
+      "concepto_id": 11,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 70,
+      "enunciado": "Ordena las líneas para pedir un número de forma segura usando una función y manejo de errores.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "return None",
+          "indentacion": 2
+        },
+        {
+          "texto": "except ValueError:",
+          "indentacion": 1
+        },
+        {
+          "texto": "return int(texto)",
+          "indentacion": 2
+        },
+        {
+          "texto": "try:",
+          "indentacion": 1
+        },
+        {
+          "texto": "def convertir(texto):",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(convertir(\"42\"))",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `try` y su contenido van dentro del cuerpo de la función."
+        },
+        {
+          "nivel": 2,
+          "texto": "El `except` va al mismo nivel que el `try` al que pertenece, no dentro de él."
+        },
+        {
+          "nivel": 3,
+          "texto": "La llamada a la función va al final, fuera de su definición."
+        }
+      ]
+    },
+    {
+      "id": "C11-OM-004",
+      "concepto_id": 11,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "try:\n    print(\"a\")\n    resultado = 1 / 0\n    print(\"b\")\nexcept ZeroDivisionError:\n    print(\"c\")",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "a\nc",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "a\nb\nc",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "a\nb",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "d",
+          "texto": "c",
+          "categoria_error": "flujo_ejecucion"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "En cuanto ocurre la excepción, el resto del bloque `try` se abandona de inmediato."
+        },
+        {
+          "nivel": 2,
+          "texto": "\"a\" ya se imprimió antes del error; \"b\" nunca se alcanza."
+        },
+        {
+          "nivel": 3,
+          "texto": "El control salta directo al `except`, que imprime \"c\"."
+        }
+      ]
+    },
+    {
+      "id": "C11-PS-004",
+      "concepto_id": 11,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def dividir(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return None\n    finally:\n        print(\"intento terminado\")\n\nprint(dividir(10, 0))",
+      "solucion": "intento terminado\nNone",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`finally` se ejecuta incluso cuando la función va a hacer `return` desde el `except`."
+        },
+        {
+          "nivel": 2,
+          "texto": "Primero se ejecuta el mensaje de `finally`, y solo después la función termina de devolver su valor."
+        },
+        {
+          "nivel": 3,
+          "texto": "Como hubo división entre cero, la función devuelve `None`, que se imprime después del mensaje."
+        }
+      ]
+    },
+    {
+      "id": "C12-OM-001",
+      "concepto_id": 12,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def clasificar(nota):\n    if nota >= 6:\n        return \"aprobado\"\n    else:\n        return \"reprobado\"\n\nnotas = [8, 4, 6]\nfor n in notas:\n    print(clasificar(n))",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "aprobado\nreprobado\naprobado",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "aprobado\naprobado\naprobado",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "reprobado\naprobado\nreprobado",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "aprobado\nreprobado",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función se llama una vez por cada nota de la lista."
+        },
+        {
+          "nivel": 2,
+          "texto": "8 y 6 son mayores o iguales a 6; 4 no lo es."
+        },
+        {
+          "nivel": 3,
+          "texto": "Resultado en orden: aprobado, reprobado, aprobado."
+        }
+      ]
+    },
+    {
+      "id": "C12-PS-001",
+      "concepto_id": 12,
+      "tipo": "prediccion_salida",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def es_par(n):\n    return n % 2 == 0\n\nnumeros = [1, 2, 3, 4, 5, 6]\npares = [n for n in numeros if es_par(n)]\nprint(pares)",
+      "solucion": "[2, 4, 6]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La comprensión de lista usa la función `es_par` como filtro."
+        },
+        {
+          "nivel": 2,
+          "texto": "Solo se conservan los números para los que `es_par` devuelve `True`."
+        },
+        {
+          "nivel": 3,
+          "texto": "Los pares entre 1 y 6 son 2, 4 y 6."
+        }
+      ]
+    },
+    {
+      "id": "C12-CC-001",
+      "concepto_id": 12,
+      "tipo": "completar_codigo",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "Completa para que la función devuelva el mayor de dos números.",
+      "codigo": "def mayor(a, b):\n    if a > b:\n        return a\n    ___:\n        return b\n\nprint(mayor(3, 7))",
+      "solucion": [
+        "else"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Si `a` no es mayor que `b`, hay una única alternativa razonable."
+        },
+        {
+          "nivel": 2,
+          "texto": "No necesitas otra condición, solo el caso contrario."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `else`."
+        }
+      ]
+    },
+    {
+      "id": "C12-PA-001",
+      "concepto_id": 12,
+      "tipo": "parsons",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Ordena las líneas para definir una función que salude según la hora del día y usarla.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "return \"buenas tardes\"",
+          "indentacion": 2
+        },
+        {
+          "texto": "if hora < 12:",
+          "indentacion": 1
+        },
+        {
+          "texto": "return \"buenos días\"",
+          "indentacion": 2
+        },
+        {
+          "texto": "else:",
+          "indentacion": 1
+        },
+        {
+          "texto": "def saludo(hora):",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(saludo(9))",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        1,
+        2,
+        3,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `if` y su condición van justo después de definir la función."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cada `return` está dentro de la rama a la que pertenece."
+        },
+        {
+          "nivel": 3,
+          "texto": "La llamada a la función va al final, fuera de su definición."
+        }
+      ]
+    },
+    {
+      "id": "C12-OM-002",
+      "concepto_id": 12,
+      "tipo": "opcion_multiple",
+      "dificultad": 1,
+      "tiempo_referencia_seg": 30,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "total = 0\nfor i in range(1, 4):\n    try:\n        total += 10 / i\n    except ZeroDivisionError:\n        pass\nprint(round(total, 2))",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "18.33",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "0",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "c",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "10.0",
+          "categoria_error": "descuido"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `range(1, 4)` no incluye el 0, así que nunca se divide entre cero aquí."
+        },
+        {
+          "nivel": 2,
+          "texto": "Se suman 10/1, 10/2 y 10/3."
+        },
+        {
+          "nivel": 3,
+          "texto": "10 + 5 + 3.333... ≈ 18.33."
+        }
+      ]
+    },
+    {
+      "id": "C12-PS-002",
+      "concepto_id": 12,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "inventario = {\"manzana\": 5, \"pera\": 0, \"uva\": 3}\ndisponibles = [nombre for nombre, cantidad in inventario.items() if cantidad > 0]\nprint(sorted(disponibles))",
+      "solucion": "['manzana', 'uva']",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Se filtran solo los productos con cantidad mayor que 0."
+        },
+        {
+          "nivel": 2,
+          "texto": "'pera' queda excluida porque su cantidad es 0."
+        },
+        {
+          "nivel": 3,
+          "texto": "`sorted()` ordena la lista resultante alfabéticamente."
+        }
+      ]
+    },
+    {
+      "id": "C12-PS-003",
+      "concepto_id": 12,
+      "tipo": "prediccion_salida",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def promedio(numeros):\n    if not numeros:\n        return 0\n    return sum(numeros) / len(numeros)\n\ngrupos = [[4, 6, 8], [], [10, 10]]\nfor grupo in grupos:\n    print(promedio(grupo))",
+      "solucion": "6.0\n0\n10.0",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función maneja el caso de una lista vacía antes de calcular el promedio."
+        },
+        {
+          "nivel": 2,
+          "texto": "Una lista vacía es falsa en una condición, así que `not numeros` es `True` para ella."
+        },
+        {
+          "nivel": 3,
+          "texto": "Los promedios son: (4+6+8)/3=6.0, la lista vacía da 0, y (10+10)/2=10.0."
+        }
+      ]
+    },
+    {
+      "id": "C12-CC-002",
+      "concepto_id": 12,
+      "tipo": "completar_codigo",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 50,
+      "enunciado": "Completa para que la función clasifique una nota usando un diccionario de rangos, devolviendo 'N/A' si no encuentra la clave.",
+      "codigo": "def categoria(nota):\n    niveles = {\"alto\": nota >= 8, \"medio\": 5 <= nota < 8, \"bajo\": nota < 5}\n    for nombre, cumple in niveles.items():\n        if cumple:\n            return nombre\n    return ___\n\nprint(categoria(9))",
+      "solucion": [
+        "\"N/A\"",
+        "'N/A'"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "El `return` final es el valor de respaldo si ningún nivel se cumpliera."
+        },
+        {
+          "nivel": 2,
+          "texto": "Debe ser la misma cadena mencionada en el enunciado."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `\"N/A\"`."
+        }
+      ]
+    },
+    {
+      "id": "C12-PA-002",
+      "concepto_id": 12,
+      "tipo": "parsons",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 65,
+      "enunciado": "Ordena las líneas para contar cuántos productos de una lista de diccionarios cuestan más de 100.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "contador += 1",
+          "indentacion": 2
+        },
+        {
+          "texto": "if producto[\"precio\"] > 100:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for producto in productos:",
+          "indentacion": 0
+        },
+        {
+          "texto": "contador = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "productos = [{\"nombre\": \"silla\", \"precio\": 120}, {\"nombre\": \"lapiz\", \"precio\": 2}]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(contador)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La lista de productos y el contador se inicializan antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cada `producto` es un diccionario; se accede a su precio con corchetes."
+        },
+        {
+          "nivel": 3,
+          "texto": "El `print` final va después de terminar todo el recorrido."
+        }
+      ]
+    },
+    {
+      "id": "C12-OM-003",
+      "concepto_id": 12,
+      "tipo": "opcion_multiple",
+      "dificultad": 2,
+      "tiempo_referencia_seg": 40,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def procesar(texto):\n    try:\n        return int(texto) * 2\n    except ValueError:\n        return texto.upper()\n\nprint(procesar(\"7\"))\nprint(procesar(\"hola\"))",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "14\nHOLA",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "14\nhola",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "77\nHOLA",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "\"7\" sí se puede convertir a número; \"hola\" no."
+        },
+        {
+          "nivel": 2,
+          "texto": "Cuando la conversión falla, se captura el `ValueError` y se usa el texto en mayúsculas."
+        },
+        {
+          "nivel": 3,
+          "texto": "int('7') * 2 = 14; 'hola'.upper() = 'HOLA'."
+        }
+      ]
+    },
+    {
+      "id": "C12-CC-003",
+      "concepto_id": 12,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 60,
+      "enunciado": "Completa la función para que devuelva la palabra más larga de una lista, usando `max` con una clave.",
+      "codigo": "def palabra_mas_larga(palabras):\n    return max(palabras, key=___)\n\nprint(palabra_mas_larga([\"sol\", \"estrella\", \"luna\"]))",
+      "solucion": [
+        "len"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`max` con `key` elige el elemento cuyo resultado, al aplicar la función `key`, es mayor."
+        },
+        {
+          "nivel": 2,
+          "texto": "Quieres comparar por longitud de cada palabra."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `len`."
+        }
+      ]
+    },
+    {
+      "id": "C12-CC-004",
+      "concepto_id": 12,
+      "tipo": "completar_codigo",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 60,
+      "enunciado": "Completa la función para que valide la edad ingresada, lanzando un error si es negativa, y la use de forma segura.",
+      "codigo": "def validar_edad(texto):\n    edad = int(texto)\n    if edad < 0:\n        raise ValueError(\"edad negativa\")\n    return edad\n\ntry:\n    print(validar_edad(\"-5\"))\nexcept ___:\n    print(\"edad inválida\")",
+      "solucion": [
+        "ValueError"
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "Debes capturar el mismo tipo de excepción que la función lanza."
+        },
+        {
+          "nivel": 2,
+          "texto": "La función usa `raise ValueError(...)` para señalar el problema."
+        },
+        {
+          "nivel": 3,
+          "texto": "Usa `ValueError`."
+        }
+      ]
+    },
+    {
+      "id": "C12-PA-003",
+      "concepto_id": 12,
+      "tipo": "parsons",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 80,
+      "enunciado": "Ordena las líneas para procesar una lista de textos numéricos, sumando solo los válidos.",
+      "codigo": null,
+      "fragmentos": [
+        {
+          "texto": "continue",
+          "indentacion": 2
+        },
+        {
+          "texto": "except ValueError:",
+          "indentacion": 1
+        },
+        {
+          "texto": "total += int(texto)",
+          "indentacion": 2
+        },
+        {
+          "texto": "try:",
+          "indentacion": 1
+        },
+        {
+          "texto": "for texto in entradas:",
+          "indentacion": 0
+        },
+        {
+          "texto": "total = 0",
+          "indentacion": 0
+        },
+        {
+          "texto": "entradas = [\"3\", \"x\", \"7\", \"2a\", \"5\"]",
+          "indentacion": 0
+        },
+        {
+          "texto": "print(total)",
+          "indentacion": 0
+        }
+      ],
+      "solucion": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0,
+        7
+      ],
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`total` y `entradas` se preparan antes del bucle."
+        },
+        {
+          "nivel": 2,
+          "texto": "Dentro del `for`, el `try` intenta convertir y sumar; el `except` maneja el caso inválido."
+        },
+        {
+          "nivel": 3,
+          "texto": "`continue` dentro del `except` salta al siguiente texto sin detener el programa."
+        }
+      ]
+    },
+    {
+      "id": "C12-OM-004",
+      "concepto_id": 12,
+      "tipo": "opcion_multiple",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 45,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def actualizar(inventario, producto, cantidad):\n    inventario[producto] = inventario.get(producto, 0) + cantidad\n\nstock = {\"lapiz\": 5}\nactualizar(stock, \"lapiz\", 3)\nactualizar(stock, \"goma\", 2)\nprint(sorted(stock.items()))",
+      "opciones": [
+        {
+          "clave": "a",
+          "texto": "[('goma', 2), ('lapiz', 8)]",
+          "categoria_error": null
+        },
+        {
+          "clave": "b",
+          "texto": "[('goma', 2), ('lapiz', 5)]",
+          "categoria_error": "flujo_ejecucion"
+        },
+        {
+          "clave": "c",
+          "texto": "[('lapiz', 8)]",
+          "categoria_error": "conceptual"
+        },
+        {
+          "clave": "d",
+          "texto": "Lanza un error",
+          "categoria_error": "conceptual"
+        }
+      ],
+      "solucion": "a",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "`get(producto, 0)` evita el error si la clave todavía no existe en el diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "'lapiz' ya existía con 5 y se le suman 3; 'goma' no existía y arranca desde 0 + 2."
+        },
+        {
+          "nivel": 3,
+          "texto": "`sorted(stock.items())` ordena los pares alfabéticamente por clave: goma antes que lapiz."
+        }
+      ]
+    },
+    {
+      "id": "C12-PS-004",
+      "concepto_id": 12,
+      "tipo": "prediccion_salida",
+      "dificultad": 3,
+      "tiempo_referencia_seg": 60,
+      "enunciado": "¿Qué imprime el siguiente código?",
+      "codigo": "def clasificar_lote(numeros):\n    resultado = {\"pares\": [], \"impares\": []}\n    for n in numeros:\n        if n % 2 == 0:\n            resultado[\"pares\"].append(n)\n        else:\n            resultado[\"impares\"].append(n)\n    return resultado\n\nsalida = clasificar_lote([5, 8, 3, 12, 7])\nprint(salida[\"pares\"])\nprint(salida[\"impares\"])",
+      "solucion": "[8, 12]\n[5, 3, 7]",
+      "pistas": [
+        {
+          "nivel": 1,
+          "texto": "La función recorre cada número y lo agrega a una de las dos listas del diccionario."
+        },
+        {
+          "nivel": 2,
+          "texto": "Los pares de la lista son 8 y 12; los impares son 5, 3 y 7."
+        },
+        {
+          "nivel": 3,
+          "texto": "Cada lista mantiene el orden en que aparecieron los números originales."
+        }
+      ]
+    }
+  ]
+}

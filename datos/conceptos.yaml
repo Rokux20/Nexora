@@ -1,0 +1,39 @@
+# Trayectoria de conceptos, en orden fijo.
+# id y orden coinciden a propósito: el orden ES la secuencia de progresión.
+conceptos:
+  - id: 1
+    orden: 1
+    nombre: Variables y tipos de datos
+  - id: 2
+    orden: 2
+    nombre: Entrada y salida básica
+  - id: 3
+    orden: 3
+    nombre: Operadores y expresiones
+  - id: 4
+    orden: 4
+    nombre: Estructuras condicionales
+  - id: 5
+    orden: 5
+    nombre: Bucle while
+  - id: 6
+    orden: 6
+    nombre: Bucle for
+  - id: 7
+    orden: 7
+    nombre: Listas
+  - id: 8
+    orden: 8
+    nombre: Cadenas de texto
+  - id: 9
+    orden: 9
+    nombre: Diccionarios
+  - id: 10
+    orden: 10
+    nombre: Funciones
+  - id: 11
+    orden: 11
+    nombre: Manejo de excepciones
+  - id: 12
+    orden: 12
+    nombre: Integración

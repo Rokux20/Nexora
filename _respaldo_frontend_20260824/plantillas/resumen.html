@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block titulo %}Resumen de sesión{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+
+{% if no_encontrada %}
+  <h1>No se encontró esa sesión</h1>
+  <p><a href="/practica">Volver a practicar</a></p>
+{% else %}
+
+  <span class="eyebrow">Cierre de sesión</span>
+  <h1>Resumen de la sesión #{{ sesion.id }}</h1>
+  <p class="subtitulo">
+    {% if sesion.estado == "finalizada" %}Sesión finalizada.{% else %}Sesión aún activa.{% endif %}
+  </p>
+
+  <div class="metricas-grid">
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ "%.0f min"|format(duracion_seg / 60) if duracion_seg is not none else "—" }}</span>
+      <span class="cifra__etiqueta">Duración</span>
+    </div>
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ items_resueltos }}</span>
+      <span class="cifra__etiqueta">Ítems resueltos</span>
+    </div>
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ "%.0f%%"|format(tasa_acierto * 100) if tasa_acierto is not none else "—" }}</span>
+      <span class="cifra__etiqueta">Tasa de acierto</span>
+    </div>
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ pistas_usadas }}</span>
+      <span class="cifra__etiqueta">Pistas usadas</span>
+    </div>
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ conceptos_avanzados }}</span>
+      <span class="cifra__etiqueta">Conceptos avanzados</span>
+    </div>
+    <div class="cifra tarjeta">
+      <span class="cifra__valor numerico">{{ regla_mas_activada or "—" }}</span>
+      <span class="cifra__etiqueta">Regla más activada</span>
+    </div>
+  </div>
+
+  {% if items_resueltos == 0 %}
+  <p>Aún no has respondido nada en esta sesión. Empieza cuando quieras.</p>
+  {% endif %}
+
+  <div class="rejilla-graficas">
+    {% for grafica in graficas_resumen %}
+      {% include "parciales/grafica.html" %}
+    {% endfor %}
+  </div>
+
+  <div class="barra-acciones">
+    <a class="boton" href="/practica">Seguir practicando</a>
+    <a class="boton boton--secundario" href="/progreso">Ver progreso</a>
+  </div>
+
+{% endif %}
+
+</div>
+{% endblock %}

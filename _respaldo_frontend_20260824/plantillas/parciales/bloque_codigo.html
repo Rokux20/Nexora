@@ -1,0 +1,14 @@
+{% if item.codigo %}
+<div class="bloque-codigo">
+  <table>
+    <tbody>
+    {% for linea in item.codigo.split('\n') %}
+      <tr>
+        <td class="num numerico">{{ loop.index }}</td>
+        <td>{{ linea }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}

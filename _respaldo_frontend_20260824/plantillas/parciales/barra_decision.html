@@ -1,0 +1,35 @@
+{# Requiere en el contexto: p_dominio, p_dominio_previo, umbrales,
+   regla_id, regla_nombre, accion_legible (§10.3) #}
+<div class="barra-decision">
+  <div class="barra-decision__titulo">Estimación de dominio (modelo probabilístico)</div>
+  <p class="barra-decision__pista">
+    dominio actual: <strong class="numerico">{{ "%.2f"|format(p_dominio) }}</strong>
+    · anterior: <span class="numerico">{{ "%.2f"|format(p_dominio_previo) }}</span>
+  </p>
+  <div class="regla-graduada" role="img"
+       aria-label="Regla de dominio de 0.00 a 1.00. Dominio actual {{ '%.2f'|format(p_dominio) }}, dominio anterior {{ '%.2f'|format(p_dominio_previo) }}. Umbrales en {{ '%.2f'|format(umbrales.dominio_bajo) }}, {{ '%.2f'|format(umbrales.dominio_referencia) }} y {{ '%.2f'|format(umbrales.dominio_alto) }}.">
+    <div class="regla-graduada__banda regla-graduada__banda--bajo"
+         style="left: 0%; width: {{ (umbrales.dominio_bajo * 100) }}%;"></div>
+    <div class="regla-graduada__banda regla-graduada__banda--medio"
+         style="left: {{ (umbrales.dominio_bajo * 100) }}%; width: {{ ((umbrales.dominio_alto - umbrales.dominio_bajo) * 100) }}%;"></div>
+    <div class="regla-graduada__banda regla-graduada__banda--alto"
+         style="left: {{ (umbrales.dominio_alto * 100) }}%; width: {{ ((1 - umbrales.dominio_alto) * 100) }}%;"></div>
+    <div class="regla-graduada__pista"></div>
+    <div class="regla-graduada__marca" style="left: {{ (umbrales.dominio_bajo * 100) }}%;"></div>
+    <div class="regla-graduada__marca" style="left: {{ (umbrales.dominio_referencia * 100) }}%;"></div>
+    <div class="regla-graduada__marca" style="left: {{ (umbrales.dominio_alto * 100) }}%;"></div>
+    <div class="regla-graduada__indicador-previo" style="left: {{ (p_dominio_previo * 100) }}%;"></div>
+    <div class="regla-graduada__indicador" style="left: {{ (p_dominio * 100) }}%;"></div>
+  </div>
+  <div class="regla-graduada__etiquetas">
+    <span style="left:0%">0.00</span>
+    <span class="etiqueta-banda" style="left: {{ (umbrales.dominio_bajo * 100 / 2) }}%">bajo</span>
+    <span class="etiqueta-banda" style="left: {{ ((umbrales.dominio_bajo + umbrales.dominio_alto) * 100 / 2) }}%">intermedio</span>
+    <span class="etiqueta-banda" style="left: {{ ((umbrales.dominio_alto + 1) * 100 / 2) }}%">alto</span>
+    <span style="left:100%">1.00</span>
+  </div>
+  <div class="barra-decision__regla">
+    <div class="barra-decision__regla-id">{{ regla_id }} · {{ regla_nombre }}</div>
+    <div class="barra-decision__regla-nombre">{{ accion_legible }}</div>
+  </div>
+</div>

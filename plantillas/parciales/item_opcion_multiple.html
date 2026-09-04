@@ -1,0 +1,14 @@
+{% include "parciales/bloque_codigo.html" %}
+<fieldset class="opciones-fieldset" style="border:none; margin-top:12px; padding:0;">
+  <legend class="etiqueta-campo">Elige una opción</legend>
+  <ul class="opciones">
+    {% for opcion in item.opciones %}
+    <li>
+      <label class="opcion">
+        <input type="radio" name="respuesta" value="{{ opcion.clave }}" required>
+        <span class="opcion__texto"><strong class="numerico">{{ opcion.clave }})</strong> {{ opcion.texto }}</span>
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
+</fieldset>

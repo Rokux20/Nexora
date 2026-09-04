@@ -1,0 +1,17 @@
+# Las cinco categorías de error. El id se asigna por posición al cargar.
+categorias:
+  - codigo: sintaxis
+    nombre: Error de sintaxis
+    descripcion: La respuesta incumplió las reglas formales del lenguaje.
+  - codigo: logica_algoritmo
+    nombre: Error de lógica o algoritmo
+    descripcion: La estructura de la solución no correspondió al procedimiento correcto.
+  - codigo: flujo_ejecucion
+    nombre: Error de flujo de ejecución
+    descripcion: No anticipó correctamente el orden o las condiciones de ejecución.
+  - codigo: conceptual
+    nombre: Error conceptual
+    descripcion: La respuesta reveló una comprensión incorrecta del concepto.
+  - codigo: descuido
+    nombre: Error por descuido
+    descripcion: La respuesta reflejó dominio del concepto pese al error puntual.

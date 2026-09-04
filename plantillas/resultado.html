@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block titulo %}Resultado{% endblock %}
+{% block contexto_header %}Retroalimentación{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+  <h1 class="sr-only">Resultado de tu respuesta: {{ "correcta" if es_correcto else "incorrecta" }}</h1>
+  <span class="eyebrow">Resultado de tu respuesta</span>
+
+  <div class="resultado-grid">
+    <section class="panel panel--padded">
+      <div class="veredicto {{ 'veredicto--acierto' if es_correcto else 'veredicto--error' }}">
+        <span aria-hidden="true">{{ '✓' if es_correcto else '✕' }}</span>
+        {% if es_correcto %}Respuesta correcta{% else %}Respuesta incorrecta{% endif %}
+      </div>
+      {% if categoria_error_nombre %}
+      <span class="status status--incorrecto categoria-error">{{ categoria_error_nombre }}</span>
+      {% endif %}
+      {% if modo_degradado %}
+      <div class="aviso aviso--advertencia" role="status">El estimador no está disponible; se usó una estimación de respaldo.</div>
+      {% endif %}
+      <p class="resultado-principal__texto">{{ accion_legible }}</p>
+      {% if pista %}
+      <div class="hint-entrega">
+        <div class="hint-entrega__nivel">Pista nivel {{ pista.nivel }}</div>
+        <div>{{ pista.texto }}</div>
+      </div>
+      {% endif %}
+    </section>
+
+    <aside>{% include "parciales/barra_decision.html" %}</aside>
+  </div>
+
+  <section class="panel panel--padded">
+    <span class="eyebrow">Siguiente paso</span>
+    <h2>{% if concepto_completado %}Listo para avanzar{% else %}Sigue fortaleciendo este concepto{% endif %}</h2>
+    <p class="prosa">{{ accion_legible }}</p>
+  </section>
+
+  <div class="button-row">
+    <a class="button" href="/practica{% if siguiente_item_id %}?item={{ siguiente_item_id }}{% endif %}">Continuar</a>
+    <a class="button button--secondary" href="/explicacion/{{ intento_id }}">¿Por qué esta decisión?</a>
+    <form method="post" action="/practica/finalizar">
+      <button class="button button--secondary" type="submit">Finalizar práctica</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

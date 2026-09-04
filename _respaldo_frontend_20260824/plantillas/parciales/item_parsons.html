@@ -1,0 +1,17 @@
+<p class="subtitulo">Ordena las líneas arrastrándolas, o usa los botones para moverlas.</p>
+<ol class="parsons__lista" id="parsons-lista" aria-label="Fragmentos de código a ordenar">
+  {% for frag in item.fragmentos %}
+  <li class="parsons__fragmento" draggable="true" data-indice="{{ loop.index0 }}"
+      style="padding-left: {{ 12 + frag.indentacion * 24 }}px;">
+    <span class="parsons__posicion numerico" aria-hidden="true">{{ "%02d"|format(loop.index) }}</span>
+    <span class="parsons__asa" aria-hidden="true">⠿</span>
+    <span class="parsons__texto">{{ frag.texto }}</span>
+    <span class="parsons__controles">
+      <button type="button" class="boton--secundario parsons__mover" data-direccion="arriba" aria-label="Subir esta línea">▲</button>
+      <button type="button" class="boton--secundario parsons__mover" data-direccion="abajo" aria-label="Bajar esta línea">▼</button>
+    </span>
+  </li>
+  {% endfor %}
+</ol>
+<input type="hidden" name="respuesta" id="respuesta"
+       value="[{% for frag in item.fragmentos %}{{ loop.index0 }}{% if not loop.last %},{% endif %}{% endfor %}]">

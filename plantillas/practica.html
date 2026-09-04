@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block titulo %}Practicar{% endblock %}
+{% block contexto_header %}
+{% if item %}Tipo de ítem · {{ item.tipo.replace('_', ' ')|capitalize }}{% else %}Práctica{% endif %}
+{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+
+  <section class="trajectory">
+    <div class="trajectory__cabecera">
+      <div>
+        <span class="eyebrow" style="margin-bottom:2px;">Trayectoria de aprendizaje</span>
+        <span class="trajectory__titulo">Recorrido de conceptos</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="trajectory__resumen numerico" id="trayectoria-resumen">cargando…</span>
+        <form method="post" action="/practica/finalizar">
+          <button class="button button--secondary" style="padding:5px 12px; font-size:11px;" type="submit">Finalizar práctica</button>
+        </form>
+      </div>
+    </div>
+    <div class="progress" style="margin-bottom:12px;"><div class="progress__relleno" id="trayectoria-barra" style="transform:scaleX(0);"></div></div>
+    <div class="scroll-x">
+      <div class="trajectory__pista" id="trayectoria-pista" role="img" aria-label="Mapa de trayectoria de los 12 conceptos"></div>
+    </div>
+  </section>
+
+{% if trayectoria_completa %}
+
+  <div class="panel panel--padded">
+    <span class="eyebrow">Trayectoria completa</span>
+    <h1>¡Completaste los 12 conceptos!</h1>
+    <p class="prosa">Resolviste toda la trayectoria de la plataforma. Puedes revisar tu progreso detallado o finalizar y ver el resumen de esta sesión.</p>
+    <div class="button-row">
+      <a class="button button--secondary" href="/progreso">Ver progreso</a>
+      <form method="post" action="/practica/finalizar">
+        <button class="button" type="submit">Finalizar práctica</button>
+      </form>
+    </div>
+  </div>
+
+{% else %}
+
+  <h1 class="sr-only">Practicar · {{ item.tipo.replace('_', ' ')|capitalize }}</h1>
+
+  {% if error %}
+  <div class="aviso aviso--error" role="alert">
+    <span aria-hidden="true">⚠</span><span>{{ error }}</span>
+  </div>
+  {% endif %}
+
+  <div class="grid-practica">
+    <div class="panel panel--padded question">
+      <div class="question__cabecera">
+        <div class="question__meta">
+          <span class="status status--regla">Nivel {{ item.dificultad }}</span>
+          <span class="status status--neutro">{{ item.tipo.replace('_', ' ')|capitalize }}</span>
+        </div>
+        <span class="question__cronometro numerico" id="cronometro" aria-live="off">00:00</span>
+      </div>
+
+      <p class="question__enunciado">{{ item.enunciado }}</p>
+
+      <form method="post" action="/practica/responder" id="formulario-respuesta">
+        <input type="hidden" name="item_id" value="{{ item.id }}">
+        <input type="hidden" name="tiempo_respuesta_ms" id="tiempo_respuesta_ms" value="0">
+
+        {% if item.tipo == "opcion_multiple" %}
+          {% include "parciales/item_opcion_multiple.html" %}
+        {% elif item.tipo == "prediccion_salida" %}
+          {% include "parciales/item_prediccion_salida.html" %}
+        {% elif item.tipo == "completar_codigo" %}
+          {% include "parciales/item_completar_codigo.html" %}
+        {% elif item.tipo == "parsons" %}
+          {% include "parciales/item_parsons.html" %}
+        {% endif %}
+
+        <div class="button-row" style="margin-top:16px;">
+          <button class="button" type="submit">Responder</button>
+        </div>
+      </form>
+    </div>
+
+    <aside style="display:flex; flex-direction:column; gap:12px;">
+      <section class="panel panel--padded explanation" data-concepto-id="{{ item.concepto_id }}">
+        <span class="panel__etiqueta">Explicación del concepto</span>
+        <div class="explanation__concepto" id="panel-concepto-nombre">Concepto actual</div>
+        <p class="explanation__vacio" id="explicacion-llm-estado">Solicita una explicación adaptada a tu estado actual.</p>
+        <button class="button button--secondary button--small" type="button" id="solicitar-explicacion">Ver explicación</button>
+        <div class="explanation__respuesta" id="explicacion-llm" hidden aria-live="polite"></div>
+      </section>
+
+      <section class="panel panel--padded metric-panel">
+        <span class="panel__etiqueta">Dominio estimado</span>
+        <div class="metric-panel__valor numerico" id="panel-dominio-valor">—</div>
+        <div class="progress progress--modelo"><div class="progress__relleno" id="panel-dominio-barra" style="transform:scaleX(0);"></div></div>
+        <p class="panel__pie">Última medición registrada para este concepto.</p>
+      </section>
+
+      <section class="panel panel--padded">
+        <span class="panel__etiqueta">Estado del concepto</span>
+        <span class="status status--pendiente" id="panel-estado-badge">Cargando…</span>
+      </section>
+    </aside>
+  </div>
+
+  <section class="panel panel--padded">
+    <div class="seccion-cabecera">
+      <div><span class="eyebrow">Trayectoria</span><h2>Mapa de conceptos</h2></div>
+    </div>
+    <div class="concept-map" id="mapa-conceptos"></div>
+  </section>
+
+  <section class="panel panel--padded">
+    <div class="seccion-cabecera">
+      <div><span class="eyebrow">Estado global</span><h2>Progreso general</h2></div>
+      <span class="numerico" id="progreso-general-porcentaje" style="font-size:20px; font-weight:700;">—</span>
+    </div>
+    <div class="progress" style="margin: 6px 0 10px;"><div class="progress__relleno" id="progreso-general-barra" style="transform:scaleX(0);"></div></div>
+    <div class="button-row" style="gap:18px; font-size:12px; color: var(--color-text-secondary);">
+      <span id="progreso-general-dominados">—</span>
+      <span id="progreso-general-encurso">—</span>
+      <span id="progreso-general-pendientes">—</span>
+    </div>
+  </section>
+
+  <div class="panel panel--padded hint-card">
+    <div class="hint-card__cabecera">
+      <div class="hint-card__titulo">
+        <h3 style="margin:0;">Pistas</h3>
+        <div class="hint-dots" aria-hidden="true">
+          {% for n in range(1, 4) %}
+          <span class="hint-dot {{ 'hint-dot--usado' if n <= pistas_usadas else '' }}"></span>
+          {% endfor %}
+        </div>
+        <span class="numerico subtitulo">{{ pistas_usadas }} de 3 utilizadas</span>
+      </div>
+      <form method="post" action="/practica/pista">
+        <input type="hidden" name="item_id" value="{{ item.id }}">
+        <button class="button button--hint" type="submit" {% if not puede_pedir_pista %}disabled{% endif %}>
+          Solicitar pista
+        </button>
+      </form>
+    </div>
+
+    {% for pista in pistas_entregadas %}
+    <div class="hint-entrega">
+      <div class="hint-entrega__nivel">Pista {{ pista.orden }} · nivel {{ pista.nivel }}</div>
+      <div>{{ pista.texto_entregado }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endif %}
+
+</div>
+{% endblock %}
+{% block js %}
+<script src="/estatico/js/explicacion_llm.js"></script>
+<script src="/estatico/js/practica.js"></script>
+{% endblock %}

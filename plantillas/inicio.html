@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block titulo %}Inicio{% endblock %}
+{% block contexto_header %}Panel de inicio{% endblock %}
+{% block contenido %}
+<div class="inicio">
+
+  <section class="inicio__hero">
+    <div class="inicio__hero-texto">
+      <span class="eyebrow">Plataforma de aprendizaje adaptativo</span>
+      <h1>Aprende programación<br>a tu propio ritmo.</h1>
+      <p class="prosa">Adaptivo Code Learn combina un motor de reglas pedagógicas con un modelo de dominio
+        probabilístico para elegir, después de cada respuesta, qué actividad te conviene resolver a continuación.</p>
+      <div class="button-row">
+        <a class="button" href="/practica">Comenzar aprendizaje <span aria-hidden="true">→</span></a>
+        <a class="button button--secondary" href="/progreso">Ver progreso</a>
+      </div>
+    </div>
+    <div class="inicio__panel-tecnico" aria-label="Cómo funciona Adaptivo Code Learn">
+      <div class="inicio__panel-titulo"><span>APRENDIZAJE ADAPTATIVO</span><span>motor híbrido</span></div>
+      <div class="inicio__simbolo" aria-hidden="true">&lt;/&gt;</div>
+      <p>Cada intento se evalúa con reglas pedagógicas explícitas y con un estimador de dominio; entre los dos
+        deciden si avanzas de concepto, subes de dificultad, repites o recibes una pista.</p>
+      <div class="inicio__rasgos">
+        <div class="inicio__rasgo">
+          <span class="hex hex--sm" aria-hidden="true">➜</span>
+          <b>Ruta personalizada</b>
+          <small>Se adapta a tu desempeño ítem a ítem.</small>
+        </div>
+        <div class="inicio__rasgo">
+          <span class="hex hex--sm" aria-hidden="true">?</span>
+          <b>Pistas y explicaciones</b>
+          <small>Disponibles cuando las necesitas.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trajectory">
+    <div class="trajectory__cabecera">
+      <div>
+        <span class="eyebrow" style="margin-bottom:2px;">Trayectoria de aprendizaje</span>
+        <span class="trajectory__titulo">12 conceptos de programación en Python</span>
+      </div>
+      <span class="trajectory__resumen numerico" id="trayectoria-resumen">cargando…</span>
+    </div>
+    <div class="progress" style="margin-bottom:12px;"><div class="progress__relleno" id="trayectoria-barra" style="transform:scaleX(0);"></div></div>
+    <div class="scroll-x">
+      <div class="trajectory__pista" id="trayectoria-pista" role="img" aria-label="Trayectoria de los 12 conceptos del curso"></div>
+    </div>
+  </section>
+
+  <section class="panel panel--padded">
+    <div class="seccion-cabecera">
+      <div>
+        <span class="eyebrow">Cómo funciona</span>
+        <h2>Aprendizaje adaptativo en tres pasos</h2>
+      </div>
+    </div>
+    <div class="inicio__beneficios">
+      <article class="inicio__beneficio">
+        <span class="hex hex--nivel" aria-hidden="true">01</span>
+        <h3>Resuelves una actividad</h3>
+        <p>Opción múltiple, predicción de salida, completar código o reordenar fragmentos (Parsons), según el concepto.</p>
+      </article>
+      <article class="inicio__beneficio">
+        <span class="hex hex--nivel" aria-hidden="true">02</span>
+        <h3>El motor decide</h3>
+        <p>Reglas pedagógicas y un modelo de dominio combinan tu respuesta, tus intentos y tu tiempo para decidir el siguiente paso.</p>
+      </article>
+      <article class="inicio__beneficio">
+        <span class="hex hex--nivel" aria-hidden="true">03</span>
+        <h3>Avanzas con evidencia</h3>
+        <p>Ves tu dominio estimado por concepto, recibes retroalimentación y puedes consultar por qué se tomó cada decisión.</p>
+      </article>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

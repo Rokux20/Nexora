@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block titulo %}Practicar{% endblock %}
+{% block contenido %}
+<div class="contenedor">
+
+{% if trayectoria_completa %}
+  <h1>¡Completaste toda la trayectoria!</h1>
+  <p class="subtitulo prosa">Resolviste los 12 conceptos del recorrido. Puedes revisar tu progreso o finalizar y ver el resumen de esta sesión.</p>
+  <div class="barra-acciones">
+    <a class="boton boton--secundario" href="/progreso">Ver progreso</a>
+    <form method="post" action="/practica/finalizar">
+      <button class="boton" type="submit">Finalizar práctica</button>
+    </form>
+  </div>
+{% else %}
+
+  <div class="grid-practica">
+    <div>
+      {% if error %}
+      <div class="aviso aviso--error" role="alert">
+        <span class="aviso__icono" aria-hidden="true">⚠️</span>
+        <span>{{ error }}</span>
+      </div>
+      {% endif %}
+
+      <div class="tarjeta-ejercicio">
+        <div class="tarjeta-ejercicio__cabecera">
+          <div class="meta-ejercicio">
+            <span class="insignia insignia--regla">Nivel {{ item.dificultad }}</span>
+            <span class="insignia" style="background: var(--bg-subtle); color: var(--ink-muted);">{{ item.tipo.replace('_', ' ')|capitalize }}</span>
+          </div>
+          <span class="cronometro numerico" id="cronometro" aria-live="off">00:00</span>
+        </div>
+
+        <p class="enunciado">{{ item.enunciado }}</p>
+
+        <form method="post" action="/practica/responder" id="formulario-respuesta">
+          <input type="hidden" name="item_id" value="{{ item.id }}">
+          <input type="hidden" name="tiempo_respuesta_ms" id="tiempo_respuesta_ms" value="0">
+
+          {% if item.tipo == "opcion_multiple" %}
+            {% include "parciales/item_opcion_multiple.html" %}
+          {% elif item.tipo == "prediccion_salida" %}
+            {% include "parciales/item_prediccion_salida.html" %}
+          {% elif item.tipo == "completar_codigo" %}
+            {% include "parciales/item_completar_codigo.html" %}
+          {% elif item.tipo == "parsons" %}
+            {% include "parciales/item_parsons.html" %}
+          {% endif %}
+
+          <div class="barra-acciones">
+            <button class="boton" type="submit">Responder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <aside class="panel-adaptativo">
+      <section class="tarjeta-explicacion-concepto">
+        <span class="tarjeta-adaptativa__etiqueta">Explicación del concepto</span>
+        <h2>Aprende mientras practicas</h2>
+        <p>Esta zona está preparada para mostrar la definición, ejemplos y código del concepto actual cuando ese contenido esté disponible.</p>
+        <div class="bloque-codigo bloque-codigo--compacto"><code># explicación del concepto</code></div>
+      </section>
+      <div class="tarjeta-adaptativa">
+        <span class="tarjeta-adaptativa__etiqueta">Tu dominio estimado</span>
+        <div class="tarjeta-adaptativa__valor-grande" id="panel-dominio-valor">—</div>
+        <div class="barra-progreso barra-progreso--modelo">
+          <div class="barra-progreso__relleno" id="panel-dominio-barra" style="width: 0%;"></div>
+        </div>
+        <p class="tarjeta-adaptativa__pie">Última medición registrada para este concepto.</p>
+      </div>
+
+      <div class="tarjeta-adaptativa">
+        <span class="tarjeta-adaptativa__etiqueta">Estado del concepto</span>
+        <span class="insignia insignia--pendiente" id="panel-estado-badge">Cargando…</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="trayectoria trayectoria--inferior">
+    <div class="trayectoria__cabecera"><span class="trayectoria__titulo">Mapa de conceptos</span><span class="trayectoria__resumen numerico" id="trayectoria-resumen">cargando…</span></div>
+    <div class="barra-progreso"><div class="barra-progreso__relleno" id="trayectoria-barra" style="width: 0%;"></div></div>
+    <div class="stepper" id="stepper-trayectoria" role="img" aria-label="Mapa de trayectoria de los 12 conceptos"></div>
+  </div>
+
+  <div class="tarjeta-pistas">
+    <div class="tarjeta-pistas__cabecera">
+      <div class="tarjeta-pistas__titulo">
+        <h3 style="margin-bottom: 0;">Pistas</h3>
+        <div class="puntos-pista" aria-hidden="true">
+          {% for n in range(1, 4) %}
+          <span class="punto-pista {{ 'punto-pista--usado' if n <= pistas_usadas else '' }}"></span>
+          {% endfor %}
+        </div>
+        <span class="numerico subtitulo">{{ pistas_usadas }} de 3 utilizadas</span>
+      </div>
+      <form method="post" action="/practica/pista">
+        <input type="hidden" name="item_id" value="{{ item.id }}">
+        <button class="boton boton--pista" type="submit" {% if not puede_pedir_pista %}disabled{% endif %}>
+          Solicitar pista
+        </button>
+      </form>
+    </div>
+
+    {% for pista in pistas_entregadas %}
+    <div class="pista-entregada">
+      <div class="pista-entregada__nivel">Pista {{ pista.orden }} · nivel {{ pista.nivel }}</div>
+      <div>{{ pista.texto_entregado }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endif %}
+
+</div>
+{% endblock %}
+{% block js %}
+<script src="/estatico/js/practica.js"></script>
+{% endblock %}

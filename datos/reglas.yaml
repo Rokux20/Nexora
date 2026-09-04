@@ -1,0 +1,118 @@
+
+umbrales:
+  dominio_bajo: 0.40
+  dominio_referencia: 0.50
+  dominio_alto: 0.80
+  intentos_maximos: 3
+  racha_aciertos: 3
+  racha_errores: 3
+  factor_tiempo_corto: 0.5
+  factor_tiempo_largo: 1.5
+
+reglas:
+  - id: R1
+    nombre: Avance de concepto
+    prioridad: 1
+    condicion_textual: "acierto ∧ p_dominio ≥ 0.80"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: true}
+        - {variable: p_dominio, operador: mayor_igual, umbral: dominio_alto}
+    accion: avanzar_concepto
+    explicacion: "Resolviste bien y tu estimación de dominio es alta, así que pasas al siguiente tema."
+
+  - id: R2
+    nombre: Incremento de dificultad
+    prioridad: 2
+    condicion_textual: "acierto ∧ 0.50 ≤ p_dominio < 0.80 ∧ pistas = 0 ∧ tiempo corto ∧ racha_aciertos ≥ 3"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: true}
+        - {variable: p_dominio, operador: mayor_igual, umbral: dominio_referencia}
+        - {variable: p_dominio, operador: menor, umbral: dominio_alto}
+        - {variable: pistas_usadas, operador: igual, valor: 0}
+        - {variable: tiempo_relativo, operador: menor, umbral: factor_tiempo_corto}
+        - {variable: racha_aciertos, operador: mayor_igual, umbral: racha_aciertos}
+    accion: subir_dificultad
+    explicacion: "Vienes acertando seguido, rápido y sin pistas: subimos la dificultad."
+
+  - id: R3
+    nombre: Consolidación
+    prioridad: 3
+    condicion_textual: "acierto ∧ (p_dominio < 0.50 ∨ pistas ≥ 1)"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: true}
+        - alguna:
+            - {variable: p_dominio, operador: menor, umbral: dominio_referencia}
+            - {variable: pistas_usadas, operador: mayor_igual, valor: 1}
+    accion: consolidar_mismo_nivel
+    explicacion: "Acertaste, pero conviene afianzar este nivel antes de avanzar."
+
+  - id: R4
+    nombre: Continuación en el mismo nivel
+    prioridad: 4
+    condicion_textual: "acierto (casos restantes)"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: true}
+    accion: continuar_mismo_nivel
+    explicacion: "Bien hecho. Seguimos con otro ítem de este mismo nivel."
+
+  - id: R5
+    nombre: Apoyo por tiempo excedido
+    prioridad: 5
+    condicion_textual: "error ∧ intentos disponibles ∧ tiempo largo"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: false}
+        - {variable: intentos_restantes, operador: mayor, valor: 0}
+        - {variable: tiempo_relativo, operador: mayor, umbral: factor_tiempo_largo}
+    accion: apoyo_por_tiempo
+    explicacion: "Te tomó bastante más tiempo del esperado. Aquí tienes un apoyo para continuar."
+
+  - id: R6
+    nombre: Pista progresiva
+    prioridad: 6
+    condicion_textual: "error ∧ intentos disponibles ∧ ¬tiempo largo"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: false}
+        - {variable: intentos_restantes, operador: mayor, valor: 0}
+        - {variable: tiempo_relativo, operador: menor_igual, umbral: factor_tiempo_largo}
+    accion: pista_progresiva
+    explicacion: "No era correcto, pero aún tienes intentos. Aquí tienes una pista."
+
+  - id: R7
+    nombre: Refuerzo con bloqueo de avance
+    prioridad: 7
+    condicion_textual: "error ∧ intentos agotados ∧ (p_dominio < 0.40 ∨ racha_errores ≥ 3)"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: false}
+        - {variable: intentos_restantes, operador: igual, valor: 0}
+        - alguna:
+            - {variable: p_dominio, operador: menor, umbral: dominio_bajo}
+            - {variable: racha_errores, operador: mayor_igual, umbral: racha_errores}
+    accion: reforzar_bloqueando_avance
+    explicacion: "Este concepto necesita más práctica antes de seguir. Bajamos el nivel para reforzarlo."
+
+  - id: R8
+    nombre: Refuerzo en el mismo nivel
+    prioridad: 8
+    condicion_textual: "error ∧ intentos agotados (casos restantes)"
+    condicion:
+      todas:
+        - {variable: es_correcto, operador: es, valor: false}
+        - {variable: intentos_restantes, operador: igual, valor: 0}
+    accion: reforzar_mismo_nivel
+    explicacion: "Se acabaron los intentos para este ítem. Practiquemos otro del mismo nivel."
+
+  - id: R9
+    nombre: Regla por defecto
+    prioridad: 9
+    condicion_textual: "ninguna regla anterior se cumple"
+    condicion:
+      todas: []
+    accion: continuar_mismo_nivel
+    explicacion: "Seguimos practicando en el mismo nivel."

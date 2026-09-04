@@ -1,0 +1,27 @@
+{# Requiere en el contexto: p_dominio, p_dominio_previo, umbrales,
+   regla_id, regla_nombre, accion_legible #}
+<div class="panel panel--padded dominance-scale">
+  <span class="panel__etiqueta">Estimación de dominio (modelo probabilístico)</span>
+  <div class="dominance-scale__cabecera">
+    <span>dominio actual: <strong class="numerico" style="color:var(--color-text);">{{ "%.2f"|format(p_dominio) }}</strong></span>
+    <span>anterior: <span class="numerico">{{ "%.2f"|format(p_dominio_previo) }}</span></span>
+  </div>
+  <div class="dominance-scale__pista" role="img"
+       aria-label="Regla de dominio de 0.00 a 1.00. Dominio actual {{ '%.2f'|format(p_dominio) }}, dominio anterior {{ '%.2f'|format(p_dominio_previo) }}. Umbrales en {{ '%.2f'|format(umbrales.dominio_bajo) }}, {{ '%.2f'|format(umbrales.dominio_referencia) }} y {{ '%.2f'|format(umbrales.dominio_alto) }}.">
+    <div class="dominance-scale__banda dominance-scale__banda--bajo" style="left:0%; width:{{ umbrales.dominio_bajo * 100 }}%;"></div>
+    <div class="dominance-scale__banda dominance-scale__banda--medio" style="left:{{ umbrales.dominio_bajo * 100 }}%; width:{{ (umbrales.dominio_alto - umbrales.dominio_bajo) * 100 }}%;"></div>
+    <div class="dominance-scale__banda dominance-scale__banda--alto" style="left:{{ umbrales.dominio_alto * 100 }}%; width:{{ (1 - umbrales.dominio_alto) * 100 }}%;"></div>
+    <div class="dominance-scale__marca" style="left:{{ umbrales.dominio_bajo * 100 }}%;"></div>
+    <div class="dominance-scale__marca" style="left:{{ umbrales.dominio_referencia * 100 }}%;"></div>
+    <div class="dominance-scale__marca" style="left:{{ umbrales.dominio_alto * 100 }}%;"></div>
+    <div class="dominance-scale__indicador-previo" style="left:{{ p_dominio_previo * 100 }}%;"></div>
+    <div class="dominance-scale__indicador" style="left:{{ p_dominio * 100 }}%;"></div>
+  </div>
+  <div class="dominance-scale__etiquetas">
+    <span>0.00</span><span>bajo</span><span>intermedio</span><span>alto</span><span>1.00</span>
+  </div>
+  <div class="dominance-scale__regla">
+    <div class="dominance-scale__regla-id">{{ regla_id }} · {{ regla_nombre }}</div>
+    <div class="dominance-scale__regla-nombre">{{ accion_legible }}</div>
+  </div>
+</div>
