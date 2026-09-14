@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura del Prototipo Adaptativo",
+    "output": "docs/architecture/sistema-architecture.html",
+    "quality_profile": "showcase",
+    "viewBox": [1100, 570]
+  },
+  "components": [
+    { "id": "cliente", "type": "frontend", "label": "Cliente Web", "sublabel": "Jinja2 + JS", "pos": [254, 60], "size": [120, 60] },
+    { "id": "ollama", "type": "external", "label": "Ollama / Qwen", "sublabel": "tutor teorico opcional", "pos": [682, 60], "size": [120, 60] },
+    { "id": "routers", "type": "backend", "label": "Routers FastAPI", "sublabel": "FastAPI routers", "pos": [254, 150], "size": [120, 60] },
+    { "id": "modelo_dominio", "type": "backend", "label": "Modelo Dominio", "sublabel": "modelo_dominio.py", "pos": [40, 240], "size": [120, 60] },
+    { "id": "motor_hibrido", "type": "backend", "label": "Motor Hibrido", "sublabel": "motor_hibrido.py", "pos": [254, 240], "size": [120, 60] },
+    { "id": "modelo_pedagogico", "type": "backend", "label": "Modelo Pedagogico", "sublabel": "modelo_pedagogico.py", "pos": [468, 240], "size": [120, 60] },
+    { "id": "modelo_estudiante", "type": "backend", "label": "Modelo Estudiante", "sublabel": "modelo_estudiante.py", "pos": [682, 240], "size": [120, 60] },
+    { "id": "repositorio", "type": "backend", "label": "Repositorio", "sublabel": "repositorio.py", "pos": [254, 330], "size": [120, 60] },
+    { "id": "datos_declarativos", "type": "database", "label": "Datos Declarativos", "sublabel": "YAML / JSON", "pos": [40, 420], "size": [120, 60] },
+    { "id": "sqlite", "type": "database", "label": "SQLite", "sublabel": "prototipo.db", "pos": [254, 420], "size": [120, 60] },
+    { "id": "simulador", "type": "backend", "label": "Simulador", "sublabel": "aprendiz_virtual.py", "pos": [468, 420], "size": [120, 60] },
+    { "id": "artefactos_ml", "type": "database", "label": "Artefactos ML", "sublabel": ".joblib + metricas", "pos": [682, 420], "size": [120, 60] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Nucleo - motor hibrido (nucleo/)", "wraps": ["modelo_dominio", "motor_hibrido", "modelo_pedagogico", "modelo_estudiante"], "pad": 18 }
+  ],
+  "connections": [
+    { "id": "cliente-routers", "from": "cliente", "to": "routers", "label": "HTTP (HTML / JSON)", "variant": "emphasis", "labelDy": 18 },
+    { "id": "routers-motor", "from": "routers", "to": "motor_hibrido", "label": "ejecutar_ciclo(...)", "variant": "emphasis", "labelDy": 18 },
+    { "id": "routers-repositorio", "from": "routers", "to": "repositorio", "label": "consultas directas (repositorio)", "variant": "default", "fromSide": "right", "toSide": "right", "via": [[635, 180], [635, 360]], "labelAt": [635, 314] },
+    { "id": "routers-ollama", "from": "routers", "to": "ollama", "label": "POST /api/explicacion (opcional)", "variant": "dashed" },
+    { "id": "motor-dominio", "from": "motor_hibrido", "to": "modelo_dominio", "label": "obtener_item / evaluar_respuesta", "variant": "emphasis", "labelAt": [207, 314] },
+    { "id": "motor-pedagogico", "from": "motor_hibrido", "to": "modelo_pedagogico", "label": "decidir_accion", "variant": "emphasis", "labelDy": 41 },
+    { "id": "motor-repositorio", "from": "motor_hibrido", "to": "repositorio", "label": "guardar_intento + estimacion + traza + estado", "variant": "default", "labelAt": [314, 308] },
+    { "id": "repositorio-sqlite", "from": "repositorio", "to": "sqlite", "label": "SQL (lectura / escritura)", "variant": "default", "labelAt": [314, 404] },
+    { "id": "dominio-datos", "from": "modelo_dominio", "to": "datos_declarativos", "label": "banco_items.json", "variant": "dashed", "labelAt": [100, 353] },
+    { "id": "estudiante-artefactos", "from": "modelo_estudiante", "to": "artefactos_ml", "label": "estimador_dominio.joblib", "variant": "dashed", "labelAt": [742, 353] },
+    { "id": "simulador-artefactos", "from": "simulador", "to": "artefactos_ml", "label": "datos sinteticos -> entrenamiento offline", "variant": "dashed", "labelAt": [635, 494] }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Frontera del nucleo",
+      "items": [
+        "motor_hibrido.py es el unico modulo que conoce a los 3 modelos a la vez; ellos nunca se comunican entre si"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Persistencia y contenido declarativo",
+      "items": [
+        "reglas.yaml y banco_items.json se cachean en memoria; los artefactos .joblib se leen con degradacion segura"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Ollama es opcional y esta desacoplado",
+      "items": [
+        "Solo genera teoria bajo demanda via los routers; no participa en la estimacion ni en la decision pedagogica"
+      ]
+    }
+  ]
+}

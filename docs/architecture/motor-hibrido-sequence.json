@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Motor Hibrido - Ciclo de Adaptacion",
+    "output": "docs/architecture/motor-hibrido-sequence.html",
+    "viewBox": [1080, 596],
+    "column_fit": "spread",
+    "quality_profile": "showcase"
+  },
+  "participants": [
+    { "id": "aprendiz", "type": "external", "label": "Aprendiz", "sublabel": "navegador" },
+    { "id": "rutas_web", "type": "backend", "label": "Rutas Web", "sublabel": "rutas_web.py" },
+    { "id": "motor_hibrido", "type": "backend", "label": "Motor Hibrido", "sublabel": "motor_hibrido.py" },
+    { "id": "modelo_dominio", "type": "backend", "label": "Dominio", "sublabel": "modelo_dominio.py" },
+    { "id": "modelo_estudiante", "type": "backend", "label": "Estudiante", "sublabel": "modelo_estudiante.py" },
+    { "id": "modelo_pedagogico", "type": "backend", "label": "Pedagogico", "sublabel": "modelo_pedagogico.py" },
+    { "id": "repositorio", "type": "backend", "label": "Repositorio", "sublabel": "repositorio.py" },
+    { "id": "sqlite", "type": "database", "label": "SQLite", "sublabel": "prototipo.db" }
+  ],
+  "segments": [
+    { "from": 150, "to": 230, "label": "1. Recoleccion" },
+    { "from": 230, "to": 258, "label": "2a. Evaluacion deterministica" },
+    { "from": 258, "to": 314, "label": "2b. Estimacion de dominio (ML)" },
+    { "from": 314, "to": 370, "label": "3. Decision pedagogica" },
+    { "from": 370, "to": 426, "label": "4. Registro y actualizacion de estado" },
+    { "from": 426, "to": 454, "label": "Seleccion del siguiente item" },
+    { "from": 454, "to": 506, "label": "Respuesta" }
+  ],
+  "messages": [
+    { "id": "post-responder", "from": "aprendiz", "to": "rutas_web", "y": 160, "label": "POST /practica/responder", "variant": "emphasis" },
+    { "id": "call-ejecutar-ciclo", "from": "rutas_web", "to": "motor_hibrido", "y": 188, "label": "ejecutar_ciclo(aprendiz_id, sesion_id, item_id, respuesta)", "variant": "emphasis" },
+    { "id": "recolectar-contexto", "from": "motor_hibrido", "to": "repositorio", "y": 216, "label": "contar_intentos/pistas/fallos_previos + obtener_estado_aprendiz -> EstadoAprendiz", "variant": "default" },
+    { "id": "evaluar-respuesta", "from": "motor_hibrido", "to": "modelo_dominio", "y": 244, "label": "obtener_item + evaluar_respuesta(...) -> ResultadoEvaluacion", "variant": "emphasis" },
+    { "id": "estimar-dominio", "from": "motor_hibrido", "to": "modelo_estudiante", "y": 272, "label": "estimar_dominio(estado, intento, item)", "variant": "emphasis", "note": "Pipeline .joblib cacheado; ante cualquier fallo degrada a p_dominio_previo (RNF-12)" },
+    { "id": "p-dominio-return", "from": "modelo_estudiante", "to": "motor_hibrido", "y": 300, "label": "(p_dominio, modo_estimacion)", "variant": "return" },
+    { "id": "decidir-accion", "from": "motor_hibrido", "to": "modelo_pedagogico", "y": 328, "label": "decidir_accion(variables)", "variant": "emphasis", "note": "Interprete propio de condiciones sobre reglas.yaml; sin eval/exec (RNF-03)" },
+    { "id": "traza-return", "from": "modelo_pedagogico", "to": "motor_hibrido", "y": 356, "label": "Traza(regla_id, accion, factores)", "variant": "return" },
+    { "id": "guardar-registro", "from": "motor_hibrido", "to": "repositorio", "y": 384, "label": "guardar_intento + guardar_estimacion_dominio + guardar_traza_adaptacion + guardar_estado_aprendiz", "variant": "default" },
+    { "id": "persist-writes", "from": "repositorio", "to": "sqlite", "y": 412, "label": "INSERT/UPDATE intento, estimacion_dominio, traza_adaptacion, estado_aprendiz", "variant": "default" },
+    { "id": "items-nivel", "from": "motor_hibrido", "to": "modelo_dominio", "y": 440, "label": "items_de_concepto_y_nivel(concepto_id, nivel) [via repositorio: items_vistos/agotados]", "variant": "default" },
+    { "id": "decision-return", "from": "motor_hibrido", "to": "rutas_web", "y": 468, "label": "Decision(traza, p_dominio, siguiente_item_id, pista)", "variant": "return" },
+    { "id": "render-resultado", "from": "rutas_web", "to": "aprendiz", "y": 496, "label": "200 resultado.html", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "rutas_web", "from": 182, "to": 502, "type": "backend" },
+    { "participant": "motor_hibrido", "from": 210, "to": 480, "type": "backend" },
+    { "participant": "modelo_dominio", "from": 238, "to": 250, "type": "backend" },
+    { "participant": "modelo_dominio", "from": 434, "to": 446, "type": "backend" },
+    { "participant": "modelo_estudiante", "from": 266, "to": 302, "type": "backend" },
+    { "participant": "modelo_pedagogico", "from": 322, "to": 362, "type": "backend" },
+    { "participant": "repositorio", "from": 210, "to": 222, "type": "backend" },
+    { "participant": "repositorio", "from": 378, "to": 418, "type": "backend" },
+    { "participant": "sqlite", "from": 406, "to": 418, "type": "database" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Ciclo fijo de 4 pasos",
+      "items": [
+        "Recoleccion, estimacion (evaluacion + ML), decision, registro -- no reordenable (RF-06..RF-09)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Degradacion segura y trazabilidad",
+      "items": [
+        "estimar_dominio degrada a p_dominio_previo ante fallo del pipeline .joblib (RNF-12); reglas.yaml se interpreta sin eval/exec (RNF-03)"
+      ]
+    }
+  ]
+}

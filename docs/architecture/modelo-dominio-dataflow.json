@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Pipeline de Datos del Estimador de Dominio",
+    "output": "docs/architecture/modelo-dominio-dataflow.html",
+    "viewBox": [1069, 420],
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    { "label": "Simulacion" },
+    { "label": "Datos Sinteticos" },
+    { "label": "Entrenamiento" },
+    { "label": "Artefactos" },
+    { "label": "Runtime" }
+  ],
+  "nodes": [
+    { "id": "aprendiz_virtual", "type": "backend", "label": "Aprendiz Virtual", "sublabel": "aprendiz_virtual.py", "stage": 0, "row": 0 },
+    { "id": "generar_entrenamiento", "type": "backend", "label": "Generar Entrenamiento", "sublabel": "500 aprendices virtuales", "stage": 0, "row": 1, "tag": "simulador/", "width": 150 },
+    { "id": "csv_train", "type": "database", "label": "entrenamiento.csv", "sublabel": "datos sinteticos", "stage": 1, "row": 0 },
+    { "id": "csv_val", "type": "database", "label": "validacion.csv", "sublabel": "datos sinteticos", "stage": 1, "row": 1 },
+    { "id": "caracteristicas", "type": "backend", "label": "Caracteristicas", "sublabel": "construir_vector", "stage": 2, "row": 0 },
+    { "id": "entrenar", "type": "backend", "label": "Entrenar", "sublabel": "Pipeline sklearn", "stage": 2, "row": 1, "tag": "ColumnTransformer + LogisticRegression", "width": 150 },
+    { "id": "modelo_joblib", "type": "database", "label": "estimador_dominio.joblib", "sublabel": "pipeline entrenado", "stage": 3, "row": 0, "width": 160 },
+    { "id": "metricas", "type": "database", "label": "Metricas y Coeficientes", "sublabel": "evaluar.py", "stage": 3, "row": 1, "width": 150 },
+    { "id": "modelo_estudiante", "type": "backend", "label": "Modelo Estudiante", "sublabel": "estimar_dominio", "stage": 4, "row": 0 }
+  ],
+  "flows": [
+    { "id": "simular-interacciones", "from": "aprendiz_virtual", "to": "generar_entrenamiento", "label": "simular interacciones", "classification": "probabilidad de acierto", "variant": "default", "labelDy": 24, "labelDx": -30 },
+    { "id": "escribe-train", "from": "generar_entrenamiento", "to": "csv_train", "label": "escribe entrenamiento.csv", "classification": "datos sinteticos", "variant": "emphasis" },
+    { "id": "escribe-val", "from": "generar_entrenamiento", "to": "csv_val", "label": "escribe validacion.csv", "classification": "datos sinteticos", "variant": "default", "labelDy": 49, "route": "straight" },
+    { "id": "train-a-caracteristicas", "from": "csv_train", "to": "caracteristicas", "label": "columnas crudas", "classification": "lectura", "variant": "default", "route": "straight", "labelDy": -20 },
+    { "id": "train-a-entrenar", "from": "csv_train", "to": "entrenar", "label": "X_train, y_train", "classification": "particion", "variant": "emphasis", "labelAt": [413, 200] },
+    { "id": "val-a-entrenar", "from": "csv_val", "to": "entrenar", "label": "X_val, y_val", "classification": "validacion", "variant": "default", "labelDy": 40, "route": "straight" },
+    { "id": "caracteristicas-a-entrenar", "from": "caracteristicas", "to": "entrenar", "label": "COLUMNAS (esquema)", "classification": "features", "variant": "default", "labelAt": [500, 314] },
+    { "id": "entrenar-a-joblib", "from": "entrenar", "to": "modelo_joblib", "label": "joblib.dump(pipeline)", "classification": "artefacto", "variant": "emphasis" },
+    { "id": "entrenar-a-metricas", "from": "entrenar", "to": "metricas", "label": "metricas + coeficientes", "classification": "evaluacion", "variant": "default", "labelDy": 49, "route": "straight" },
+    { "id": "joblib-a-runtime", "from": "modelo_joblib", "to": "modelo_estudiante", "label": "joblib.load (runtime)", "classification": "consumo runtime", "variant": "emphasis", "labelDy": 53 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Pipeline offline reproducible",
+      "items": [
+        "SEMILLA=42 fija la aleatoriedad en simulacion y entrenamiento (RNF-09)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Regularizacion fuerte",
+      "items": [
+        "LogisticRegression con C=0.0001: evita coeficientes degenerados ante variables casi deterministas"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Consumo en runtime",
+      "items": [
+        "modelo_estudiante.py carga el .joblib con lru_cache; degrada con seguridad si falla (RNF-12)"
+      ]
+    }
+  ]
+}

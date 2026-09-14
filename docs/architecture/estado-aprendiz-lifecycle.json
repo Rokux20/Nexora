@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Ciclo de Vida del Estado del Aprendiz",
+    "subtitle": "estado_aprendiz por concepto (persistencia/esquema.sql)",
+    "output": "docs/architecture/estado-aprendiz-lifecycle.html",
+    "quality_profile": "showcase",
+    "viewBox": [1069, 660]
+  },
+  "lanes": [
+    { "id": "main", "label": "Progreso Activo" },
+    { "id": "excepcion", "label": "Refuerzo y Bloqueo" },
+    { "id": "terminal", "label": "Estado Terminal" }
+  ],
+  "states": [
+    { "id": "pendiente", "type": "start", "label": "Pendiente", "sublabel": "sin intentos registrados", "lane": "main", "col": 0 },
+    { "id": "en_curso", "type": "active", "label": "En Curso", "sublabel": "nivel 1-3", "lane": "main", "col": 2 },
+    { "id": "bloqueado", "type": "failure", "label": "Avance Bloqueado", "sublabel": "R7: bloqueado + nivel -1", "lane": "excepcion", "col": 1 },
+    { "id": "dominado", "type": "success", "label": "Dominado", "sublabel": "R1: avanzar_concepto", "lane": "terminal", "col": 0 }
+  ],
+  "transitions": [
+    { "id": "pendiente-en_curso", "from": "pendiente", "to": "en_curso", "label": "primera respuesta", "variant": "default" },
+    { "id": "en_curso-bloqueado", "from": "en_curso", "to": "bloqueado", "label": "R7: intentos agotados, dominio bajo", "variant": "security", "fromSide": "bottom", "toSide": "top", "labelDx": -200 },
+    { "id": "en_curso-dominado", "from": "en_curso", "to": "dominado", "label": "R1: p_dominio >= 0.80", "variant": "emphasis", "route": "straight", "labelAt": [402, 320] },
+    { "id": "bloqueado-dominado", "from": "bloqueado", "to": "dominado", "label": "R1: avanzar_concepto (desbloquea)", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "labelDx": 110 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Dos dimensiones independientes",
+      "items": [
+        "nivel_dificultad_actual (1-3) sube con R2 y baja con R7, en paralelo al estado principal"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Bloqueo recuperable",
+      "items": [
+        "Solo R7 bloquea el avance; solo R1 (avanzar_concepto) desbloquea y domina el concepto en el mismo paso"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Cascada de Reglas del Motor Pedagogico",
+    "subtitle": "datos/reglas.yaml - primera condicion que se cumple, en orden de prioridad",
+    "output": "docs/architecture/motor-pedagogico-workflow.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "entrada", "label": "Entrada" },
+    { "id": "acierto", "label": "Camino: Acierto (R1-R4)" },
+    { "id": "error", "label": "Camino: Error (R5-R8)", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "intake", "label": "Evaluacion", "fromCol": 0, "toCol": 1 },
+    { "id": "cascada", "label": "Cascada de reglas (prioridad ascendente)", "fromCol": 2, "toCol": 5, "variant": "emphasis" }
+  ],
+  "mainPath": ["respuesta", "eval", "r1", "r2", "r3", "r4"],
+  "nodes": [
+    { "id": "respuesta", "lane": "entrada", "col": 0, "type": "external", "label": "Respuesta del Aprendiz", "sublabel": "es_correcto, p_dominio...", "width": 150 },
+    { "id": "eval", "lane": "entrada", "col": 1, "type": "backend", "label": "Evaluar Resultado", "sublabel": "evaluar_respuesta", "width": 150 },
+
+    { "id": "r1", "lane": "acierto", "col": 2, "type": "backend", "label": "R1: Avanzar Concepto", "sublabel": "p_dominio >= 0.80", "width": 150 },
+    { "id": "r2", "lane": "acierto", "col": 3, "type": "backend", "label": "R2: Subir Dificultad", "sublabel": "racha >=3, sin pistas", "width": 150 },
+    { "id": "r3", "lane": "acierto", "col": 4, "type": "backend", "label": "R3: Consolidar", "sublabel": "dominio bajo o pistas", "width": 150 },
+    { "id": "r4", "lane": "acierto", "col": 5, "type": "backend", "label": "R4: Continuar", "sublabel": "resto de aciertos", "width": 150 },
+
+    { "id": "r5", "lane": "error", "col": 2, "type": "backend", "label": "R5: Apoyo por Tiempo", "sublabel": "intentos > 0, tiempo largo", "width": 150 },
+    { "id": "r6", "lane": "error", "col": 3, "type": "backend", "label": "R6: Pista Progresiva", "sublabel": "intentos > 0, tiempo normal", "width": 150 },
+    { "id": "r7", "lane": "error", "col": 4, "type": "security", "label": "R7: Bloquear y Reforzar", "sublabel": "intentos = 0, dominio bajo", "width": 170 },
+    { "id": "r8", "lane": "error", "col": 5, "type": "backend", "label": "R8: Reforzar Mismo Nivel", "sublabel": "intentos = 0, resto", "width": 170 }
+  ],
+  "edges": [
+    { "id": "respuesta-eval", "from": "respuesta", "to": "eval", "variant": "default" },
+    { "id": "eval-r1", "from": "eval", "to": "r1", "label": "acierto", "variant": "emphasis", "role": "main" },
+    { "id": "eval-r5", "from": "eval", "to": "r5", "label": "error", "variant": "security", "role": "main" },
+
+    { "id": "r1-r2", "from": "r1", "to": "r2", "label": "no cumple", "variant": "dashed", "role": "branch" },
+    { "id": "r2-r3", "from": "r2", "to": "r3", "label": "no cumple", "variant": "dashed", "role": "branch" },
+    { "id": "r3-r4", "from": "r3", "to": "r4", "label": "no cumple", "variant": "dashed", "role": "branch" },
+
+    { "id": "r5-r6", "from": "r5", "to": "r6", "label": "no cumple", "variant": "dashed", "role": "branch" },
+    { "id": "r6-r7", "from": "r6", "to": "r7", "label": "intentos agotados", "variant": "dashed", "role": "branch" },
+    { "id": "r7-r8", "from": "r7", "to": "r8", "label": "no cumple", "variant": "dashed", "role": "branch" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Primera coincidencia gana",
+      "items": [
+        "decidir_accion recorre R1..R9 en orden de prioridad y se detiene en la primera condicion verdadera"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Interprete propio, sin eval/exec",
+      "items": [
+        "Las condiciones se evaluan con un interprete explicito de reglas.yaml (RNF-03), auditable por diseno"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "R9 es una red de seguridad inalcanzable",
+      "items": [
+        "R4 y R8 ya cubren todo acierto/error restante, asi que R9 (condicion vacia) nunca se activa en la practica"
+      ]
+    }
+  ]
+}
