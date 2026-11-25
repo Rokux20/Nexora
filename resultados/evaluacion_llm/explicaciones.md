@@ -1,0 +1,93 @@
+# Evaluación de explicaciones del tutor teórico (qwen3:1.7b)
+
+## Variables y tipos de datos
+
+### EX-01 · Dominio bajo (p_dominio = 0.25)
+
+- Tiempo de respuesta: 5.89 s · Palabras: 53
+- Ítem en pantalla: C01-OM-001 (opcion multiple, dificultad 1)
+
+Las variables son como los contenedores que almacenamos información en un programa. Es como un cajón donde guardamos números, letras o instrucciones. Los tipos de datos son como categorías que indican qué tipo de información está en la variable. Si usas `5`, es un número entero, como si fuera la edad de alguien.
+
+### EX-02 · Dominio medio (p_dominio = 0.60)
+
+- Tiempo de respuesta: 4.16 s · Palabras: 25
+- Ítem en pantalla: C01-PS-002 (prediccion salida, dificultad 2)
+
+Las variables son lugares donde almacenamos información, como números, letras o palabras. Cuando usamos una variable, podemos comparar valores con otros usando operadores como `==`.
+
+### EX-03 · Dominio alto (p_dominio = 0.90)
+
+- Tiempo de respuesta: 9.21 s · Palabras: 46
+- Ítem en pantalla: C01-CC-003 (completar codigo, dificultad 3)
+
+Las variables son espacios en memoria donde se guardan valores, y los tipos de datos definen qué tipo de información puede almacenarse. La clave es entender que las variables pueden tener diferentes tipos de datos, y que en Python, algunos tipos se identifican de forma implícita.
+
+## Entrada y salida básica
+
+### EX-04 · Dominio bajo (p_dominio = 0.25)
+
+- Tiempo de respuesta: 5.74 s · Palabras: 92
+- Ítem en pantalla: C02-OM-001 (opcion multiple, dificultad 1)
+
+La entrada y salida básica es un concepto que permite que un programa lea datos de un usuario y los muestre en pantalla. Puedes pensar en ella como un canal que lleva información del mundo real al programa y viceversa. Imagina que tienes un programa que te saluda, y tú le das un mensaje personal. El programa lee ese mensaje y lo muestra por pantalla. Es como si tuvieras una caja de entrada donde colocas lo que quieres decir, y una caja de salida donde se muestra lo que dice el programa.
+
+### EX-05 · Dominio medio (p_dominio = 0.60)
+
+- Tiempo de respuesta: 4.18 s · Palabras: 34
+- Ítem en pantalla: C02-PS-002 (prediccion salida, dificultad 2)
+
+La entrada y salida básica se refiere a cómo un programa obtiene datos de un usuario y muestra información en pantalla. La entrada puede ser mediante input(), y la salida se realiza con print().
+
+### EX-06 · Dominio alto (p_dominio = 0.90)
+
+- Tiempo de respuesta: 4.73 s · Palabras: 56
+- Ítem en pantalla: C02-CC-003 (completar codigo, dificultad 3)
+
+La entrada y salida básica se refiere a cómo un programa lee datos de un usuario o de un archivo y muestra resultados. Es importante destacar que si la cadena no es un número válido, el programa podría generar un error. La clave es asegurar que la entrada sea un número antes de realizar la operación.
+
+## Estructuras condicionales
+
+### EX-07 · Dominio bajo (p_dominio = 0.25)
+
+- Tiempo de respuesta: 4.25 s · Palabras: 74
+- Ítem en pantalla: C04-OM-001 (opcion multiple, dificultad 1)
+
+La estructura condicional es como una pregunta que te hace elegir entre dos opciones. Imagina que estás en un mercado y alguien te pregunta si un producto es más barato que otro. Si es así, te das la opción de comprarlo; si no, no. En programación, esta estructura te ayuda a tomar decisiones basadas en condiciones. La estructura condicional es muy útil porque te permite hacer cosas diferentes dependiendo de lo que hayas detectado.
+
+### EX-08 · Dominio medio (p_dominio = 0.60)
+
+- Tiempo de respuesta: 4.36 s · Palabras: 63
+- Ítem en pantalla: C04-PS-002 (prediccion salida, dificultad 2)
+
+Las estructuras condicionales son como una guía que te ayuda a tomar decisiones en un programa. La idea es que si algo se cumple, se ejecuta una parte específica del código. Es importante entender que las condiciones se evalúan en orden, y si una no se cumple, se pasa a la siguiente. Esto es clave para que el programa funcione de manera correcta.
+
+### EX-09 · Dominio alto (p_dominio = 0.90)
+
+- Tiempo de respuesta: 4.24 s · Palabras: 38
+- Ítem en pantalla: C04-CC-003 (completar codigo, dificultad 3)
+
+Las estructuras condicionales son como las reglas que te dicen cómo actuar dependiendo de si algo es verdadero o falso. Para hacerlo, usas una comparación encadenada, que es una forma de unir varias comparaciones en una sola línea.
+
+## Bucle for
+
+### EX-10 · Dominio bajo (p_dominio = 0.25)
+
+- Tiempo de respuesta: 5.29 s · Palabras: 56
+- Ítem en pantalla: C06-OM-001 (opcion multiple, dificultad 1)
+
+El bucle `for` es una herramienta que te permite repetir un bloque de código varias veces. Piensa en él como una maquinina que te dice "haz esto, luego haz esto, luego haz esto..." varias veces. Puedes compararlo con un juego de dados: cada vez que lanzas un dado, te da un número del 1 al 6.
+
+### EX-11 · Dominio medio (p_dominio = 0.60)
+
+- Tiempo de respuesta: 12.88 s · Palabras: 112
+- Ítem en pantalla: C06-PS-002 (prediccion salida, dificultad 2)
+
+El bucle for en Python se usa para iterar sobre una lista, un rango o cualquier estructura que te permita recorrer elemento a elemento. Es como un contador que va de 0 hasta un número dado, y te ayuda a hacer cosas como sumar, multiplicar o cambiar valores. Un error común es usar el bucle for con un rango que no coincide con la longitud de la lista, lo que hace que el bucle se ejecute más veces que debería. Por ejemplo, si tienes una lista de 5 elementos, el bucle for debería ir de 0 a 4, no de 0 a 5. ¡Usa siempre la función range() para evitar este error!
+
+### EX-12 · Dominio alto (p_dominio = 0.90)
+
+- Tiempo de respuesta: 10.20 s · Palabras: 72
+- Ítem en pantalla: C06-CC-003 (completar codigo, dificultad 3)
+
+El bucle `for` en Python se utiliza para iterar sobre una lista de elementos y ejecutar una serie de instrucciones para cada uno de ellos. Es importante destacar que el bucle se detiene en el momento en que se encuentra el primer número negativo, no después de todos los números negativos. Esto se debe a que el bucle se detiene en la primera ocurrencia de un número negativo, no en la última.

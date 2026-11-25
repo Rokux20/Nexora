@@ -2,7 +2,7 @@
 {% block titulo %}¿Por qué esta decisión?{% endblock %}
 {% block contexto_header %}Adaptación explicable{% endblock %}
 {% block contenido %}
-<div class="contenedor">
+<div class="contenedor explicacion-pagina">
 {% if no_encontrado %}
   <div class="panel panel--padded">
     <h1>No se encontró ese intento</h1>
@@ -12,67 +12,66 @@
 
   <span class="eyebrow">Adaptación explicable</span>
   <h1>¿Por qué esta decisión?</h1>
-  <p class="subtitulo prosa">Así combinaron el modelo de dominio y las reglas pedagógicas para este intento.</p>
 
-  <div class="explicacion-hero">
-    <section class="panel panel--padded">
-      <span class="eyebrow">Decisión</span>
-      <div class="dominance-scale__regla-id" style="font-size:14px;">{{ traza.regla_id }}</div>
-      <h2>{{ regla.nombre }}</h2>
-      <p class="prosa">{{ traza.explicacion_aprendiz }}</p>
-    </section>
-    <section class="panel panel--padded">
-      <span class="eyebrow">Estado del aprendiz</span>
-      <dl class="datos-resumen">
-        <div><dt>Dominio</dt><dd class="numerico">{{ "%.0f%%"|format(estimacion.p_dominio * 100) }}</dd></div>
-        <div><dt>Intento</dt><dd class="numerico">{{ intento.numero_intento }}/3</dd></div>
-        <div><dt>Resultado</dt><dd>{{ "Correcto" if intento.es_correcto else "Por reforzar" }}</dd></div>
-      </dl>
-    </section>
-  </div>
-
-  <section class="panel panel--padded">
-    <span class="eyebrow">Regla aplicada</span>
-    <h2>{{ traza.regla_id }} · {{ regla.nombre }}</h2>
-    <p class="prosa">Condición: <span class="numerico">{{ regla.condicion_textual }}</span></p>
-  </section>
-
-  <div class="explicacion-grid">
-    <section class="panel panel--padded">
-      <h2>Factores evaluados</h2>
-      <div class="factores-lista">
-        {% for fila in filas_factores %}
-        <div class="factor-fila">
-          <span>{{ fila.etiqueta }}</span>
-          <strong class="numerico">{{ fila.valor }}</strong>
-          <span class="status {{ 'status--regla' if fila.contribuyo else 'status--neutro' }}">{{ "Influyó" if fila.contribuyo else "Informativo" }}</span>
-        </div>
-        {% endfor %}
+  <section class="panel panel--padded decision-card">
+    <div class="decision-card__principal">
+      <div class="decision-card__estado">
+        <span class="status {{ 'status--dominado' if intento.es_correcto else 'status--en_curso' }}">{{ "Respuesta correcta" if intento.es_correcto else "Respuesta por reforzar" }}</span>
+        <span class="decision-card__dato">Dominio <strong class="numerico">{{ "%.0f%%"|format(estimacion.p_dominio * 100) }}</strong></span>
+        <span class="decision-card__dato">Intento <strong class="numerico">{{ intento.numero_intento }}/3</strong></span>
       </div>
-    </section>
-
-    <section class="panel panel--padded">
+      <span class="panel__etiqueta">Decisión tomada</span>
+      <h2 class="decision-card__titulo">{{ regla.nombre }}</h2>
+      <p class="decision-card__texto">{{ traza.explicacion_aprendiz }}</p>
       {% if modo_degradado %}
       <div class="aviso aviso--advertencia" role="status">Esta estimación se calculó en modo degradado; se usó el último dominio conocido.</div>
       {% endif %}
-      {% if coeficientes_top3 %}
-      <h2>Lo que más pesa en el estimador</h2>
-      <p class="subtitulo">Variables de mayor influencia en el modelo, no solo en este intento.</p>
-      <div class="coeficientes-grid">
-        {% for c in coeficientes_top3 %}
-        <div class="coeficiente">
-          <span>{{ c.variable }}</span>
-          <strong class="numerico">{{ "%+.3f"|format(c.coeficiente) }}</strong>
-          <small>{% if c.coeficiente > 0 %}Aumenta el dominio{% else %}Reduce el dominio{% endif %}</small>
-        </div>
+    </div>
+
+    {% set influyeron = filas_factores | selectattr("contribuyo") | list %}
+    {% if influyeron %}
+    <div class="decision-card__lateral">
+      <span class="panel__etiqueta">Lo que se tuvo en cuenta</span>
+      <ul class="decision-card__factores">
+        {% for fila in influyeron %}
+        <li><span>{{ fila.etiqueta }}</span><strong class="numerico">{{ fila.valor }}</strong></li>
         {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+
+  <details class="panel panel--padded detalles-tecnicos">
+    <summary>Ver detalles técnicos</summary>
+    <p class="detalles-tecnicos__regla"><span class="dominance-scale__regla-id">{{ traza.regla_id }}</span> · Condición: <span class="numerico">{{ regla.condicion_textual }}</span></p>
+
+    <h3>Todos los factores evaluados</h3>
+    <div class="factores-lista">
+      {% for fila in filas_factores %}
+      <div class="factor-fila">
+        <span>{{ fila.etiqueta }}</span>
+        <strong class="numerico">{{ fila.valor }}</strong>
+        <span class="status {{ 'status--regla' if fila.contribuyo else 'status--neutro' }}">{{ "Influyó" if fila.contribuyo else "Informativo" }}</span>
       </div>
-      {% endif %}
-    </section>
-  </div>
+      {% endfor %}
+    </div>
+
+    {% if coeficientes_top3 %}
+    <h3>Lo que más pesa en el estimador</h3>
+    <div class="coeficientes-grid">
+      {% for c in coeficientes_top3 %}
+      <div class="coeficiente">
+        <span>{{ c.variable }}</span>
+        <strong class="numerico">{{ "%+.3f"|format(c.coeficiente) }}</strong>
+        <small>{% if c.coeficiente > 0 %}Aumenta el dominio{% else %}Reduce el dominio{% endif %}</small>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </details>
 
   <div class="button-row">
-    <a class="button button--secondary" href="/practica">Volver a practicar</a>
+    <a class="button" href="/practica">Volver a practicar</a>
     <a class="button button--secondary" href="/progreso">Ver progreso</a>
   </div>
 

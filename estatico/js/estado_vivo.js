@@ -66,47 +66,6 @@
     }
   }
 
-  function pintarMapaConceptos(mapa, actualId) {
-    var contenedor = document.getElementById("mapa-conceptos");
-    if (!contenedor) return;
-    contenedor.innerHTML = "";
-    for (var c = 1; c <= NUM_CONCEPTOS; c++) {
-      var estado = mapa[c] ? mapa[c].estado : "pendiente";
-      var dominio = mapa[c] && mapa[c].p_dominio_previo != null ? mapa[c].p_dominio_previo : null;
-
-      var item = document.createElement("div");
-      item.className = "concept-map__item" + (c === actualId ? " concept-map__item--actual" : "");
-
-      var hex = document.createElement("div");
-      hex.className = "hex hex--" + estado + (c === actualId ? " hex--actual" : "");
-      hex.textContent = estado === "dominado" ? "✓" : String(c);
-
-      var nombre = document.createElement("span");
-      nombre.className = "concept-map__nombre";
-      nombre.textContent = NOMBRES_CONCEPTO[c - 1];
-
-      var estadoContenedor = document.createElement("span");
-      estadoContenedor.className = "concept-map__estado";
-
-      var etiquetaEstado = document.createElement("span");
-      etiquetaEstado.className = "concept-map__label";
-      etiquetaEstado.textContent = ETIQUETAS_ESTADO[estado] || estado;
-      estadoContenedor.appendChild(etiquetaEstado);
-
-      if (dominio != null) {
-        var dominioSpan = document.createElement("span");
-        dominioSpan.className = "concept-map__dominio";
-        dominioSpan.textContent = Math.round(dominio * 100) + "%";
-        estadoContenedor.insertBefore(dominioSpan, etiquetaEstado);
-      }
-
-      item.appendChild(hex);
-      item.appendChild(nombre);
-      item.appendChild(estadoContenedor);
-      contenedor.appendChild(item);
-    }
-  }
-
   function pintarResumenYBarra(dominados) {
     var resumen = document.getElementById("trayectoria-resumen");
     if (resumen) resumen.textContent = dominados + " de " + NUM_CONCEPTOS + " conceptos dominados";
@@ -121,11 +80,12 @@
     var elConcepto = document.getElementById("panel-concepto-nombre");
     if (!elValor && !elBadge && !elConcepto) return;
 
-    var dominio = actual && actual.p_dominio_previo != null ? actual.p_dominio_previo : null;
+    // Un concepto sin intentos todavía tiene el dominio inicial: 0 %.
+    var dominio = actual && actual.p_dominio_previo != null ? actual.p_dominio_previo : 0;
     var estadoTexto = actual ? actual.estado : "pendiente";
 
-    if (elValor) elValor.textContent = dominio != null ? Math.round(dominio * 100) + "%" : "—";
-    fijarRelleno(elBarra, dominio != null ? Math.round(dominio * 100) : 0);
+    if (elValor) elValor.textContent = Math.round(dominio * 100) + "%";
+    fijarRelleno(elBarra, Math.round(dominio * 100));
     if (elBadge) {
       elBadge.textContent = ETIQUETAS_ESTADO[estadoTexto] || estadoTexto;
       elBadge.className = "status status--" + estadoTexto;
@@ -164,7 +124,6 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     var necesitaEstado = document.getElementById("trayectoria-pista") ||
-      document.getElementById("mapa-conceptos") ||
       document.getElementById("panel-dominio-valor") ||
       document.getElementById("progreso-general-porcentaje");
     if (!necesitaEstado) return;
@@ -180,7 +139,6 @@
       }
 
       intentar(function () { pintarTrayectoria(mapa, actualId); });
-      intentar(function () { pintarMapaConceptos(mapa, actualId); });
       intentar(function () { pintarResumenYBarra(dominados); });
       intentar(function () { pintarPanelAdaptativo(mapa, actual); });
       intentar(function () { pintarProgresoGeneral(mapa); });

@@ -5,12 +5,16 @@ import time
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ))
+
+from config import SEMILLA  # noqa: E402
 
 PASOS = [
     ("Inicializando base de datos y catálogos", [sys.executable, "-m", "persistencia.inicializar"]),
-    ("Generando datos sintéticos de entrenamiento (puede tardar 1-2 min)",
-     [sys.executable, "-m", "simulador.generar_entrenamiento"]),
-    ("Entrenando el estimador de dominio", [sys.executable, "-m", "ml.entrenar"]),
+    # Con la semilla fija del sistema (RNF-09) la preparación inicial es
+    # reproducible; reentrenar después sin `--semilla` simula datos nuevos.
+    ("Generando datos sintéticos y entrenando el estimador de dominio (~1 min)",
+     [sys.executable, "-m", "ml.entrenar", "--semilla", str(SEMILLA)]),
     ("Validando el motor híbrido (puede tardar unos segundos)",
      [sys.executable, "-m", "simulador.validar_motor"]),
 ]

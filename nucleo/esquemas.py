@@ -2,6 +2,8 @@
 # orquestador.
 from dataclasses import dataclass
 
+from config import P_DOMINIO_INICIAL
+
 
 @dataclass(frozen=True)
 class Traza:
@@ -24,7 +26,7 @@ class EstadoAprendiz:
 
     aprendiz_id: str
     concepto_id: int
-    p_dominio_previo: float = 0.25
+    p_dominio_previo: float = P_DOMINIO_INICIAL
     racha_aciertos: int = 0
     racha_errores: int = 0
     total_intentos: int = 0

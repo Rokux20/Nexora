@@ -6,6 +6,7 @@
 # nunca se comunican entre sí directamente; toda la información pasa por
 # aquí.
 import dataclasses
+import random
 from pathlib import Path
 
 from config import INTENTOS_MAXIMOS_POR_ITEM, RUTA_MODELO
@@ -213,7 +214,12 @@ def _elegir_de_candidatos(
     no_vistos = [it for it in disponibles if it["id"] not in vistos]
 
     if no_vistos:
-        pool = no_vistos
+        # Orden barajado por sesión: sin esto todos los aprendices recorren
+        # el banco en el mismo orden. La semilla depende solo del estado
+        # (sesión e ítems vistos), así que la selección sigue siendo
+        # reproducible (RNF-09).
+        pool = list(no_vistos)
+        random.Random(f"{sesion_id}-{len(vistos)}").shuffle(pool)
     elif not permitir_reutilizacion:
         return None
     else:

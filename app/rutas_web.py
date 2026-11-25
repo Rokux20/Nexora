@@ -7,7 +7,12 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from app import explicaciones, graficas
-from app.dependencias import fijar_cookie_aprendiz, obtener_aprendiz_id, obtener_conexion_bd
+from app.dependencias import (
+    fijar_cookie_aprendiz,
+    imprimir_estado_aprendiz,
+    obtener_aprendiz_id,
+    obtener_conexion_bd,
+)
 from config import MAX_LONGITUD_RESPUESTA, RAIZ, RUTA_COEFICIENTES, RUTA_METRICAS, RUTA_MODELO
 from nucleo import modelo_dominio, modelo_pedagogico, motor_hibrido
 from persistencia import repositorio
@@ -117,6 +122,7 @@ def responder(
     decision = motor_hibrido.ejecutar_ciclo(
         conexion, aprendiz_id, sesion_id, item_id, respuesta, max(0, tiempo_respuesta_ms)
     )
+    imprimir_estado_aprendiz(conexion, aprendiz_id, item["concepto_id"], decision.p_dominio_previo)
 
     umbrales = modelo_pedagogico.cargar_reglas()["umbrales"]
     categoria_nombre = None

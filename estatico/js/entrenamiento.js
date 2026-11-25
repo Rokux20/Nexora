@@ -11,7 +11,16 @@
     ["roc_auc", "ROC-AUC", function (v) { return v.toFixed(3); }],
     ["tamano_train", "Registros de entrenamiento", function (v) { return String(v); }],
     ["tamano_validacion", "Registros de validación", function (v) { return String(v); }],
+    ["regularizacion.c_elegido", "C elegido (validación cruzada)", function (v) { return String(v); }],
+    ["sobreajuste.brecha", "Brecha AUC entrenamiento − validación", function (v) { return (v >= 0 ? "+" : "") + v.toFixed(3); }],
+    ["semilla_datos", "Semilla de los datos", function (v) { return String(v); }],
   ];
+
+  function leer(objeto, ruta) {
+    return ruta.split(".").reduce(function (valor, clave) {
+      return valor === undefined || valor === null ? undefined : valor[clave];
+    }, objeto);
+  }
 
   function pintarMetricas(metricas) {
     var panel = document.getElementById("entrenamiento-metricas-panel");
@@ -21,16 +30,18 @@
     grid.innerHTML = "";
     METRICAS.forEach(function (fila) {
       var clave = fila[0], etiqueta = fila[1], formatear = fila[2];
-      if (metricas[clave] === undefined || metricas[clave] === null) return;
+      var dato = leer(metricas, clave);
+      if (dato === undefined || dato === null) return;
 
       var celda = document.createElement("div");
       celda.className = "metric";
       var valor = document.createElement("span");
       valor.className = "metric__valor numerico";
-      valor.textContent = formatear(metricas[clave]);
+      valor.textContent = formatear(dato);
       var etq = document.createElement("span");
       etq.className = "metric__etiqueta";
       etq.textContent = etiqueta;
+      if (clave === "sobreajuste.brecha" && metricas.sobreajuste.detectado) etq.textContent += " · sobreajuste";
       celda.appendChild(valor);
       celda.appendChild(etq);
       grid.appendChild(celda);
@@ -49,7 +60,7 @@
       boton.disabled = true;
       badge.textContent = "Entrenando modelo...";
       badge.className = "status status--en_curso";
-      if (detalle) detalle.textContent = "Ejecutando el entrenamiento existente. Esto puede tardar unos segundos.";
+      if (detalle) detalle.textContent = "Simulando datos nuevos, eligiendo la regularización y entrenando. Tarda alrededor de un minuto.";
 
       try {
         var respuesta = await fetch("/api/entrenamiento", {
@@ -61,7 +72,7 @@
 
         badge.textContent = "Entrenamiento completado";
         badge.className = "status status--dominado";
-        if (detalle) detalle.textContent = "Modelo reentrenado y guardado en ml/artefactos/.";
+        if (detalle) detalle.textContent = "Modelo reentrenado con datos nuevos y guardado en ml/artefactos/. La práctica ya usa este modelo.";
         if (titulo) titulo.textContent = "Modelo entrenado";
         pintarMetricas(datos.metricas);
       } catch (error) {

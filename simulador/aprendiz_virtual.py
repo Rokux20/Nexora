@@ -28,22 +28,53 @@ def dominio_efectivo(dominio_latente: float, dificultad: int) -> float:
     return max(0.0, min(1.0, valor))
 
 
-def probabilidad_acierto(aprendiz: AprendizVirtual, concepto_id: int, dificultad: int) -> float:
-    efectivo = dominio_efectivo(aprendiz.dominio_latente[concepto_id], dificultad)
-    return efectivo * (1 - aprendiz.descuido) + (1 - efectivo) * aprendiz.suerte
+# Ayuda que aporta cada pista ya recibida sobre el mismo ítem: la pista de
+# nivel 3 casi entrega la respuesta y, en opción múltiple, los intentos
+# fallidos descartan opciones. Tras 1 pista la probabilidad de acertar sin
+# saber sube ≈35 %, tras 2 ≈58 %, así que un acierto en el tercer intento es
+# poca evidencia de dominio.
+AYUDA_POR_PISTA = 0.35
+
+# Tiempo de respuesta relativo al de referencia del ítem.
+# - Quien sabe responde con fluidez: el tiempo decrece con el dominio
+#   efectivo (≈0.48× con dominio 0.5, ≈0.15× con dominio pleno), lo que
+#   produce los tiempos cortos (< 0.5×) que exige R2. Un error por descuido
+#   también es rápido.
+# - Quien no sabe adivina rápido o se atasca (≈1.6×, tiempos largos de R5).
+#   Por eso un error rápido no es señal de dominio.
+TIEMPO_RELATIVO_SIN_DOMINIO = 1.6
+PENDIENTE_TIEMPO_DOMINIO = 2.4
+TIEMPO_RELATIVO_ADIVINANZA = 0.35
+PROBABILIDAD_ADIVINAR_RAPIDO = 0.5
+DISPERSION_TIEMPO = 0.35
 
 
-def simular_tiempo_respuesta_ms(
+def _ayuda_por_pistas(pistas_recibidas: int) -> float:
+    return 1 - (1 - AYUDA_POR_PISTA) ** pistas_recibidas
+
+
+def simular_respuesta(
     aprendiz: AprendizVirtual,
     concepto_id: int,
     dificultad: int,
     tiempo_referencia_seg: int,
     rng: np.random.Generator,
-) -> int:
+    pistas_recibidas: int = 0,
+) -> tuple[bool, int]:
+    # Devuelve (es_correcto, tiempo_respuesta_ms). Primero se decide si el
+    # aprendiz sabe resolver el ítem (con probabilidad igual a su dominio
+    # efectivo); el resultado y el tiempo dependen de ese camino.
     efectivo = dominio_efectivo(aprendiz.dominio_latente[concepto_id], dificultad)
-    factor = np.exp(rng.normal(0, 0.4)) * (1.6 - efectivo)
-    segundos = tiempo_referencia_seg * factor
-    return max(500, int(segundos * 1000))
+    ruido = np.exp(rng.normal(0, DISPERSION_TIEMPO))
+    if rng.uniform() < efectivo:
+        es_correcto = bool(rng.uniform() >= aprendiz.descuido)
+        factor = TIEMPO_RELATIVO_SIN_DOMINIO * np.exp(-PENDIENTE_TIEMPO_DOMINIO * efectivo) * ruido
+    else:
+        acierto_sin_saber = aprendiz.suerte + (1 - aprendiz.suerte) * _ayuda_por_pistas(pistas_recibidas)
+        es_correcto = bool(rng.uniform() < acierto_sin_saber)
+        rapido = rng.uniform() < PROBABILIDAD_ADIVINAR_RAPIDO
+        factor = (TIEMPO_RELATIVO_ADIVINANZA if rapido else TIEMPO_RELATIVO_SIN_DOMINIO) * ruido
+    return es_correcto, max(500, int(tiempo_referencia_seg * factor * 1000))
 
 
 def actualizar_dominio_tras_interaccion(aprendiz: AprendizVirtual, concepto_id: int, acerto: bool) -> None:

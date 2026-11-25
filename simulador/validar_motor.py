@@ -10,8 +10,7 @@ from persistencia.repositorio import crear_sesion, obtener_conexion, obtener_o_c
 from simulador.aprendiz_virtual import (
     AprendizVirtual,
     actualizar_dominio_tras_interaccion,
-    probabilidad_acierto,
-    simular_tiempo_respuesta_ms,
+    simular_respuesta,
 )
 
 NUM_APRENDICES = 60
@@ -49,16 +48,21 @@ def _simular_aprendiz(conexion, aprendiz: AprendizVirtual, rng: np.random.Genera
     filas = []
     item_id = motor_hibrido.seleccionar_item_inicial(conexion, sesion_id, aprendiz_id)
     interacciones = 0
+    item_anterior, intentos_en_item = None, 0
 
     while item_id and interacciones < MAX_INTERACCIONES_POR_APRENDIZ:
         item = modelo_dominio.obtener_item(item_id)
         concepto_id = item["concepto_id"]
         nivel = item["dificultad"]
 
-        p_acierto = probabilidad_acierto(aprendiz, concepto_id, nivel)
-        es_correcto_deseado = bool(rng.uniform() < p_acierto)
+        # Si el motor mantiene el mismo ítem es porque entregó una pista.
+        intentos_en_item = intentos_en_item + 1 if item_id == item_anterior else 1
+        item_anterior = item_id
+        es_correcto_deseado, tiempo_ms = simular_respuesta(
+            aprendiz, concepto_id, nivel, item["tiempo_referencia_seg"], rng,
+            pistas_recibidas=intentos_en_item - 1,
+        )
         respuesta = _construir_respuesta(item, es_correcto_deseado, rng)
-        tiempo_ms = simular_tiempo_respuesta_ms(aprendiz, concepto_id, nivel, item["tiempo_referencia_seg"], rng)
 
         decision = motor_hibrido.ejecutar_ciclo(conexion, aprendiz_id, sesion_id, item_id, respuesta, tiempo_ms)
         conexion.commit()
