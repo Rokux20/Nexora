@@ -460,3 +460,75 @@ def intentos_de_aprendiz(conexion: sqlite3.Connection, aprendiz_id: str) -> list
         """,
         (aprendiz_id,),
     ).fetchall()
+
+
+# ================================================================
+# Tutor teórico: perfil del aprendiz y explicaciones generadas
+# ================================================================
+
+
+def perfil_practica_concepto(
+    conexion: sqlite3.Connection, aprendiz_id: str, concepto_id: int, item_id: str | None = None
+) -> dict:
+    # Resumen de cómo le está yendo al aprendiz en el concepto, para que la
+    # explicación se adapte a sus errores y no solo a su dominio estimado.
+    errores = conexion.execute(
+        """
+        SELECT categoria_error.codigo AS codigo, COUNT(*) AS veces
+        FROM intento
+        JOIN sesion ON intento.sesion_id = sesion.id
+        JOIN categoria_error ON intento.categoria_error_id = categoria_error.id
+        WHERE sesion.aprendiz_id = ? AND intento.concepto_id = ? AND intento.es_correcto = 0
+        GROUP BY categoria_error.codigo
+        ORDER BY veces DESC, MAX(intento.id) DESC
+        """,
+        (aprendiz_id, concepto_id),
+    ).fetchall()
+    fallos_item = 0
+    if item_id:
+        fallos_item = conexion.execute(
+            """
+            SELECT COUNT(*) FROM intento
+            JOIN sesion ON intento.sesion_id = sesion.id
+            WHERE sesion.aprendiz_id = ? AND intento.item_id = ? AND intento.es_correcto = 0
+            """,
+            (aprendiz_id, item_id),
+        ).fetchone()[0]
+    return {"errores_frecuentes": [fila["codigo"] for fila in errores], "fallos_item_actual": int(fallos_item)}
+
+
+def guardar_explicacion_llm(
+    conexion: sqlite3.Connection,
+    aprendiz_id: str,
+    concepto_id: int,
+    item_id: str | None,
+    p_dominio: float,
+    banda: str,
+    enfoque: str,
+    tema: str,
+    texto: str,
+) -> int:
+    cursor = conexion.execute(
+        """
+        INSERT INTO explicacion_llm (aprendiz_id, concepto_id, item_id, p_dominio, banda, enfoque, tema, texto, creado_en)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (aprendiz_id, concepto_id, item_id, p_dominio, banda, enfoque, tema, texto, _ahora()),
+    )
+    return cursor.lastrowid
+
+
+def explicaciones_llm_recientes(
+    conexion: sqlite3.Connection, concepto_id: int, aprendiz_id: str, propias: bool = True, limite: int = 10
+) -> list[sqlite3.Row]:
+    # Las más recientes primero. `propias=False` devuelve las de los demás
+    # aprendices del mismo concepto.
+    operador = "=" if propias else "<>"
+    return conexion.execute(
+        f"""
+        SELECT enfoque, tema, texto FROM explicacion_llm
+        WHERE concepto_id = ? AND aprendiz_id {operador} ?
+        ORDER BY id DESC LIMIT ?
+        """,
+        (concepto_id, aprendiz_id, limite),
+    ).fetchall()

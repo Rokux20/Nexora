@@ -8,17 +8,31 @@
 # existe, o 0.5 en su defecto. El motor de reglas sigue operando con
 # normalidad en cualquiera de los dos modos — el aprendiz no percibe
 # interrupción.
+#
+# En modo normal la salida pasa por `aplicar_coherencia`: un error nunca
+# sube la estimación y un acierto nunca la baja.
 from functools import lru_cache
 from pathlib import Path
 
 import joblib
 
 from config import RUTA_MODELO
-from ml.caracteristicas import construir_vector
+from ml.caracteristicas import aplicar_coherencia, construir_vector
+
+
+def _cargar_pipeline(ruta_modelo: Path):
+    # La caché se indexa también por la fecha de modificación del archivo:
+    # al reentrenar (p. ej. desde la pantalla de entrenamiento) el servidor
+    # usa el modelo nuevo en la siguiente respuesta, sin reiniciarse.
+    try:
+        modificado = ruta_modelo.stat().st_mtime_ns
+    except OSError:
+        return None
+    return _cargar_pipeline_version(ruta_modelo, modificado)
 
 
 @lru_cache(maxsize=4)
-def _cargar_pipeline(ruta_modelo: Path):
+def _cargar_pipeline_version(ruta_modelo: Path, modificado: int):
     try:
         return joblib.load(ruta_modelo)
     except Exception:  # noqa: BLE001 - RNF-12 exige degradar ante CUALQUIER fallo de carga
@@ -39,7 +53,8 @@ def estimar_dominio(estado, intento: dict, item: dict, ruta_modelo: Path = RUTA_
                 "total_aciertos": estado.total_aciertos,
             }
             vector = construir_vector(estado_dict, intento, item)
-            p_dominio = float(pipeline.predict_proba(vector)[0, 1])
+            p_modelo = float(pipeline.predict_proba(vector)[0, 1])
+            p_dominio = aplicar_coherencia(p_modelo, estado.p_dominio_previo, intento["es_correcto"])
             return p_dominio, "normal"
         except Exception:  # noqa: BLE001 - idem: cualquier fallo de inferencia degrada, no propaga
             pass

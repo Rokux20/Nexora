@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS pista (
 CREATE TABLE IF NOT EXISTS estado_aprendiz (
     aprendiz_id               TEXT NOT NULL REFERENCES aprendiz(id),
     concepto_id               INTEGER NOT NULL REFERENCES concepto(id),
-    p_dominio_previo          REAL NOT NULL DEFAULT 0.25,
+    p_dominio_previo          REAL NOT NULL DEFAULT 0.0,
     racha_aciertos            INTEGER NOT NULL DEFAULT 0,
     racha_errores             INTEGER NOT NULL DEFAULT 0,
     total_intentos            INTEGER NOT NULL DEFAULT 0,
@@ -108,3 +108,21 @@ CREATE TABLE IF NOT EXISTS traza_adaptacion (
 CREATE INDEX IF NOT EXISTS idx_intento_sesion   ON intento(sesion_id);
 CREATE INDEX IF NOT EXISTS idx_intento_concepto  ON intento(concepto_id);
 CREATE INDEX IF NOT EXISTS idx_estado_aprendiz   ON estado_aprendiz(aprendiz_id);
+
+-- Explicaciones teóricas generadas por el tutor local (Ollama). Se guardan
+-- para personalizar las siguientes y no repetir comparaciones ni ejemplos,
+-- ni al mismo aprendiz ni entre aprendices del mismo concepto.
+CREATE TABLE IF NOT EXISTS explicacion_llm (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    aprendiz_id TEXT NOT NULL REFERENCES aprendiz(id),
+    concepto_id INTEGER NOT NULL REFERENCES concepto(id),
+    item_id     TEXT,
+    p_dominio   REAL NOT NULL,
+    banda       TEXT NOT NULL,
+    enfoque     TEXT NOT NULL,
+    tema        TEXT NOT NULL,
+    texto       TEXT NOT NULL,
+    creado_en   TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_explicacion_concepto ON explicacion_llm(concepto_id, aprendiz_id);

@@ -14,6 +14,22 @@ def _ahora() -> str:
 def crear_esquema(conexion: sqlite3.Connection) -> None:
     sql = RUTA_ESQUEMA_SQL.read_text(encoding="utf-8")
     conexion.executescript(sql)
+    _migrar(conexion)
+
+
+# Columnas añadidas a tablas que pueden existir ya en una base anterior
+# (`CREATE TABLE IF NOT EXISTS` no las agrega).
+_COLUMNAS_NUEVAS = {
+    "explicacion_llm": {"tema": "TEXT NOT NULL DEFAULT ''"},
+}
+
+
+def _migrar(conexion: sqlite3.Connection) -> None:
+    for tabla, columnas in _COLUMNAS_NUEVAS.items():
+        existentes = {fila[1] for fila in conexion.execute(f"PRAGMA table_info({tabla})")}
+        for nombre, definicion in columnas.items():
+            if existentes and nombre not in existentes:
+                conexion.execute(f"ALTER TABLE {tabla} ADD COLUMN {nombre} {definicion}")
 
 
 def cargar_conceptos(conexion: sqlite3.Connection, ruta=RUTA_CONCEPTOS) -> int:

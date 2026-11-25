@@ -1,4 +1,4 @@
-# Prototipo de plataforma de aprendizaje adaptativo para programación
+# Nexora · Prototipo de plataforma de aprendizaje adaptativo para programación
 
 ## 1. Qué es
 
@@ -8,9 +8,9 @@ de dominio (un modelo de aprendizaje automático interpretable) y en una
 decisión pedagógica (un motor de reglas declarativo) que consume esa
 estimación. La decisión siempre es explicable: se registra la regla
 activada y los factores que la sustentaron. Este prototipo acompaña la
-monografía *"Prototipo de plataforma de aprendizaje adaptativo para
+monografía _"Prototipo de plataforma de aprendizaje adaptativo para
 programación con un motor de adaptación híbrido basado en reglas y
-aprendizaje automático"* (Edwin Steven Herrera Delgado, Universidad de
+aprendizaje automático"_ (Edwin Steven Herrera Delgado, Universidad de
 Cundinamarca — Extensión Chía, 2026). No es una plataforma educativa de
 producción: no hay registro de usuarios, autenticación real ni pagos.
 
@@ -30,6 +30,7 @@ producción: no hay registro de usuarios, autenticación real ni pagos.
 ## 3. Instalación paso a paso
 
 **Linux / macOS:**
+
 ```bash
 git clone <repo> && cd prototipo-adaptativo
 python -m venv .venv
@@ -38,6 +39,7 @@ pip install -r requirements.txt
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 git clone <repo>; cd prototipo-adaptativo
 python -m venv .venv
@@ -61,22 +63,21 @@ Desglose por si quieres ejecutar los pasos por separado (por ejemplo, para
 inspeccionar la salida de cada uno):
 
 ```bash
-python -m persistencia.inicializar          # 1. crea SQLite y carga catálogos       (~1 s)
-python -m simulador.generar_entrenamiento   # 2. genera CSV sintéticos               (~1-2 min)
-python -m ml.entrenar                       # 3. entrena y guarda el .joblib         (~3 s)
-python -m simulador.validar_motor           # 4. valida el motor híbrido             (~20 s)
+python -m persistencia.inicializar          # 1. crea SQLite y carga catálogos               (~1 s)
+python -m ml.entrenar --semilla 42          # 2. simula datos, elige C por CV y entrena      (~50 s)
+python -m simulador.validar_motor           # 3. valida el motor híbrido                     (~30 s)
 ```
 
 **Salida esperada de cada paso:**
 
-1. *Inicializar*: imprime cuántos conceptos (12), categorías de error (5)
+1. _Inicializar_: imprime cuántos conceptos (12), categorías de error (5)
    y reglas (9) se cargaron.
-2. *Generar entrenamiento*: imprime cuántos aprendices virtuales y filas
-   se generaron para `datos/sintetico/entrenamiento.csv` y `validacion.csv`.
-3. *Entrenar*: imprime las métricas de validación (accuracy, precision,
-   recall, F1, ROC-AUC) y la tabla de coeficientes del modelo, cada uno
-   con su lectura en lenguaje natural.
-4. *Validar motor*: imprime la correlación entre `p_dominio` estimada y el
+2. _Entrenar_: genera `datos/sintetico/entrenamiento.csv` y `validacion.csv`,
+   imprime la tabla de validación cruzada con el C elegido, la brecha de
+   sobreajuste, las métricas de validación (accuracy, precision, recall, F1,
+   ROC-AUC, MAE y Pearson frente al dominio latente, Brier) y la tabla de
+   coeficientes del modelo, cada uno con su lectura en lenguaje natural.
+3. _Validar motor_: imprime la correlación entre `p_dominio` estimada y el
    dominio latente simulado (debe ser positiva), y qué proporción de
    aprendices con dominio alto/bajo recibieron la acción esperada.
 
@@ -93,15 +94,34 @@ automáticamente por FastAPI) está en `http://127.0.0.1:8000/docs`.
 ### Tutor teórico local (Ollama)
 
 La aplicación comprueba e inicia automáticamente `ollama serve` al arrancar,
-si Ollama está instalado localmente. Solo necesitas descargar el modelo una
-vez:
+si Ollama está instalado localmente. Si el modelo (`qwen3:1.7b` por defecto,
+configurable con `OLLAMA_MODEL`) no está instalado, lo descarga en segundo
+plano: el servidor arranca de inmediato y, mientras dura la descarga, el
+botón de explicación muestra el progreso. El avance también se ve en la
+consola y en `GET /api/salud` (campo `tutor_llm`). Si la descarga falla (por
+ejemplo, sin conexión), se reintenta la próxima vez que se pida una
+explicación.
+
+Para desactivar la descarga automática y hacerla a mano:
 
 ```bash
-ollama pull qwen3:0.6b
+OLLAMA_DESCARGA_AUTOMATICA=0   # variable de entorno
+ollama pull qwen3:1.7b
 ```
 
-Si el ejecutable o el modelo no están disponibles, la plataforma sigue
+Si el ejecutable de Ollama no está instalado, la plataforma sigue
 funcionando y el botón de explicación muestra un aviso comprensible.
+
+Al arrancar, el modelo se carga en memoria en segundo plano y se mantiene
+cargado durante toda la sesión; al cerrar la aplicación se libera. Las
+peticiones fijan su propio tamaño de contexto, así que un valor mayor
+configurado en la app de Ollama no afecta al tutor. Variables de entorno:
+
+| Variable | Por defecto | Uso |
+|---|---|---|
+| `OLLAMA_NUM_CTX` | `4096` | Contexto del modelo. Con más contexto, en GPU de 4 GB parte del modelo pasa a CPU y la carga tarda más de un minuto |
+| `OLLAMA_KEEP_ALIVE` | `-1` | Tiempo que el modelo permanece en memoria (`-1` = toda la sesión; también `30m`, `1h`) |
+| `OLLAMA_TIMEOUT_GENERACION_SEGUNDOS` | `120` | Tiempo máximo de espera para generar o cargar el modelo |
 
 ## 6. Recorrido de 2 minutos
 
@@ -171,27 +191,32 @@ prototipo2/
 
 ## 10. Reentrenar el modelo
 
-Reentrena cuando cambies `ml/caracteristicas.py`, la lógica del simulador,
-o quieras variar la semilla o el volumen de datos sintéticos:
+Cada reentrenamiento (por consola o con el botón de la pantalla
+_Entrenamiento_) simula una población nueva de aprendices virtuales con una
+semilla nueva, elige la regularización C por validación cruzada en lazo
+cerrado agrupada por aprendiz (regla de un error estándar), entrena, evalúa
+y comprueba la brecha de AUC entre entrenamiento y validación (sobreajuste).
+La semilla, el C elegido y la brecha quedan en `ml/artefactos/metricas.json`.
+El servidor usa el modelo nuevo desde la siguiente respuesta, sin reiniciarse.
 
 ```bash
-python -m simulador.generar_entrenamiento
-python -m ml.entrenar
-python -m ml.evaluar             # curva ROC + comparación con dominio latente
+python -m ml.entrenar                   # datos nuevos (semilla aleatoria registrada)
+python -m ml.entrenar --semilla 42      # reproduce un entrenamiento concreto
+python -m ml.entrenar --sin-regenerar   # reutiliza los CSV existentes
 python -m simulador.validar_motor
 ```
 
 ## 11. Solución de problemas
 
-| Problema | Causa probable | Solución |
-|---|---|---|
-| `Address already in use` / puerto ocupado | Ya hay algo corriendo en el puerto 8000 | Usa otro puerto: `uvicorn app.main:app --port 8001` |
-| El sistema muestra un aviso de "modo degradado" | Falta `ml/artefactos/estimador_dominio.joblib` (no se entrenó) | Es esperado y no rompe nada (RNF-12): ejecuta `python -m ml.entrenar` para volver a modo normal |
-| `sqlite3.DatabaseError` o comportamiento extraño de la base de datos | `datos/prototipo.db` corrupta o de un esquema anterior | Bórrala y reinicialízala: elimina `datos/prototipo.db` y ejecuta `python -m persistencia.inicializar` |
-| El texto se ve con una tipografía genérica, no IBM Plex | No se incluyeron los binarios `.woff2` (ver DECISIONES.md #7) | Coloca los archivos reales de IBM Plex en `estatico/fonts/` con los nombres que ya referencia `estatico/css/estilo.css`; el prototipo funciona igual sin ellos |
-| `.venv\Scripts\Activate.ps1` falla con "no se puede cargar... deshabilitado" | La política de ejecución de PowerShell bloquea scripts | Ejecuta una vez: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, luego reintenta activar el entorno |
-| `pip install` falla compilando alguna dependencia en Windows | Falta el Build Tools de Visual C++ para paquetes con extensiones nativas | Instala "Microsoft C++ Build Tools" o actualiza `pip` (`python -m pip install --upgrade pip`) antes de reintentar |
-| `python scripts/preparar.py` falla en el paso 2 (datos sintéticos) por memoria o lentitud extrema | Máquina con pocos recursos | Reduce `NUM_APRENDICES` en `simulador/generar_entrenamiento.py` antes de ejecutar |
+| Problema                                                                                          | Causa probable                                                           | Solución                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Address already in use` / puerto ocupado                                                         | Ya hay algo corriendo en el puerto 8000                                  | Usa otro puerto: `uvicorn app.main:app --port 8001`                                                                                                            |
+| El sistema muestra un aviso de "modo degradado"                                                   | Falta `ml/artefactos/estimador_dominio.joblib` (no se entrenó)           | Es esperado y no rompe nada (RNF-12): ejecuta `python -m ml.entrenar` para volver a modo normal                                                                |
+| `sqlite3.DatabaseError` o comportamiento extraño de la base de datos                              | `datos/prototipo.db` corrupta o de un esquema anterior                   | Bórrala y reinicialízala: elimina `datos/prototipo.db` y ejecuta `python -m persistencia.inicializar`                                                          |
+| El texto se ve con una tipografía genérica, no IBM Plex                                           | No se incluyeron los binarios `.woff2` (ver DECISIONES.md #7)            | Coloca los archivos reales de IBM Plex en `estatico/fonts/` con los nombres que ya referencia `estatico/css/estilo.css`; el prototipo funciona igual sin ellos |
+| `.venv\Scripts\Activate.ps1` falla con "no se puede cargar... deshabilitado"                      | La política de ejecución de PowerShell bloquea scripts                   | Ejecuta una vez: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, luego reintenta activar el entorno                                                     |
+| `pip install` falla compilando alguna dependencia en Windows                                      | Falta el Build Tools de Visual C++ para paquetes con extensiones nativas | Instala "Microsoft C++ Build Tools" o actualiza `pip` (`python -m pip install --upgrade pip`) antes de reintentar                                              |
+| `python scripts/preparar.py` falla en el paso 2 (datos sintéticos) por memoria o lentitud extrema | Máquina con pocos recursos                                               | Reduce `NUM_APRENDICES` en `simulador/generar_entrenamiento.py` antes de ejecutar                                                                              |
 
 ## 12. Limitaciones conocidas
 
@@ -212,5 +237,4 @@ python -m simulador.validar_motor
 ## 13. Licencia y crédito académico
 
 Proyecto académico desarrollado como parte de la monografía de pregrado
-citada en la sección 1, Universidad de Cundinamarca — Extensión Chía,
-2026. Uso educativo y de investigación.
+citada en la sección 1, Universidad de Cundinamarca — Extensión Chía, 2026. Uso educativo y de investigación.

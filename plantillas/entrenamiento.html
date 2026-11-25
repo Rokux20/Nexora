@@ -6,9 +6,10 @@
   <span class="eyebrow">Administración del modelo</span>
   <h1>Entrenamiento del modelo</h1>
   <p class="subtitulo prosa">
-    Reentrena el estimador de dominio (regresión logística) con los datos sintéticos de aprendices
-    virtuales. Este botón ejecuta exactamente el mismo proceso que <code class="numerico">python -m ml.entrenar</code>;
-    la pantalla solo lo dispara y muestra el resultado real.
+    Reentrena el estimador de dominio (regresión logística) con datos nuevos: cada entrenamiento simula
+    otra población de aprendices virtuales, elige la regularización por validación cruzada agrupada por
+    aprendiz y comprueba que no haya sobreajuste. Este botón ejecuta exactamente el mismo proceso que
+    <code class="numerico">python -m ml.entrenar</code>; la práctica usa el modelo nuevo desde la siguiente respuesta.
   </p>
 
   <div class="panel panel--padded">
@@ -21,8 +22,8 @@
     </div>
     <p class="panel__pie" id="entrenamiento-estado-detalle">
       {% if modelo_entrenado %}
-        Ya existe un modelo guardado en <code class="numerico">ml/artefactos/</code>. Puedes reentrenarlo
-        cuando quieras: el proceso es determinista (misma semilla, mismos datos).
+        Ya existe un modelo guardado en <code class="numerico">ml/artefactos/</code>. Al reentrenarlo se simulan
+        datos nuevos con otra semilla, que queda registrada para poder reproducir el resultado.
       {% else %}
         Todavía no se ha entrenado ningún modelo en este proyecto.
       {% endif %}
@@ -45,6 +46,11 @@
       <div class="metric"><span class="metric__valor numerico">{{ "%.3f"|format(metricas_previas.roc_auc) }}</span><span class="metric__etiqueta">ROC-AUC</span></div>
       <div class="metric"><span class="metric__valor numerico">{{ metricas_previas.tamano_train }}</span><span class="metric__etiqueta">Registros de entrenamiento</span></div>
       <div class="metric"><span class="metric__valor numerico">{{ metricas_previas.tamano_validacion }}</span><span class="metric__etiqueta">Registros de validación</span></div>
+      {% if metricas_previas.regularizacion %}
+      <div class="metric"><span class="metric__valor numerico">{{ "%g"|format(metricas_previas.regularizacion.c_elegido) }}</span><span class="metric__etiqueta">C elegido (validación cruzada)</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ "%+.3f"|format(metricas_previas.sobreajuste.brecha) }}</span><span class="metric__etiqueta">Brecha AUC entrenamiento − validación{% if metricas_previas.sobreajuste.detectado %} · sobreajuste{% endif %}</span></div>
+      <div class="metric"><span class="metric__valor numerico">{{ metricas_previas.semilla_datos if metricas_previas.semilla_datos is not none else "—" }}</span><span class="metric__etiqueta">Semilla de los datos</span></div>
+      {% endif %}
       {% endif %}
     </div>
   </section>

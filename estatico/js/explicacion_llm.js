@@ -1,5 +1,6 @@
 /* Solicita teoría generada por Ollama. El navegador nunca envía dominio,
- * nivel ni texto de prompt: solo el identificador del concepto visible. */
+ * nivel ni texto de prompt: solo los identificadores del concepto y del
+ * ítem visibles; el backend arma el contexto a partir de ellos. */
 (function () {
   "use strict";
 
@@ -22,13 +23,19 @@
           method: "POST",
           credentials: "same-origin",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ concepto_id: conceptoId }),
+          body: JSON.stringify({ concepto_id: conceptoId, item_id: panel.dataset.itemId || null }),
         });
         var datos = await respuesta.json();
         if (!respuesta.ok) throw new Error(datos.detail || "No fue posible generar la explicación.");
         destino.textContent = datos.explicacion;
         destino.hidden = false;
         estado.textContent = "Explicación adaptada a tu estado actual.";
+        // Una vez visible, la explicación gana espacio en la rejilla.
+        var grid = document.getElementById("grid-practica");
+        if (grid) grid.classList.add("grid-practica--explicacion");
+        panel.classList.add("explanation--activa");
+        boton.textContent = "Generar otra explicación";
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (error) {
         estado.textContent = error.message || "El servicio local no está disponible.";
       } finally {

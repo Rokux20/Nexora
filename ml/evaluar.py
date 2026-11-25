@@ -20,7 +20,7 @@ from sklearn.metrics import (
 )
 
 from config import RUTA_METRICAS, RUTA_MODELO, RUTA_ROC_SVG, RUTA_VALIDACION_CSV
-from ml.caracteristicas import COLUMNAS
+from ml.caracteristicas import COLUMNAS, aplicar_coherencia
 
 # Paleta consistente con estatico/css/estilo.css: violeta = componente probabilístico.
 _COLOR_LINEA = "#C9CCD1"
@@ -127,7 +127,7 @@ def evaluar() -> dict:
     pipeline = joblib.load(RUTA_MODELO)
     X, y, dominio_real = _cargar_validacion()
 
-    y_proba = pipeline.predict_proba(X)[:, 1]
+    y_proba = aplicar_coherencia(pipeline.predict_proba(X)[:, 1], X["p_dominio_previo"], X["es_correcto"])
     y_pred = (y_proba >= 0.5).astype(int)
 
     fpr, tpr, _ = roc_curve(y, y_proba)
